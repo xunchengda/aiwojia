@@ -12,14 +12,9 @@
 .tb-img6{ width:100%;}
 
 /*顶部titlebar*/
-.x-titlebar{ background-color:#ff4400;}
 .x-titlebar .btn{ padding:0;}
 .x-titlebar .btn-link{ height:auto;}
-
 .x-titlebar .x-titlebar-title { color: black; }
-.tb-top.x-titlebar .x-titlebar-title.tb-searchBox{ text-align:left; padding-top:8px; }
-.tb-searchBox span{ font-size:16px;}
-.tb-searchBox div{ height:3px; border:1px solid #fff; border-top:none;}
 
 /*导航栏目*/
 .tb-menu.table > tbody > tr > td{ border:0;width:20%;}
@@ -35,5 +30,3 @@
 /*内容*/
 .tb-twoColList.col-xs-6{ padding:10px;}
 .tb-twoColList.col-xs-6 h5{ height:45px; overflow:hidden;}
-
-
