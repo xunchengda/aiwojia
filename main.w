@@ -183,7 +183,7 @@
               </div> 
             </div>  
             <div class="x-panel-content" xid="content1">
-              <div component="$UI/system/components/justep/row/row" class="x-row"
+              <div component="$UI/system/components/justep/row/row" class="x-row avatar-row"
                 xid="avatarRow" style="height:40%;max-height:480px;background-color:#CCC;"> 
                 <div class="x-col" xid="col1"/>  
                 <div class="x-col" xid="col2">

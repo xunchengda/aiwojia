@@ -30,3 +30,7 @@
 /*内容*/
 .tb-twoColList.col-xs-6{ padding:10px;}
 .tb-twoColList.col-xs-6 h5{ height:45px; overflow:hidden;}
+
+.avatar-row {
+	display: none;
+}
