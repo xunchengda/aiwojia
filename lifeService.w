@@ -52,18 +52,6 @@
           <span class="x-pull-down-label" xid="span3">下拉刷新...</span> 
         </div>  
         <div class="x-scroll-content" xid="div5" style="background-color:#E6E6E6;"> 
-          <div component="$UI/system/components/bootstrap/carousel/carousel"
-            class="x-carousel carousel" xid="carousel1" auto="true" interval="4"> 
-            <ol class="carousel-indicators" xid="ol1"/>  
-            <div class="x-contents carousel-inner" role="listbox" component="$UI/system/components/justep/contents/contents"
-              active="0" slidable="true" wrap="true" swipe="true" xid="contentsImg"
-              routable="false"> 
-              <div class="x-contents-content" xid="content2"> 
-                <img src="./main/img/slide-1.jpg" alt="" xid="image13" bind-click="openPageClick"
-                  class="tb-img1" pagename="./detail.w" align="middle"/> 
-              </div> 
-            </div> 
-          </div>  
           <div component="$UI/system/components/justep/row/row" class="x-row x-nav"
             xid="navListRow" style="height:44px;background-color:white;padding:0;"> 
             <div class="x-col" xid=""> 

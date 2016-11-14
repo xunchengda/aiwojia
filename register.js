@@ -51,7 +51,43 @@ define(function(require) {
 			this.comp('codeInput').removeClass('has-error');
 		}
 		if(!has_error){
-		
+			$.ajax({
+				'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=register",
+				'type':'post',
+				'async':false,
+				'dataType':'json',
+				'data':{
+					'name':data.val('name'),
+					'mobile':data.val('mobile'),
+					'password':data.val('password'),
+					'idno':data.val('idno')
+				},
+				success:function(result){
+					console.log(result);
+					if(result.status==1){
+						localStorage.setItem('user',{
+							'name':data.val('name'),
+							'mobile':data.val('mobile'),
+							'idno':data.val('idno')
+						});
+						justep.Shell.showPage('main');
+					}
+					if(result.status==-1){
+						justep.Util.hint(result.message, {
+							type:'warning',
+							delay:'5000'
+						});
+					}
+				},
+				error:function(result){
+					console.log(result);
+					justep.Util.hint('注册失败', {
+						type:'warning',
+						delay:'5000'
+					});
+				}
+				
+			});
 		}
 		
 	};
