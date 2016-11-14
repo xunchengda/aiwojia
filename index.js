@@ -42,6 +42,9 @@ define(function(require) {
 				},
 				"user":{
 					url:require.toUrl('user.w')
+				},
+				'agent':{
+					url:require.toUrl("./agent/agengmain.w")
 				}
 			}
 		});

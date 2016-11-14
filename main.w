@@ -73,12 +73,12 @@
                       xid="table1"> 
                       <tbody class="x-list-template" xid="listTemplate2"> 
                         <tr xid="tr1"> 
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename="./agent/agentmain.w"
                             xid="td1"> 
                             <div class="text-center" xid="div2"> 
                               <img src="$UI/mine/aiwojia/main/img/icon-menu-1.png"
                                 alt="" xid="image3" class="img-responsive center-block tb-img5"/>  
-                              <span xid="span7"><![CDATA[待办业务]]></span> 
+                              <span xid="span7"><![CDATA[代办业务]]></span> 
                             </div> 
                           </td>  
                           <td bind-click="openPageClick" pagename="./list.w"
