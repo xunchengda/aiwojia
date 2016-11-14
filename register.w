@@ -52,29 +52,30 @@
       <div xid="div1" class="list-group"> 
 	        <div class="list-group-item"> 
 	          <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1">
-   <div class="x-col x-col-20" xid="col1"><span class="input-group-addon" xid="span2"> 
-	              <i class="fa fa-user fa-fw" /> 
+   <div class="form-item-icon" xid="col1"><span class="input-group-addon" xid="span2"> 
+	              <i class="fa fa-user fa-lg fa-fw" /> 
 	            </span></div>
-   <div class="x-col" xid="col2"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="nameInput" placeHolder="用户名" bind-ref='$model.regdata.ref("name")'/></div>
-   </div></div>
+   <div xid="col2" class="x-col"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="nameInput" placeHolder="用户名" bind-ref='$model.regdata.ref("name")'/></div>
+   </div>
+  </div>
 	        <div class="list-group-item" xid=""> 
 	          <div component="$UI/system/components/justep/row/row" class="x-row" xid="row2">
-   <div class="x-col x-col-20" xid="col4"><span class="input-group-addon" xid=""> 
-	              <i class="fa fa-phone fa-fw" xid="" /> 
+   <div class="form-item-icon" xid="col4"><span class="input-group-addon" xid=""> 
+	              <i class="fa fa-phone fa-lg fa-fw" xid="" /> 
 	            </span></div>
    <div class="x-col" xid="col5"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="mobileInput" placeHolder="手机号" bind-ref='$model.regdata.ref("mobile")'/></div>
    </div></div>    
 	        <div class="list-group-item" xid=""> 
 	          <div component="$UI/system/components/justep/row/row" class="x-row" xid="row3">
-   <div class="x-col x-col-20" xid="col7"><span class="input-group-addon" xid=""> 
-	              <i class="fa fa-id-card fa-fw" xid="" /> 
+   <div class="form-item-icon" xid="col7"><span class="input-group-addon" xid=""> 
+	              <i class="fa fa-id-card fa-lg fa-fw" xid="" /> 
 	            </span></div>
    <div class="x-col" xid="col8"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="idInput" placeHolder="身份证号" bind-ref='$model.regdata.ref("idno")'/></div>
    </div></div>
 	        <div class="list-group-item" xid="div6"> 
 	          <div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
-   <div class="x-col x-col-20" xid="col10"><span class="input-group-addon" xid="span3"> 
-	              <i class="fa fa-lock fa-fw" xid="i3" /> 
+   <div class="form-item-icon" xid="col10"><span class="input-group-addon" xid="span3"> 
+	              <i class="fa fa-lock fa-lg fa-fw" xid="i3" /> 
 	            </span></div>
    <div class="x-col" xid="col11"><input component="$UI/system/components/justep/input/password" class="form-control x-inputText" xid="passwordInput" placeHolder="密码" bind-ref='$model.regdata.ref("password")'/></div>
    </div></div> 
@@ -84,8 +85,8 @@
 	            
 	          </div> 
 	        <div component="$UI/system/components/justep/row/row" class="x-row" xid="row5">
-   <div class="x-col x-col-20" xid="col13"><span class="input-group-addon" xid=""> 
-	              <i class="fa fa-commenting fa-fw" xid="" /> 
+   <div class="form-item-icon" xid="col13"><span class="input-group-addon" xid=""> 
+	              <i class="fa fa-commenting fa-lg fa-fw" xid="" /> 
 	            </span></div>
    <div class="x-col" xid="col14"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="codeInput" placeHolder="验证码" style="width:101%;" bind-ref='$model.regdata.ref("code")'/></div>
    <div class="x-col x-col-30" xid="col16"><a component="$UI/system/components/justep/button/button" class="btn x-green btn-default pull-left" label="获取验证码" xid="getSmsBtn" style="line-height:0px;padding: 16px;width:120px;margin-left:10px;float:right;">
