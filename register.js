@@ -4,13 +4,63 @@ define(function(require) {
 
 	var Model = function() {
 		this.callParent();
+		this.requestingCode=justep.Bind.observable(true);
+		this.smsCode='';
 	};
+	
 	
 	//图片路径转换
 	Model.prototype.toUrl = function(url){
 		return url ? require.toUrl(url) : "";
 	};
-	
+	//点击获得手机认证号按钮
+	Model.prototype.btnCodeClick=function(event){
+		var data=this.comp('regdata').getCurrentRow();
+		if(this.checkMobile(data.val('mobile'))){
+			var mobile=data.val('mobile');
+			this.comp('getSmsBtn').set('enabled',false);
+			this.comp('timer').start();
+			$.ajax({
+					'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=sms",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'no':mobile
+					},
+					success:function(result){
+						console.log(result);
+						if(result.status==1){
+							this.smdCode=result.code;
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'5000'
+							});
+						}
+					},
+					error:function(result){
+						console.log(result);
+						justep.Util.hint('发送短信出错', {
+							type:'warning',
+							delay:'5000'
+						});
+					}
+			});
+		}
+	};
+	//timer计数
+	Model.prototype.dtimerTimer=function(event){
+		var times=event.times;
+		this.comp('getSmsBtn').set('text',"("+times+")秒后重试");
+		if(times>60){
+			this.comp('timer').stop();
+			this.comp('getSmsBtn').set('text','获取验证码');
+			this.comp('getSmsBtn').set('enabled',true);
+			
+		}
+	};
 	//点击注册按钮
 	Model.prototype.btnRegClick=function(event){
 		var has_error=false;
@@ -126,7 +176,7 @@ define(function(require) {
 	};	
 	//检查验证码
 	Model.prototype.checkCode=function(value){
-		if(this.isEmpty(value)){
+		if(this.isEmpty(value) || this.isEmpty(this.smsCode) || value!==this.smsCode){
 			return false;
 		}else{
 			return true;
@@ -205,6 +255,8 @@ define(function(require) {
 	Model.prototype.btnLoginClick=function(event){
 		justep.Shell.showPage('login');
 	}
+	
+	
 	
 	return Model;
 });

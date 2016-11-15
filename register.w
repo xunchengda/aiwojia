@@ -89,7 +89,7 @@
 	              <i class="fa fa-commenting fa-lg fa-fw" xid="" /> 
 	            </span></div>
    <div class="x-col" xid="col14"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="codeInput" placeHolder="验证码" style="width:101%;" bind-ref='$model.regdata.ref("code")'/></div>
-   <div class="x-col x-col-30" xid="col16"><a component="$UI/system/components/justep/button/button" class="btn x-green btn-default pull-left" label="获取验证码" xid="getSmsBtn" style="line-height:0px;padding: 16px;width:120px;margin-left:10px;float:right;">
+   <div class="x-col x-col-30" xid="col16"><a component="$UI/system/components/justep/button/button" class="btn x-green btn-default pull-left" label="获取验证码" xid="getSmsBtn" style="line-height:0px;padding: 16px;width:120px;margin-left:10px;float:right;" onClick="btnCodeClick" bind-enable="requestingCode">
 	   <i xid="i1"></i>
 	   <span xid="span1">获取验证码</span></a></div></div></div>  
 	      </div><a component="$UI/system/components/justep/button/button" class="btn x-black btn-lg btn-only-label btn-block text-info list-group" label="注    册" xid="registerBtn" style="background-color:#ee9c13;color:#4C4C4C;border-width:0px 0px 0px 0px;" onClick="btnRegClick"> 
@@ -100,5 +100,5 @@
    		  <span xid="span7">我有帐号，直接登录</span></a></div>
   	<div class="x-panel-bottom" xid="bottom1" visible="false"></div> 
   </div> 
-<resource xid="resource2"><require xid="require2" url="css!$UI/mine/aiwojia/css/font-awesome/css/fa.icons"></require></resource>
+<span component="$UI/system/components/justep/timer/timer" xid="timer" style="top:11px;left:866px;"></span><resource xid="resource2"><require xid="require2" url="css!$UI/mine/aiwojia/css/font-awesome/css/fa.icons"></require></resource>
   </div>
