@@ -18,3 +18,17 @@
 	background-color: transparent;
 	border: none;
 }
+
+.loading-div {
+	background-color: transparent;
+	text-align: center;
+	opacity: .75;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background: black url(./main/img/loading.gif) no-repeat center center;
+	/*display: none;*/
+}
