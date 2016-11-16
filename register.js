@@ -1,11 +1,11 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-
+	var smsCode,smsSerial;
 	var Model = function() {
 		this.callParent();
-		this.requestingCode=justep.Bind.observable(true);
-		this.smsCode='';
+		smsCode='';
+		this.requestingCode=justep.Bind.observable(false);
 	};
 	
 	
@@ -15,10 +15,11 @@ define(function(require) {
 	};
 	//点击获得手机认证号按钮
 	Model.prototype.btnCodeClick=function(event){
+		var self=this;
 		var data=this.comp('regdata').getCurrentRow();
-		if(this.checkMobile(data.val('mobile'))){
+		if(!this.checkAllInput()){
 			var mobile=data.val('mobile');
-			this.comp('getSmsBtn').set('enabled',false);
+			this.requestingCode.set(true);
 			this.comp('timer').start();
 			$.ajax({
 					'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=sms",
@@ -28,10 +29,14 @@ define(function(require) {
 					'data':{
 						'no':mobile
 					},
+					beforeSend:self.showLoading,
+					complete:self.hideLoading,
 					success:function(result){
 						console.log(result);
 						if(result.status==1){
-							this.smdCode=result.code;
+							smsCode=result.code;
+							smsSerial=result.serial;
+							console.log('smsCode:'+smsCode);
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
@@ -53,16 +58,16 @@ define(function(require) {
 	//timer计数
 	Model.prototype.dtimerTimer=function(event){
 		var times=event.times;
-		this.comp('getSmsBtn').set('text',"("+times+")秒后重试");
-		if(times>60){
+		this.comp('getSmsBtn').set('label',"("+(10-times)+")秒后重试");
+		if((10-times)<0){
 			this.comp('timer').stop();
-			this.comp('getSmsBtn').set('text','获取验证码');
-			this.comp('getSmsBtn').set('enabled',true);
+			this.comp('getSmsBtn').set('label','获取验证码');
+			this.requestingCode.set(false);
 			
 		}
 	};
-	//点击注册按钮
-	Model.prototype.btnRegClick=function(event){
+	//check all input
+	Model.prototype.checkAllInput=function(){
 		var has_error=false;
 		var data=this.comp('regdata').getCurrentRow();
 		//name
@@ -93,14 +98,20 @@ define(function(require) {
 		}else{
 			this.comp('passwordInput').removeClass('has-error');
 		}
-		//code
-		if(!this.checkCode(data.val('code'))){
-			this.comp('codeInput').addClass('has-error');
-			has_error=true;
-		}else{
-			this.comp('codeInput').removeClass('has-error');
-		}
-		if(!has_error){
+		
+		return has_error;
+	};
+	//点击注册按钮
+	Model.prototype.btnRegClick=function(event){
+		var data=this.comp('regdata').getCurrentRow();
+		if(!this.checkAllInput()){
+			//code
+			if(!this.checkCode(data.val('code'))){
+				this.comp('codeInput').addClass('has-error');
+				return;
+			}else{
+				this.comp('codeInput').removeClass('has-error');
+			}
 			$.ajax({
 				'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=register",
 				'type':'post',
@@ -176,7 +187,7 @@ define(function(require) {
 	};	
 	//检查验证码
 	Model.prototype.checkCode=function(value){
-		if(this.isEmpty(value) || this.isEmpty(this.smsCode) || value!==this.smsCode){
+		if(this.isEmpty(value) || this.isEmpty(smsCode) || value!==smsCode){
 			return false;
 		}else{
 			return true;
@@ -254,8 +265,15 @@ define(function(require) {
 	//专项登录界面
 	Model.prototype.btnLoginClick=function(event){
 		justep.Shell.showPage('login');
-	}
-	
+	};
+	//show loading
+	Model.prototype.showLoading=function(XMLHttpRequest){
+		$('.loading-div').removeClass('hidden');
+	};
+	//hide loading
+	Model.prototype.hideLoading=function(XMLHttpRequest, textStatus){
+		$('.loading-div').addClass('hidden');
+	};
 	
 	
 	return Model;
