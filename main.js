@@ -2,12 +2,16 @@ define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
 	var allData = require("./js/loadData");
-
+	var configData = require("./js/loadConfig");
+	var config={};
 	var Model = function() {
 		this.callParent();
 		this.contentName;
 		this.tag;
 		this.lastContentXid = "homeContent";
+		var configUrl = require.toUrl("./config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
+		console.log(config);
 	};
 
 	// 图片路径转换

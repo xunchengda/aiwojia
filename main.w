@@ -81,7 +81,7 @@
                               <span xid="span7"><![CDATA[代办业务]]></span> 
                             </div> 
                           </td>  
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td2"> 
                             <div class="text-center" xid="div3"> 
                               <img src="./main/img/icon-menu-2.png" alt=""
@@ -89,7 +89,7 @@
                               <span xid="span9"><![CDATA[生活服务]]></span> 
                             </div> 
                           </td>  
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td3"> 
                             <div class="text-center" xid="div4"> 
                               <img src="./main/img/icon-menu-3.png" alt=""
@@ -99,7 +99,7 @@
                           </td> 
                         </tr>  
                         <tr xid="tr2"> 
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td4"> 
                             <div class="text-center" xid="div7"> 
                               <img alt="" xid="image8" src="./main/img/icon-menu-4.png"
@@ -107,7 +107,7 @@
                               <span xid="span11"><![CDATA[休闲服务]]></span> 
                             </div> 
                           </td>  
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td5"> 
                             <div class="text-center" xid="div8"> 
                               <img alt="" xid="image9" src="./main/img/icon-menu-5.png"
@@ -115,7 +115,7 @@
                               <span xid="span12"><![CDATA[出行服务]]></span> 
                             </div> 
                           </td>  
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td6"> 
                             <div class="text-center" xid="div2"> 
                               <img alt="" xid="image3" src="./main/img/icon-menu-6.png"
@@ -125,7 +125,7 @@
                           </td> 
                         </tr>  
                         <tr xid="tr3"> 
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td7"> 
                             <div class="text-center" xid="div3"> 
                               <img alt="" xid="image1" src="./main/img/icon-menu-7.png"
@@ -133,7 +133,7 @@
                               <span xid="span20"><![CDATA[最新消息]]></span> 
                             </div> 
                           </td>  
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td8"> 
                             <div class="text-center" xid="div4"> 
                               <img alt="" xid="image2" src="./main/img/icon-menu-8.png"
@@ -141,7 +141,7 @@
                               <span xid="span10"><![CDATA[个人中心]]></span> 
                             </div> 
                           </td>  
-                          <td bind-click="openPageClick" pagename="./list.w"
+                          <td bind-click="openPageClick" pagename=""
                             xid="td9"> 
                             <div class="text-center" xid="div7"> 
                               <img alt="" xid="image8" src="./main/img/icon-menu-9.png"
@@ -306,8 +306,7 @@
                       <a component="$UI/system/components/justep/button/button"
                         class="btn btn-link btn-only-icon pull-right" label="button"
                         xid="button10" icon="icon-ios7-arrow-right"> 
-                        <i xid="i17" class="icon-ios7-arrow-right"/>  
-                        <span xid="span28"/>
+                        
                       </a>  
                       <i class="fa fa-cog fa-fw" xid="i20"/>  
                       <span xid="span29"><![CDATA[设置]]></span>

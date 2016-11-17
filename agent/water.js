@@ -1,14 +1,19 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
+	var configData = require("./js/loadConfig");
+	var config={};
 	var Model = function(){
 		this.callParent();
+		var configUrl = require.toUrl("./config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
+		console.log(config);
 	};
 	Model.prototype.modelLoad=function(event){
 		console.log('on load');
 		var id=this.getIDByXID('htmlContent');
 		$.ajax({
-					'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=getArticle",
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getArticle",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
