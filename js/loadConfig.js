@@ -7,7 +7,6 @@ define(function(require){
 			
 			$.ajaxSettings.async = false;
 			$.getJSON(url, function(data) {
-				console.log(data);
 				config.server=data.url;
 			});
 		}

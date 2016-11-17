@@ -1,18 +1,22 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	
+	var configData = require("../js/loadConfig");
+	var config={};
 	var Model = function(){
 		this.callParent();
-		this.htmlDetail = justep.Bind.observable("htmlContent");
+		var configUrl = require.toUrl("../config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
 	};
-	Model.prototype.onModelLoad=function(event){
-		var id=this.getIDByXID('htmlContent');
+	Model.prototype.modelLoad=function(event){
+		console.log('i am in');
+		var id=this.getIDByXID('htmlGasContent');
+		console.log("http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getArticle");
 		$.ajax({
-					'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=getArticle",
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getArticle",
 					'type':'post',
 					'async':false,
-					'dataType':'html',
+					'dataType':'json',
 					'data':{
 						'type':'gas'
 					},
@@ -34,5 +38,7 @@ define(function(require){
 					}
 			});
 	};
+	
+	
 	return Model;
 });

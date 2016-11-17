@@ -34,14 +34,19 @@
   <a component="$UI/system/components/justep/button/button" class="btn btn-default" label="代发快递" xid="btnMailSend" target="mailSendContent">
    <i xid="i4"></i>
    <span xid="span4">代发快递</span></a></div></div>
-   <div class="x-panel-content " xid="workContent" style="background-color:transparent;"><div component="$UI/system/components/justep/contents/contents" class="x-contents x-full" active="0" xid="contents1">
+   <div class="x-panel-content " xid="workContent" style="background-color:transparent;"><div component="$UI/system/components/justep/contents/contents" class="x-contents x-full" active="2" xid="contents1">
    <div class="x-contents-content" xid="waterContent">
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel7">
    
-   <div class="x-panel-content" xid="content11"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navWater" src="./water.w"></div></div></div></div>
-  <div class="x-contents-content" xid="gasContent"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navGas" src="./gas.w"></div></div>
-  <div class="x-contents-content" xid="mailRecContent"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailRec" src="./mailRec.w"></div></div>
-  <div class="x-contents-content" xid="mailSendContent"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailSend" src="./mailSend.w"></div></div></div></div>
+   <div class="x-panel-content" xid="content11"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navWater" src="./water.w" routable="true"></div></div></div></div>
+  <div class="x-contents-content" xid="gasContent">
+  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel2">
+   <div class="x-panel-content" xid="content2"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navGas" src="./gas.w" routable="false"></div></div>
+   </div></div>
+  <div class="x-contents-content" xid="mailRecContent">
+  <div class="x-panel-content" xid="content3"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailRec" src="./mailRec.w" routable="false"></div></div></div>
+  <div class="x-contents-content" xid="mailSendContent">
+  <div class="x-panel-content" xid="content4"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailSend" src="./mailSend.w" routable="false"></div></div></div></div></div>
    </div></div>
   </div> 
 </div>
