@@ -160,6 +160,10 @@ define(function(require) {
 		}
 
 	};
-
+	//注销
+	Model.prototype.btnLogoutClick=function(event){
+		localStorage.setItem('user',null);
+		justep.Shell.showPage('login');
+	};
 	return Model;
 });

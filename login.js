@@ -1,9 +1,13 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-
+	var configData = require("./js/loadConfig");
+	var config={};
 	var Model = function() {
 		this.callParent();
+		var configUrl = require.toUrl("./config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
+		console.log(config);
 	};
 	
 	//图片路径转换
@@ -34,7 +38,7 @@ define(function(require) {
 		}
 		if(!has_error){
 			$.ajax({
-					'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=login",
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=login",
 					'type':'post',
 					'async':false,
 					'dataType':'json',

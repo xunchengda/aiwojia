@@ -310,7 +310,7 @@
                 class="x-row"> 
                 <div class="x-col" xid="col9"> 
                   <a component="$UI/system/components/justep/button/button"
-                    class="btn x-red btn-only-label btn-block" label="退  出" xid="button9"> 
+                    class="btn x-red btn-only-label btn-block" label="退  出" xid="button9" onClick="btnLogoutClick"> 
                     <i xid="i18"/>  
                     <span xid="span26">退  出</span> 
                   </a> 
