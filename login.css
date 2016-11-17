@@ -16,3 +16,5 @@
 .input-group .input-group-addon{ background-color:#fff; border:0; border-radius:0;}
 .input-group .form-control{ border:0; border-radius:0; color:#999;}
 .input-group .form-control:focus{ box-shadow:none; border-color:#efefef;}
+
+.input-group-addon { background-color: transparent; }
