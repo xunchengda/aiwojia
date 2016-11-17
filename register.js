@@ -1,11 +1,16 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	var smsCode,smsSerial;
+	var smsCode;
+	var allData = require("./js/loadConfig");
+	var config={};
 	var Model = function() {
 		this.callParent();
 		smsCode='';
 		this.requestingCode=justep.Bind.observable(false);
+		var configUrl = require.toUrl("./config/config.json");
+		allData.loadServerDataFromFile(configUrl,config);
+		console.log(config);
 	};
 	
 	
@@ -15,6 +20,8 @@ define(function(require) {
 	};
 	//点击获得手机认证号按钮
 	Model.prototype.btnCodeClick=function(event){
+		console.log(config);
+		
 		var self=this;
 		var data=this.comp('regdata').getCurrentRow();
 		if(!this.checkAllInput()){
@@ -22,7 +29,7 @@ define(function(require) {
 			this.requestingCode.set(true);
 			this.comp('timer').start();
 			$.ajax({
-					'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=sms",
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=sms",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
@@ -35,7 +42,6 @@ define(function(require) {
 						console.log(result);
 						if(result.status==1){
 							smsCode=result.code;
-							smsSerial=result.serial;
 							console.log('smsCode:'+smsCode);
 						}
 						if(result.status==-1){
@@ -58,8 +64,8 @@ define(function(require) {
 	//timer计数
 	Model.prototype.dtimerTimer=function(event){
 		var times=event.times;
-		this.comp('getSmsBtn').set('label',"("+(10-times)+")秒后重试");
-		if((10-times)<0){
+		this.comp('getSmsBtn').set('label',"( "+(60-times)+" )秒后重试");
+		if((60-times)<0){
 			this.comp('timer').stop();
 			this.comp('getSmsBtn').set('label','获取验证码');
 			this.requestingCode.set(false);
@@ -103,6 +109,7 @@ define(function(require) {
 	};
 	//点击注册按钮
 	Model.prototype.btnRegClick=function(event){
+		var self=this;
 		var data=this.comp('regdata').getCurrentRow();
 		if(!this.checkAllInput()){
 			//code
@@ -113,7 +120,7 @@ define(function(require) {
 				this.comp('codeInput').removeClass('has-error');
 			}
 			$.ajax({
-				'url':"http://localhost:9090/aiwojia_admin/index.php?m=Home&c=Interface&a=register",
+				'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=register",
 				'type':'post',
 				'async':false,
 				'dataType':'json',
@@ -121,8 +128,11 @@ define(function(require) {
 					'name':data.val('name'),
 					'mobile':data.val('mobile'),
 					'password':data.val('password'),
-					'idno':data.val('idno')
+					'idno':data.val('idno'),
+					'code':smsCode
 				},
+				beforeSend:self.showLoading,
+				complete:self.hideLoading,
 				success:function(result){
 					console.log(result);
 					if(result.status==1){
