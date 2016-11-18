@@ -162,7 +162,7 @@ define(function(require) {
 	};
 	//注销
 	Model.prototype.btnLogoutClick=function(event){
-		localStorage.setItem('user',null);
+		localStorage.removeItem('user');
 		justep.Shell.showPage('login');
 	};
 	return Model;

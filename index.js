@@ -52,12 +52,13 @@ define(function(require) {
 		shellImpl.useDefaultExitHandler = false;
 
 		CommonUtils.attachDoubleClickExitApp(function() {
-			
+			/*
 			var isHomePage = shellImpl.pagesComp.contents[0].innerContainer.getInnerModel().comp('contents2').getActiveIndex() == 0;
 			if (shellImpl.pagesComp.getActiveIndex() === 0 && isHomePage) {
 				return true;
 			}
 			return false;
+			*/
 		});
 
 	};
