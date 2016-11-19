@@ -4,6 +4,7 @@ define(function(require) {
 	var allData = require("./js/loadData");
 	var configData = require("./js/loadConfig");
 	var config={};
+	var userlogined;
 	var Model = function() {
 		this.callParent();
 		this.contentName;
@@ -87,8 +88,15 @@ define(function(require) {
 		 * 1、点击组件增加算定义属性：pagename 2、获取自定义属性，打开 对应页面
 		 */
 		var pageName = event.currentTarget.getAttribute('pagename');
-		if (pageName)
-			justep.Shell.showPage(require.toUrl(pageName));
+		var user=localStorage.getItem("user");
+		if(user===null && pageName!=='./agent/agentmain.w')
+			justep.Shell.showPage('login');
+		else{
+			if (pageName)
+				justep.Shell.showPage(require.toUrl(pageName));
+		}
+			
+		
 	};
 
 	// 进入详细页
@@ -142,11 +150,11 @@ define(function(require) {
 	};
 	// 返回上一次的content
 	Model.prototype.onRestoreContent = function(event) {
-		this.comp("contents2").to(this.lastContentXid);
+		this.comp("contents").to(this.lastContentXid);
 	};
 	// 切换到首页
 	Model.prototype.onHomeContent = function(event) {
-		this.comp("contents2").to("homeContent");
+		this.comp("contents").to("homeContent");
 	};
 
 	Model.prototype.contents2ActiveChange = function(event){
@@ -160,6 +168,18 @@ define(function(require) {
 		}
 
 	};
+
+
+	Model.prototype.profileActive = function(event){
+		var user=localStorage.getItem("user");
+		if(user===null){
+			this.comp('contents').to('homeContent');
+			justep.Shell.showPage('login');
+		}else{
+			this.comp('profileContainer').load();
+		}
+	};
+
 
 	return Model;
 });

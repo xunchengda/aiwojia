@@ -64,13 +64,5 @@ define(function(require) {
 
 	};
 
-	Model.prototype.modelLoad = function(event){
-		var user=localStorage.getItem("user");
-		if(user==null)
-			justep.Shell.showPage('login');
-		else
-			justep.Shell.showPage("main");
-	};
-
 	return Model;
 });

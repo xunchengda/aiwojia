@@ -4,12 +4,13 @@ define(function(require){
 	
 	var Model = function(){
 		this.callParent();
+		
 	};
 
 	//注销
 	Model.prototype.btnLogoutClick=function(event){
 		localStorage.removeItem('user');
-		justep.Shell.showPage('login');
+		justep.Shell.showPage('main');
 	};
 	
 	return Model;

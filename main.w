@@ -3,7 +3,7 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="main13" component="$UI/system/components/justep/window/window"
   design="device:mobile;" xid="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"
-    onModelConstruct="modelModelConstruct" onLoad="modelLoad" onunLoad="modelUnLoad"> 
+    onModelConstruct="modelModelConstruct" onunLoad="modelUnLoad" onLoad="modelLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="imgData" idColumn="id" onCustomRefresh="imgDataCustomRefresh"> 
       <column label="id" name="id" type="String" xid="xid1"/>  
@@ -167,8 +167,8 @@
             </div> 
           </div> 
         </div>  
-        <div class="x-contents-content x-cards" xid="userContent"> 
-          <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="windowContainer1" src="$UI/mine/aiwojia/profile.w"></div></div> 
+        <div class="x-contents-content x-cards" xid="userContent" onActive="profileActive"> 
+          <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="profileContainer" src="./profile.w" routable="true" autoLoad="true"></div></div> 
       </div> 
     </div>  
     <div class="x-panel-bottom" xid="bottom1" height="55"> 
