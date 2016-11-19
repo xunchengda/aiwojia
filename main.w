@@ -70,8 +70,8 @@
                     class="panel panel-default x-card" xid="panel2"> 
                     <div component="$UI/system/components/bootstrap/row/row"
                       class="row" xid="row7"> 
-                      <div class="col col-xs-1" xid="col12"/>  
-                      <div class="col col-xs-10" xid="col13"> 
+                      <div class="col col-md-1" xid="col12"/>  
+                      <div class="col col-md-10" xid="col13"> 
                         <div component="$UI/system/components/bootstrap/row/row"
                           class="row" xid="row6"> 
                           <div class="col col-xs-4" xid="col7"> 
@@ -154,7 +154,7 @@
                           </div> 
                         </div> 
                       </div>  
-                      <div class="col col-xs-1" xid="col14"/> 
+                      <div class="col col-md-1" xid="col14"/> 
                     </div>  
                     </div> 
                 </div>  
