@@ -36,26 +36,25 @@ define(function(require) {
 					'data':{
 						'no':mobile
 					},
-					beforeSend:self.showLoading,
-					complete:self.hideLoading,
 					success:function(result){
 						console.log(result);
 						if(result.status==1){
 							smsCode=result.code;
+						
 							console.log('smsCode:'+smsCode);
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'5000'
+								delay:'3000'
 							});
 						}
 					},
 					error:function(result){
 						console.log(result);
-						justep.Util.hint('发送短信出错', {
+						justep.Util.hint('网络错误，稍后再试', {
 							type:'warning',
-							delay:'5000'
+							delay:'3000'
 						});
 					}
 			});
@@ -113,7 +112,7 @@ define(function(require) {
 		var data=this.comp('regdata').getCurrentRow();
 		if(!this.checkAllInput()){
 			//code
-			if(!this.checkCode(data.val('code'))){
+			if(!this.checkCode(this.comp('codeInput').val())){
 				this.comp('codeInput').addClass('has-error');
 				return;
 			}else{

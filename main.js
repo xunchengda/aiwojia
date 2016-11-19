@@ -174,6 +174,8 @@ define(function(require) {
 		var user=localStorage.getItem("user");
 		if(user===null){
 			this.comp('contents').to('homeContent');
+			this.comp('homeBtn').addClass('active');
+			this.comp('userBtn').removeClass('active');
 			justep.Shell.showPage('login');
 		}else{
 			this.comp('profileContainer').load();

@@ -97,7 +97,7 @@
    <div class="form-item-icon" xid="col13"><span class="input-group-addon" xid=""> 
 	              <i class="fa fa-commenting fa-lg fa-fw" xid="" /> 
 	            </span></div>
-   <div class="x-col" xid="col14"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="codeInput" placeHolder="验证码" style="width:101%;" bind-ref='$model.regdata.ref("code")'/></div>
+   <div class="x-col" xid="col14"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="codeInput" placeHolder="验证码" style="width:101%;"/></div>
    <div class="x-col x-col-30" xid="col16"><a component="$UI/system/components/justep/button/button" class="btn x-green btn-default pull-left" label="获取验证码" xid="getSmsBtn" style="line-height:0px;padding: 16px;width:120px;margin-left:10px;float:right;" onClick="btnCodeClick" bind-disable="requestingCode">
 	   <i xid="i1"></i>
 	   <span xid="span1">获取验证码</span></a></div></div></div>  
