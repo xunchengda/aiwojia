@@ -27,23 +27,18 @@
     xid="panel1"> 
     <div class="x-panel-top" xid="top1" visible="false"/>  
     <div class="x-panel-content  x-cards container" xid="content1"> 
-      <div component="$UI/system/components/justep/row/row" class="x-row" xid="rowT"
-        style="height:10%;"/>  
-      <div component="$UI/system/components/justep/row/row" class="x-row" xid="logoRow"> 
+      <div component="$UI/system/components/justep/row/row" class="x-row logo-row" xid="logoRow" style="height:25%;"> 
         <div class="x-col" xid="col1"/>  
-        <div class="x-col" xid="col2"> 
-          <img src="$UI/mine/aiwojia/main/img/logo.png" alt="" xid="logo" height="100%"
-            style="width:100%;"/> 
+        <div class="x-col" xid="col2" style="height:100%;"> 
+          <img src="$UI/mine/aiwojia/main/img/logo.png" alt="" xid="logo" style="width:100%;" height="100%" class="img-responsive"/> 
         </div>  
         <div class="x-col" xid="col3"/> 
       </div>  
-      <div component="$UI/system/components/justep/row/row" class="x-row" xid="rowB"
-        style="height:10%;"/>  
       <div xid="div1" class="list-group"> 
         <div class="list-group-item"> 
           <div component="$UI/system/components/justep/row/row" class="x-row"
             xid="row2"> 
-            <div class="x-col x-col-10" xid="col7"> 
+            <div class="form-item-icon" xid="col7"> 
               <span class="input-group-addon" xid="span2"> 
                 <i class="fa fa-user fa-lg fa-fw"/> 
               </span> 
@@ -57,7 +52,7 @@
         <div class="list-group-item" xid="div6"> 
           <div component="$UI/system/components/justep/row/row" class="x-row"
             xid="row3"> 
-            <div class="x-col x-col-10" xid="col10"> 
+            <div class="form-item-icon" xid="col10"> 
               <span class="input-group-addon" xid="span3"> 
                 <i class="fa fa-lock fa-lg fa-fw" xid="i3"/> 
               </span> 
@@ -76,20 +71,18 @@
         <i xid="i4"/>  
         <span xid="span4">登 录</span> 
       </a>  
-      <a component="$UI/system/components/justep/button/button" class="btn btn-link"
-        label="忘记密码？" xid="forgetPwd" style="float:right;color:#666666;"> 
+      <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
+        label="忘记密码？" xid="forgetPwd" style="float:right; color:#666666;"> 
         <i xid="i2"/>  
         <span xid="span5">忘记密码？</span> 
       </a>  
-      <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1"> 
+      <a component="$UI/system/components/justep/button/button" class="btn btn-link" label="注  册" xid="registerBtn" style="color:#4C4C4C; padding:5px 20px 5px 20px;" onClick="btnClickRegister"> 
+            <i xid="i1" />  
+            <span xid="span1">注 册</span> 
+          </a><div component="$UI/system/components/justep/row/row" class="x-row" xid="row1"> 
         <div class="x-col" xid="col4"/>  
         <div class="x-col" xid="col5" style="text-align:center;"> 
-          <a component="$UI/system/components/justep/button/button" class="btn x-gray btn-only-label"
-            label="注  册" xid="registerBtn" style="color:#4C4C4C;border-color:#B3B3B3 #B3B3B3 #B3B3B3 #B3B3B3;padding:5px 20px 5px 20px;"
-            onClick="btnClickRegister"> 
-            <i xid="i1"/>  
-            <span xid="span1">注 册</span> 
-          </a> 
+           
         </div>  
         <div class="x-col" xid="col9"/>
       </div>  
