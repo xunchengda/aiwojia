@@ -3,7 +3,7 @@ define(function(require) {
 	var justep = require("$UI/system/lib/justep");
 	var ShellImpl = require('$UI/system/lib/portal/shellImpl');
 	var CommonUtils = require("$UI/system/components/justep/common/utils");
-	require("$UI/demo/taobao/appVersionChecker");
+	require("./appVersionChecker");
 	
 	var Model = function() {
 		this.callParent();
@@ -49,17 +49,18 @@ define(function(require) {
 			}
 		});
 		//shellImpl.setIsSinglePage(true);
-		shellImpl.useDefaultExitHandler = false;
-
+		shellImpl.useDefaultExitHandler = true;
+		/*	
 		CommonUtils.attachDoubleClickExitApp(function() {
-			/*
+			
 			var isHomePage = shellImpl.pagesComp.contents[0].innerContainer.getInnerModel().comp('contents2').getActiveIndex() == 0;
 			if (shellImpl.pagesComp.getActiveIndex() === 0 && isHomePage) {
 				return true;
 			}
 			return false;
-			*/
+			
 		});
+		*/
 
 	};
 
