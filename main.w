@@ -25,7 +25,7 @@
     <div class="x-panel-content tb-trans"> 
       <div component="$UI/system/components/justep/contents/contents" class="x-contents x-full"
         active="0" xid="contents" swipe="false" wrap="false" slidable="false" onActiveChange="contents2ActiveChange"> 
-        <div class="x-contents-content x-cards" xid="homeContent"> 
+        <div class="x-contents-content x-cards" xid="homeContent" style="background-color:white;"> 
           <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-has-iosstatusbar"> 
             <div class="x-panel-top" xid="top1"> 
               <div component="$UI/system/components/justep/titleBar/titleBar"
@@ -155,8 +155,8 @@
                         </div> 
                       </div>  
                       <div class="col col-md-1" xid="col14"/> 
-                    </div>  
                     </div> 
+                  </div> 
                 </div>  
                 <!--     
                 <div class="x-content-center x-pull-up" xid="div18"> 
@@ -168,7 +168,10 @@
           </div> 
         </div>  
         <div class="x-contents-content x-cards" xid="userContent" onActive="profileActive"> 
-          <div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="profileContainer" src="./profile.w" routable="true" autoLoad="true"></div></div> 
+          <div component="$UI/system/components/justep/windowContainer/windowContainer"
+            class="x-window-container" xid="profileContainer" src="./profile.w" routable="true"
+            autoLoad="true"/> 
+        </div> 
       </div> 
     </div>  
     <div class="x-panel-bottom" xid="bottom1" height="55"> 

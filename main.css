@@ -18,6 +18,10 @@
 
 /*导航栏目*/
 .menu-icon { margin: 1em 0; }
+.menu-icon img {
+	width: 75%;
+	height: 75%;
+}
 
 /*底部*/
 .btn-group{ background-color:#fff;}
