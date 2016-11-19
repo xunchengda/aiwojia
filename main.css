@@ -1,26 +1,23 @@
-.text-black{ color:#212121;}
+.text-black { color:#212121; }
 
-.x-cards{padding-top:0;}
-.panel{ border:0;}
-.panel.panel-default{ margin-bottom:10px;}
-.row{ margin:0;}
+.x-cards { padding-top:0; }
+.panel { border:0;}
+.panel.panel-default { margin-bottom:10px; }
+.row { margin:0;}
 
 .tb-nopadding{ padding:0;}
 
-.tb-img1{ width:100%; height:240px;}
-.tb-img5{ width:70%;}
+.tb-img1{ width:100%; height:33%; }
 .tb-img6{ width:100%;}
 
+
 /*顶部titlebar*/
-.x-titlebar .btn{ padding:0;}
-.x-titlebar .btn-link{ height:auto;}
+.x-titlebar .btn { padding:0; }
+.x-titlebar .btn-link { height:auto; }
 .x-titlebar .x-titlebar-title { color: black; }
 
 /*导航栏目*/
-.tb-menu.table > tbody > tr > td{ border:0;width:20%;}
-.tb-menu.table > tbody > tr > td{ padding-left:0; padding-right:0;}
-
-.tb-line-right{ border-right:1px solid rgba(90, 90, 90, 0.05);}
+.menu-icon { margin: 1em 0; }
 
 /*底部*/
 .btn-group{ background-color:#fff;}
@@ -30,7 +27,3 @@
 /*内容*/
 .tb-twoColList.col-xs-6{ padding:10px;}
 .tb-twoColList.col-xs-6 h5{ height:45px; overflow:hidden;}
-
-.avatar-row {
-	display: none;
-}
