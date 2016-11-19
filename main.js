@@ -138,19 +138,23 @@ define(function(require) {
 	};
 	// 添加事件
 	Model.prototype.modelLoad = function(event) {
+		/*
 		justep.Shell.on("onRestoreContent", this.onRestoreContent, this);
 		justep.Shell.on("onShoppingContent", this.onShoppingContent, this);
 		justep.Shell.on("onHomeContent", this.onHomeContent, this);
+		*/
 	};
 	// 卸载事件
 	Model.prototype.modelUnLoad = function(event) {
+		/*
 		justep.Shell.off("onRestoreContent", this.onRestoreContent);
 		justep.Shell.off("onShoppingContent", this.onShoppingContent);
 		justep.Shell.off("onHomeContent", this.onHomeContent);
+		*/
 	};
 	// 返回上一次的content
 	Model.prototype.onRestoreContent = function(event) {
-		this.comp("contents").to(this.lastContentXid);
+		//this.comp("contents").to(this.lastContentXid);
 	};
 	// 切换到首页
 	Model.prototype.onHomeContent = function(event) {
@@ -159,6 +163,20 @@ define(function(require) {
 
 	Model.prototype.contents2ActiveChange = function(event){
 		var to = event.to;
+		if(to===1){
+			var user=localStorage.getItem("user");
+			if(user===null){
+				this.comp('contents').to('homeContent');
+				/*
+				this.comp('homeBtn').addClass('active');
+				this.comp('userBtn').removeClass('active');
+				*/
+				justep.Shell.showPage('login');
+			
+			}else{
+				this.comp('profileContainer').load();
+			}
+		}
 		if (to >= 1) {
 			// 优化内存占用
 //			$('.x-window-container', this.comp('content2').$domNode).css('display', 'none');
@@ -170,17 +188,6 @@ define(function(require) {
 	};
 
 
-	Model.prototype.profileActive = function(event){
-		var user=localStorage.getItem("user");
-		if(user===null){
-			this.comp('contents').to('homeContent');
-			this.comp('homeBtn').addClass('active');
-			this.comp('userBtn').removeClass('active');
-			justep.Shell.showPage('login');
-		}else{
-			this.comp('profileContainer').load();
-		}
-	};
 
 
 	return Model;
