@@ -1,14 +1,17 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");	
-	var allData = require("./js/loadData");	
 	require("cordova!cordova-plugin-device");
-	require("cordova!com.justep.cordova.plugin.weixin.v3");
-
+	//require("cordova!com.justep.cordova.plugin.weixin.v3");
+	//var allData = require("../js/loadData");
+	var configData = require("../js/loadConfig");
+	var config={};
+	var goods_id,store_id;
 	var Model = function() {
 		this.callParent();
-		this.goodsID="";
-		this.shopID="";
+		var configUrl = require.toUrl("../config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
+		
 	};
 	
 	//返回上一页
@@ -22,25 +25,27 @@ define(function(require) {
 		1、参数接收事件
 		2、根据参数从服务端过滤数据
 		*/
-		if (this.params && this.params.shopID) {
-			this.shopID = this.params.shopID;
-			this.goodsID = this.params.goodsID;
+		
+		if (this.params && this.params.store_id) {
+			store_id = this.params.store_id;
+			goods_id = this.params.goods_id;
+			this.goodsDataCustomRefresh();
 		}
 	};	
 	
 	//获取轮换图片
-	Model.prototype.imgDataCustomRefresh = function(event){
+	Model.prototype.setCarouselImage = function(){
 		/*
 		1、加载轮换图片数据
-		2、根据goodsID过滤数据
+		2、根据goods_id过滤数据
 		3、修改对应图片的src
 		*/		
-		var url = require.toUrl("./detail/json/imgData.json");
-		allData.loadDataFromFile(url,event.source,true);
-		
+		var imgData=this.comp('imgData');
         var carousel=this.comp("carousel1");        
-        event.source.each(function(obj){			
-			var fImgUrl=require.toUrl(obj.row.val("fImgUrl"));
+        imgData.each(function(obj){	
+        	
+        	var url="http://"+config.server+"/data/upload/shop/store/goods/"+store_id+"/"+obj.row.val('goods_image');
+			var fImgUrl=require.toUrl(url);
 			if( obj.index==0){
 				$(carousel.domNode).find("img").eq(0).attr({"src":fImgUrl});
 			} else {
@@ -50,20 +55,52 @@ define(function(require) {
 	};
 	
 	//获取商品信息
-	Model.prototype.goodsDataCustomRefresh = function(event){
+	Model.prototype.goodsDataCustomRefresh = function(){
 		/*
 		1、加载商品数据
-		2、根据goodsID过滤数据
-		*/				
-		var url = require.toUrl("./detail/json/goodsData.json");
-		allData.loadDataFromFile(url,event.source,true);
+		2、根据goods_id过滤数据
+		*/
+		var dataObj=this.comp("goodsData");
+		var imageObj=this.comp('imgData');
+		var self=this;
+		 $.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getGoodInfo",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'goods_id':goods_id
+					},
+					success:function(result){
+						if(result.status==1){
+							dataObj.clear();
+							dataObj.loadData(result.data.good);
+							dataObj.first();
+							imageObj.loadData(result.data.goods_images);
+							self.setCarouselImage();
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
+		
 	};
 	
 	//获取店铺信息
 	Model.prototype.shopDataCustomRefresh = function(event){
 		/*
 		1、加载店铺数据
-		2、根据shopID过滤数据
+		2、根据store_id过滤数据
 		 */
         var url = require.toUrl("./detail/json/shopData.json");
         allData.loadDataFromFile(url,event.source,true);       
@@ -73,7 +110,7 @@ define(function(require) {
 	Model.prototype.parameterDataCustomRefresh = function(event){
 		/*
 		1、加载参数数据
-		2、根据goodsID过滤数据
+		2、根据goods_id过滤数据
 		 */
         var url = require.toUrl("./detail/json/parameterData.json");
         allData.loadDataFromFile(url,event.source,true);       
@@ -83,7 +120,7 @@ define(function(require) {
 	Model.prototype.commentsDataCustomRefresh = function(event){
 		/*
 		1、加载评论数据
-		2、根据goodsID过滤数据
+		2、根据goods_id过滤数据
 		 */
 		var url = require.toUrl("./detail/json/commentsData.json");
         allData.loadDataFromFile(url,event.source,true);

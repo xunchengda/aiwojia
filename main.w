@@ -103,7 +103,7 @@
                           class="row" xid="row8"> 
                           <div class="col col-xs-4" xid="col15"> 
                             <div class="text-center menu-icon" bind-click="openPageClick"
-                              pagename="" xid=""> 
+                              pagename="./service/relexService.w" xid=""> 
                               <img alt="" xid="image8" src="./main/img/icon-menu-4.png"
                                 class="img-responsive center-block"/>  
                               <span xid="span11"><![CDATA[休闲服务]]></span> 

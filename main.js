@@ -12,7 +12,6 @@ define(function(require) {
 		this.lastContentXid = "homeContent";
 		var configUrl = require.toUrl("./config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		console.log(config);
 	};
 
 	// 图片路径转换

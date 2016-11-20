@@ -12,7 +12,10 @@ define(function(require) {
 	};
 
 	// 图片路径转换
-	Model.prototype.getImageUrl = function(url) {
+	Model.prototype.getImageUrl = function(row) {
+		var img_url=row.val('goods_image');
+		var store_id=row.val('store_id');
+		var url="http://"+config.server+"/data/upload/shop/store/goods/"+store_id+"/"+img_url;
 		return require.toUrl(url);
 	};
 
@@ -33,10 +36,11 @@ define(function(require) {
 		/*
 		 * 1、获取当前商品ID 2、传入弹出窗口，弹出窗口中显示商品详细信息 3、在弹出窗口的接收事件中，从服务端过滤数据
 		 */
-		var data = this.comp("goodsData");
+		var data = this.comp("goodData");
 		justep.Shell.showPage("detail", {
-			goodsID : data.getValue("id"),
-			shopID : data.getValue("fShopID")
+			goods_id : data.getValue("goods_id"),
+			store_id : data.getValue("store_id")
+
 		});
 	};
 
@@ -90,36 +94,29 @@ define(function(require) {
 		data.setValue("fState", "0", data.find([ "fState" ], [ "1" ], true, true, true)[0]);
 		var row = data.getCurrentRow();
 		data.setValue("fState", "1", row);
+		var org_label=this.comp('sortingBtn').get('label');
 		this.comp("sortingBtn").set("label", data.getValue("fName", row));
 
+		var new_label=data.getValue("fName", row);
+		if(org_label!==new_label){
+			this.comp('goodData').refreshData({'confirm':false});
+		}
 		this.comp("sortingPopOver").hide();
 	};
 
-	/* 折扣和服务按钮 */
+	/* 筛选按钮 */
 	Model.prototype.screeningBtnClick = function(event) {
 		if ($(this.comp("screeningPopOver").$domNode).css("display") == "block") {
+			this.comp('goodData').refreshData({confirm:false});
 			this.comp("screeningPopOver").hide();
+			
 		} else {
 			this.comp("screeningPopOver").show();
 		}
-		if ($(this.comp("sortingPopOver").$domNode).css("display") == "block") {
-			this.comp("sortingPopOver").hide();
-		}
+		
 	};
 
-	/* 折扣和服务 */
-	Model.prototype.discountClick = function(event) {
-		/*
-		 * 1、折扣和服务点击事件 2、选择折扣和服务，可多选
-		 */
-		var data = this.comp("discountData");
-		var row = data.getCurrentRow();
-		if (data.getValue("fState", row) == 0) {
-			data.setValue("fState", "1", row);
-		} else {
-			data.setValue("fState", "0", row);
-		}
-	};
+
 
 	/* 分类 */
 	Model.prototype.classClick = function(event) {
@@ -139,13 +136,12 @@ define(function(require) {
 		 */
 		this.comp("price1").val("");
 		this.comp("price2").val("");
-		this.reset(this.comp("discountData"));
-		this.reset(this.comp("classData"));
+		this.reset(this.comp("l2data"));
 	};
 	Model.prototype.reset = function(data) {
-		var rows = data.find([ "fState" ], [ "1" ], false, true, true);
+		var rows = data.find([ "state" ], [ 1 ], false, true, true);
 		for (var i = 0; i < rows.length; i++) {
-			data.setValue("fState", "0", rows[i]);
+			data.setValue("state", 0, rows[i]);
 		}
 	};
 	//获取二级分类信息
@@ -167,7 +163,6 @@ define(function(require) {
 						'type':'休闲服务'
 					},
 					success:function(result){
-						console.log(result);
 						if(result.status==1){
 							dataObj.clear();
 							dataObj.loadData(result.data);
@@ -180,7 +175,6 @@ define(function(require) {
 						}
 					},
 					error:function(result){
-						console.log(result);
 						justep.Util.hint('网络错误', {
 							type:'warning',
 							delay:'3000'
@@ -215,6 +209,51 @@ define(function(require) {
 		 * 将当前激活的content的Xid存入缓存
 		 */
 		localStorage.setItem("list_style_name", this.comp("pages").getActiveXid());
+	};
+
+	Model.prototype.goodDataCustomRefresh = function(event){
+		 var dataObj=event.source;
+		 var condition=this.comp('sortingBtn').get('label');
+		 var l2Class=this.comp('l2data').find(['state'],['1'],false,true,true);
+		 var l2=new Array();
+		 for(var i=0;i<l2Class.length;i++){
+			 l2.push(l2Class[i].val('gc_id'));
+		 }
+		 var price1=this.comp('price1').val();
+		 var price2=this.comp('price2').val();
+		 
+		 $.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getGoods",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'order':condition,
+						'class':l2,
+						'price1':price1,
+						'price2':price2,
+						'type':'休闲服务'
+					},
+					success:function(result){
+						if(result.status==1){
+							dataObj.clear();
+							dataObj.loadData(result.goods);
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						console.log(result);
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
 	};
 
 	return Model;

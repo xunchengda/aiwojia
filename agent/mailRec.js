@@ -11,7 +11,7 @@ define(function(require){
 		console.log(config);
 	};
 	Model.prototype.modelLoad=function(event){
-		var id=this.getIDByXID('htmlContent');
+		var id=this.getIDByXID('htmlRecContent');
 		$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getArticle",
 					'type':'post',

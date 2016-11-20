@@ -44,9 +44,15 @@
    <div class="x-panel-content" xid="content2"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navGas" src="./gas.w" routable="false"></div></div>
    </div></div>
   <div class="x-contents-content" xid="mailRecContent">
-  <div class="x-panel-content" xid="content3"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailRec" src="./mailRec.w" routable="false"></div></div></div>
+  
+  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel4">
+   <div class="x-panel-content" xid="content5"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailRec" src="./mailRec.w" routable="false"></div></div>
+   </div></div>
   <div class="x-contents-content" xid="mailSendContent">
-  <div class="x-panel-content" xid="content4"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailSend" src="./mailSend.w" routable="false"></div></div></div></div></div>
+  
+  <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel6">
+   <div class="x-panel-content" xid="content7"><div component="$UI/system/components/justep/windowContainer/windowContainer" class="x-window-container" xid="navMailSend" src="./mailSend.w"></div></div>
+   </div></div></div></div>
    </div></div>
   </div> 
 </div>

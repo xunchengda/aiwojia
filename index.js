@@ -26,7 +26,7 @@ define(function(require) {
 					url : require.toUrl('./class.w')
 				},
 				"detail" : {
-					url : require.toUrl('./detail.w')
+					url : require.toUrl('./service/detail.w')
 				},
 				"search" : {
 					url : require.toUrl('./search.w')
