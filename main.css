@@ -25,7 +25,7 @@
 
 /*底部*/
 .btn-group{ background-color:#fff;}
-.x-card.btn-group .btn.active{ color:#ff4400;}
+.x-card.btn-group .btn.active{ color:#000; }
 .btn-group .btn i{ font-size:30px; padding-bottom:0;}
 
 /*内容*/

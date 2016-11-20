@@ -25,7 +25,7 @@
     <div class="x-panel-content tb-trans"> 
       <div component="$UI/system/components/justep/contents/contents" class="x-contents x-full"
         active="0" xid="contents" swipe="false" wrap="false" slidable="false" onActiveChange="contents2ActiveChange"> 
-        <div class="x-contents-content x-cards" xid="homeContent" style="background-color:white;"> 
+        <div class="x-contents-content x-cards" xid="homeContent" style="background-color:#e7e8ea;"> 
           <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-has-iosstatusbar"> 
             <div class="x-panel-top" xid="top1"> 
               <div component="$UI/system/components/justep/titleBar/titleBar"
@@ -69,7 +69,7 @@
                   <div component="$UI/system/components/justep/panel/panel"
                     class="panel panel-default x-card" xid="panel2"> 
                     <div component="$UI/system/components/bootstrap/row/row"
-                      class="row" xid="row7"> 
+                      class="row" xid="row7" style="background-color:#e7e8ea;"> 
                       <div class="col col-md-1" xid="col12"/>  
                       <div class="col col-md-10" xid="col13"> 
                         <div component="$UI/system/components/bootstrap/row/row"
@@ -176,7 +176,7 @@
     </div>  
     <div class="x-panel-bottom" xid="bottom1" height="55"> 
       <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group btn-group-justified x-card"
-        tabbed="true" xid="buttonGroup1" style="height:55px;"> 
+        tabbed="true" xid="buttonGroup1" style="height:55px;background-color:#CCC;"> 
         <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-top active"
           label="首页" xid="homeBtn" icon="icon-home" target="homeContent"> 
           <i xid="i1" class="icon-home icon"/>  
