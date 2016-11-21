@@ -84,7 +84,7 @@
                           </div>  
                           <div class="col col-xs-4" xid="col10"> 
                             <div class="text-center menu-icon" bind-click="openPageClick"
-                              pagename="" xid=""> 
+                              pagename="./service/lifeService.w" xid=""> 
                               <img src="./main/img/icon-menu-2.png" alt=""
                                 xid="image1" class="img-responsive center-block"/>  
                               <span xid="span9"><![CDATA[生活服务]]></span> 
@@ -92,7 +92,7 @@
                           </div>  
                           <div class="col col-xs-4" xid="col11"> 
                             <div class="text-center menu-icon" bind-click="openPageClick"
-                              pagename="" xid=""> 
+                              pagename="./service/homeService.w" xid=""> 
                               <img src="./main/img/icon-menu-3.png" alt=""
                                 xid="image2" class="img-responsive center-block"/>  
                               <span xid="span10"><![CDATA[居家服务]]></span> 
