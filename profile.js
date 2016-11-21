@@ -10,7 +10,8 @@ define(function(require){
 	//注销
 	Model.prototype.btnLogoutClick=function(event){
 		localStorage.removeItem('user');
-		justep.Shell.showPage('main');
+		//justep.Shell.closePage();
+		this.getParent().comp('contents').to('homeContent');
 	};
 	
 	return Model;
