@@ -49,11 +49,7 @@ define(function(require) {
 					success:function(result){
 						console.log(result);
 						if(result.status==1){
-							localStorage.setItem('user',{
-								'name':result.data.name,
-								'mobile':result.data.mobile,
-								'idno':result.data.idno
-							});
+							localStorage.setItem('user',JSON.stringify(result.data));
 							justep.Shell.showPage('main');
 						}
 						if(result.status==-1){

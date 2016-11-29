@@ -74,13 +74,6 @@
 	            </span></div>
    <div class="x-col" xid="col5"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="mobileInput" placeHolder="手机号" bind-ref='$model.regdata.ref("mobile")'/></div>
    </div></div>    
-	        <div class="list-group-item" xid=""> 
-	          <div component="$UI/system/components/justep/row/row" class="x-row" xid="row3">
-   <div class="form-item-icon" xid="col7"><span class="input-group-addon" xid=""> 
-	              <i class="fa fa-id-card fa-lg fa-fw" xid="" /> 
-	            </span></div>
-   <div class="x-col" xid="col8"><input component="$UI/system/components/justep/input/input" class="form-control x-inputText" xid="idInput" placeHolder="身份证号" bind-ref='$model.regdata.ref("idno")'/></div>
-   </div></div>
 	        <div class="list-group-item" xid="div6"> 
 	          <div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
    <div class="form-item-icon" xid="col10"><span class="input-group-addon" xid="span3"> 

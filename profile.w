@@ -65,7 +65,7 @@
           <ul xid="ul1" class="list-group" style="margin:0;"> 
             <li xid="" class="list-group-item"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="" icon="icon-ios7-arrow-right"> 
+                label="button" xid="" icon="icon-ios7-arrow-right" onClick="showAddress"> 
                 <i xid="" class="icon-ios7-arrow-right"/>  
                 <span xid=""/> 
               </a>  

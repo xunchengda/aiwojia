@@ -90,12 +90,14 @@ define(function(require) {
 			this.comp('mobileInput').removeClass('has-error');
 		}
 		//idno
+		/*
 		if(!this.checkID(data.val('idno'))){
 			this.comp('idInput').addClass('has-error');
 			has_error=true;
 		}else{
 			this.comp('idInput').removeClass('has-error');
 		}
+		*/
 		//password
 		if(!this.checkPassword(data.val('password'))){
 			this.comp('passwordInput').addClass('has-error');
@@ -127,7 +129,7 @@ define(function(require) {
 					'name':data.val('name'),
 					'mobile':data.val('mobile'),
 					'password':data.val('password'),
-					'idno':data.val('idno'),
+//					'idno':data.val('idno'),
 					'code':smsCode
 				},
 				beforeSend:self.showLoading,
@@ -138,7 +140,7 @@ define(function(require) {
 						localStorage.setItem('user',{
 							'name':data.val('name'),
 							'mobile':data.val('mobile'),
-							'idno':data.val('idno')
+							'member_id':data.val('member_id')
 						});
 						justep.Shell.showPage('main');
 					}

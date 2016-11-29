@@ -43,6 +43,12 @@ define(function(require) {
 				"user":{
 					url:require.toUrl('user.w')
 				},
+				"address":{
+					url:require.toUrl('./profile/address.w')
+				},
+				'addAddress':{
+					url:require.toUrl('./profile/addRess.w')
+				},
 				'agent':{
 					url:require.toUrl("./agent/agengmain.w")
 				}

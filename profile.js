@@ -14,5 +14,9 @@ define(function(require){
 		this.getParent().comp('contents').to('homeContent');
 	};
 	
+	Model.prototype.showAddress = function(event){
+		justep.Shell.showPage('address');
+	};
+	
 	return Model;
 });
