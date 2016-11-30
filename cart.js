@@ -22,7 +22,7 @@ define(function(require) {
 	
 	//图片路径转换
 	Model.prototype.getImageUrl = function(url){
-		return require.toUrl(url);
+		return "http://"+config.server+url;
 	};
 
 	//获取商品列表
@@ -38,8 +38,9 @@ define(function(require) {
 		/*
 		1、加载店铺数据
 		 */
-		var dataObj=this.comp("goodsData");
+		var dataObj=this.comp("shopData");
 		var goodsObj=this.comp('goodsData');
+		var sumObj=this.comp('sumData');
 		var self=this;
 		
 		 $.ajax({
@@ -56,6 +57,7 @@ define(function(require) {
 							dataObj.loadData(result.data.stores);
 							dataObj.first();
 							goodsObj.loadData(result.data.goodses);
+							sumObj.loadData(result.data.storeSum);
 							
 						}
 						if(result.status==-1){
@@ -78,15 +80,15 @@ define(function(require) {
 		/*
 		1、全选多选框绑定变化事件onChange()
 		2、点击全选多选框按钮，获取其值
-		3、修改商品表中的fChoose字段为全选多选框按钮的值
+		3、修改商品表中的choosed字段为全选多选框按钮的值
 		*/
 		var goodsData = this.comp("goodsData");
 		var choose=this.comp("allChoose").val();
 		goodsData.each(function(obj){
 			if(choose){				
-				goodsData.setValue("fChoose","1",obj.row);
+				goodsData.setValue("choosed","1",obj.row);
 			} else {
-				goodsData.setValue("fChoose","",obj.row);
+				goodsData.setValue("choosed","",obj.row);
 			}	
 		});
 	};
@@ -99,10 +101,12 @@ define(function(require) {
 		3、fNumber为1时不再相减
 		*/
 		var row = event.bindingContext.$object;
-		var n=row.val("fNumber");
+		var n=row.val("goods_num");
 		if(n>1){
-			row.val("fNumber",n-1);
+			row.val("goods_num",n-1);
+			this.caculateStore(row.val('store_id'),-1,row.val('goods_price'),row.val('goods_id'));
 		}
+		
 	};
 	
 	//加数量
@@ -112,10 +116,47 @@ define(function(require) {
 		2、点击按钮，当前记录的fNumber值加1
 		*/
 		var row = event.bindingContext.$object;
-		var n=row.val("fNumber");
-		row.val("fNumber",n+1);
+		var n=row.val("goods_num");
+		row.val("goods_num",n+1);
+		this.caculateStore(row.val('store_id'),1,row.val('goods_price'),row.val('goods_id'));
 	};
-	
+	//计算店铺合计数量及总额
+	Model.prototype.caculateStore=function(store_id,num,price,goods_id){
+		var rows=this.comp('shopData').find(['store_id'],[store_id],true);
+		var row=rows[0];
+		var member_id=this.user.member_id;
+		$.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=changeCartGoodsNum",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'member_id':member_id,
+						'goods_id':goods_id,
+						'num':num
+					},
+					success:function(result){
+						if(result.status==1){
+							row.val('count',row.val('count')+num);
+							row.val('sum',row.val('sum')+num*price);
+							
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
+		
+	};
 	//删除
 	Model.prototype.delBtnClick = function(event){
 		/*
@@ -124,7 +165,7 @@ define(function(require) {
 		3、如果商店里已经没有商品，则删除商店
 		*/
 		var goodsData = this.comp("goodsData");
-		var goodsRows = goodsData.find(["fChoose"],["1"]);
+		var goodsRows = goodsData.find(["choosed"],["1"]);
 		goodsData.deleteData(goodsRows);
   
 		var shopData = this.comp("shopData");
@@ -155,7 +196,12 @@ define(function(require) {
 		3、点击确认按钮，选择支付方式
 		4、进入支付成功页面
 		*/		
-		justep.Shell.showPage("order");
+		var row=event.bindingContext.$object;
+		var store_id=row.val('store_id');
+	
+		justep.Shell.showPage("order",{
+			'store_id':store_id
+		});
 	};
 
 	Model.prototype.listClick = function(event){
@@ -170,6 +216,21 @@ define(function(require) {
 			shopID : data.getValue("fShopID")
 		});
 	};
-
+	//计算店铺商品数量
+	Model.prototype.getStoreAllNumber=function(store_id){
+		var sum=this.comp('goodsData').sum('goods_num',function(ev){
+			var v=ev.data.getValue('store_id',ev.row);
+			return v==store_id;
+		});
+		return sum;
+	};
+	//计算店铺金额总数
+	Model.prototype.getStoreSum=function(store_id){
+		var sum=this.comp('goodsData').sum('goods_price',function(ev){
+			var v = ev.data.getValue('store_id',ev.row);
+			return v==store_id;
+		});
+		return sum;
+	};
 	return Model;
 });

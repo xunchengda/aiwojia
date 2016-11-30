@@ -1,10 +1,14 @@
 define(function(require){
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	var allData = require("./js/loadData");
-	
+	var configData = require("./js/loadConfig");
+	var config={};
+	var store_id;
 	var Model = function(){
 		this.callParent();
+		var configUrl = require.toUrl("./config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
+		this.user=JSON.parse(localStorage.getItem('user'));
 	};
 		
 	//图片路径转换
@@ -20,13 +24,46 @@ define(function(require){
 		var url = require.toUrl("./cart/json/goodsData.json");
 		allData.loadDataFromFile(url,event.source,true);
 	};
-	//获取店铺信息
-	Model.prototype.shopDataCustomRefresh = function(event){
-		/*
-		1、加载店铺数据
-		 */
-		var url = require.toUrl("./cart/json/shopData.json");
-		allData.loadDataFromFile(url,event.source,true);
+	//初始化订单数据
+	Model.prototype.initData = function(event){
+		var shopObj=this.comp("shopData");
+		var goodsObj=this.comp('goodsData');
+		var addressObj=this.comp('addressData');
+		var self=this;
+		
+		 $.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getOrderInfo",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'member_id':self.user.member_id,
+						'store_id':store_id
+					},
+					success:function(result){
+						if(result.status==1){
+							shopObj.clear();
+							shopObj.loadData(result.data.stores);
+							goodsObj.clear();
+							goodsObj.loadData(result.data.goodses);
+							addressObj.clear();
+							addressObj.loadData(result.data.addresses);
+							
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
 	};
 	//获取邮寄信息
 	Model.prototype.sendDataCustomRefresh = function(event){
@@ -65,6 +102,13 @@ define(function(require){
 		var title=row.val("fSendName")+" "+row.val("fCost");		
 		$("span[xid=sendTitle]", this.getRootNode()).text(title);
 		this.comp("popOver").hide();
+	};
+	
+	Model.prototype.modelParamsReceive = function(event){
+		if (this.params && this.params.store_id) {
+			store_id = this.params.store_id;
+			this.initData();
+		}
 	};
 	
 	return Model;

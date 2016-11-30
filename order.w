@@ -2,72 +2,36 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" xid="window" class="window" component="$UI/system/components/justep/window/window"
   design="device:m;">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:84px;top:18px;"> 
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="goodsData" idColumn="id" limit="20" confirmRefresh="false" confirmDelete="false"
-      onCustomRefresh="goodsDataCustomRefresh"> 
-      <column label="id" name="id" type="String" xid="column1"/>  
-      <column label="店铺ID" name="fShopID" type="String" xid="xid1"/>  
-      <column label="标题" name="fTitle" type="String" xid="column2"/>  
-      <column label="图片" name="fImg" type="String" xid="column3"/>  
-      <column label="价格" name="fPrice" type="Float" xid="column4"/>  
-      <column label="原价格" name="fOldPrice" type="Float" xid="column5"/>  
-      <column label="邮费" name="fPostage" type="String" xid="column6"/>  
-      <column label="买出数量" name="fRecord" type="Integer" xid="column7"/>  
-      <column label="所在地区" name="fAddress" type="String" xid="column8"/>  
-      <column label="颜色" name="fColor" type="String" xid="xid2"/>  
-      <column label="尺寸" name="fSize" type="String" xid="xid3"/>  
-      <column label="选择" name="fChoose" type="Integer" xid="xid4"/>  
-      <column label="数量" name="fNumber" type="Integer" xid="xid5"/>  
-      <column label="总价" name="fSum" type="Float" xid="xid6"/>  
-      <rule xid="rule1"> 
-        <col name="fColor" xid="ruleCol1"> 
-          <constraint xid="constraint1"> 
-            <expr xid="default1"/> 
-          </constraint>  
-          <calculate xid="calculate1"> 
-            <expr xid="default2"/> 
-          </calculate>  
-          <readonly xid="readonly1"> 
-            <expr xid="default6"/> 
-          </readonly> 
-        </col>  
-        <col name="fSize" xid="ruleCol2"> 
-          <calculate xid="calculate2"> 
-            <expr xid="default3"/> 
-          </calculate> 
-        </col>  
-        <col name="fSum" xid="ruleCol3"> 
-          <calculate xid="calculate3"> 
-            <expr xid="default4">$row.val('fChoose')==1?$row.val('fPrice')*$row.val('fNumber'):'0'</expr> 
-          </calculate> 
-        </col>  
-        <col name="fNumber" xid="ruleCol4"> 
-          <calculate xid="calculate4"> 
-            <expr xid="default5"/> 
-          </calculate> 
-        </col> 
-      </rule> 
-    </div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="shopData" idColumn="id" confirmDelete="false" confirmRefresh="false" onCustomRefresh="shopDataCustomRefresh"> 
-      <column label="id" name="id" type="String" xid="xid9"/>  
-      <column label="店名" name="fShopName" type="String" xid="xid10"/>  
-      <column label="等级" name="fLevel" type="Integer" xid="xid11"/>  
-      <column label="店标" name="fShopImg" type="String" xid="xid16"/>  
-      <column label="描述相符" name="fConsistent" type="Float" xid="xid12"/>  
-      <column label="服务态度" name="fService" type="Float" xid="xid13"/>  
-      <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"/>  
-      <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"/> 
-    </div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="sendData" idColumn="id" onCustomRefresh="sendDataCustomRefresh">
-      <column label="id" name="id" type="String" xid="xid7"/>  
-      <column label="配送方式" name="fSendName" type="String" xid="xid8"/>  
-      <column label="费用" name="fCost" type="String" xid="xid18"/>  
-      <column label="状态" name="fState" type="Integer" xid="xid17"/>
-    </div>
-  </div>  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:84px;top:18px;" onParamsReceive="modelParamsReceive"> 
+    <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="shopData" idColumn="store_id" confirmDelete="false" confirmRefresh="false">
+   <column label="id" name="store_id" type="Integer" xid="xid9"></column>
+   <column label="店名" name="store_name" type="String" xid="xid10"></column>
+   <column label="店标" name="img" type="String" xid="xid11"></column>
+   <column name="sum" type="Decimal" xid="xid7"></column>
+   <column name="count" type="Integer" xid="xid8"></column></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="goodsData" idColumn="goods_id">
+   <column label="商品id" name="goods_id" type="Integer" xid="xid18"></column>
+   <column label="商品名称" name="goods_name" type="String" xid="xid19"></column>
+   <column label="商品描述" name="goods_jingle" type="String" xid="xid20"></column>
+   <column label="商铺id" name="store_id" type="Integer" xid="xid21"></column>
+   <column label="商铺名称" name="store_name" type="String" xid="xid22"></column>
+   <column label="分类id" name="gc_id" type="Integer" xid="xid23"></column>
+   <column label="商品价格" name="goods_price" type="Decimal" xid="xid24"></column>
+   <column label="商铺图片" name="goods_image" type="String" xid="xid25"></column>
+   <column name="goods_commonid" type="Integer" xid="xid26"></column>
+   <column name="choosed" type="Integer" xid="xid1"></column>
+   <column name="market_price" type="Decimal" xid="xid2"></column>
+   <column name="goods_num" type="Integer" xid="xid3"></column></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="addressData" idColumn="address_id">
+   <column label="ID" name="address_id" type="Integer" xid="column18"></column>
+   <column label="姓名" name="true_name" type="String" xid="column19"></column>
+   <column label="手机" name="mob_phone" type="String" xid="column20"></column>
+   <column label="地址" name="address" type="String" xid="column21"></column>
+   <column label="praise" name="member_id" type="Integer" xid="column22"></column>
+   <column label="默认" name="is_default" type="Integer" xid="xid12"></column>
+   <column label="commentname" name="commentName" type="String" xid="xid13"></column>
+   <column label="commentconyent" name="commentContent" type="String" xid="xid14"></column>
+   <column label="state" name="state" type="String" xid="xid15"></column></div></div>  
   <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
     xid="popOver"> 
     <div class="x-popOver-overlay" xid="div9"/>  
@@ -77,12 +41,12 @@
       </div>
       <div class="panel-body">
         <div component="$UI/system/components/justep/list/list" class="x-list"
-          xid="list2" data="sendData"> 
+          xid="list2" data="addressData"> 
           <ul class="x-list-template" xid="ul1"> 
             <li xid="li2" class="list-group-item tb-noborder" bind-click="sendLiClick">
               <span component="$UI/system/components/justep/button/radio" class="x-radio"
-                bind-value="ref('fState')" checkedValue="1" checked="false" xid="state"/>  
-              <span bind-text="ref('fSendName')"/>  
+                bind-value="ref('is_default')" checkedValue="1" checked="false" xid="state"/>  
+              <span bind-text="ref('address')"/>  
               <span bind-text="ref('fCost')"/>
             </li>
           </ul> 

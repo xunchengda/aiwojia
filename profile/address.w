@@ -32,11 +32,11 @@
   <div component="$UI/system/components/justep/row/row" class="x-row" xid="row3">
    <div class="x-col" xid="col5"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output3" bind-ref="ref('address')" bind-text="ref('address')"></div></div>
    </div>
-  <div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
+  <div component="$UI/system/components/justep/row/row" class="x-row x-row-center" xid="row4">
    <div class="x-col x-col-50" xid="col8">
   <div component="$UI/system/components/justep/row/row" class="x-row" xid="row5">
    <div class="x-col x-col-20" xid="col11"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio1" checkedValue="1" uncheckedValue="0" bind-ref="ref('is_default')"></span></div>
-   <div class="x-col" xid="col12"><label xid="label1"><![CDATA[设为默认]]></label></div>
+   <div class="x-col x-col-center" xid="col12"><label xid="label1"><![CDATA[设为默认]]></label></div>
    </div></div>
    <div class="x-col" xid="col9"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="编辑" xid="button1" icon="glyphicon glyphicon-edit">
    <i xid="i1" class="glyphicon glyphicon-edit"></i>
