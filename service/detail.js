@@ -11,7 +11,7 @@ define(function(require) {
 		this.callParent();
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		
+		this.user=JSON.parse(localStorage.getItem('user'));
 	};
 	
 	//返回上一页
@@ -69,7 +69,8 @@ define(function(require) {
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'goods_id':goods_id
+						'goods_id':goods_id,
+						'member_id':self.user.member_id
 					},
 					success:function(result){
 						if(result.status==1){
@@ -78,6 +79,9 @@ define(function(require) {
 							dataObj.first();
 							imageObj.loadData(result.data.goods_images);
 							self.setCarouselImage();
+							if(result.data.cartCount>0){
+								$('#'+self.getIDByXID('cartBadge')).html(result.data.cartCount);
+							}
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
@@ -244,6 +248,52 @@ define(function(require) {
 		var row=colorData.getCurrentRow();		
 		colorData.setValue("fState", "0", colorData.find(["fState"],["1"],true,true,true)[0]);
 		colorData.setValue("fState", "1",row);
+	};	
+
+	Model.prototype.addToCartBtnClick = function(event){
+		var goods=this.comp('goodsData').getCurrentRow();
+		var self=this;
+		$.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=addToCart",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'goods_id':goods_id,
+						'member_id':self.user.member_id
+					},
+					success:function(result){
+						if(result.status==1){
+							var count=result.data.count;
+							if(count>0){
+								$('#'+self.getIDByXID('cartBadge')).html(count);
+							}else{
+								$('#'+self.getIDByXID('cartBadge')).html('');
+							};
+							justep.Util.hint(result.message,{
+								type:'success',
+								delay:'2000'
+							});
+							
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
+	};	
+
+	Model.prototype.toCartBtnClick = function(event){
+		justep.Shell.showPage('cart');
 	};	
 
 	return Model;

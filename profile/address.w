@@ -24,7 +24,7 @@
     <i class="x-pull-down-img glyphicon x-icon-pull-down" xid="i3"></i>
     <span class="x-pull-down-label" xid="span5">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div7"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list2" data="addressData" dataItemAlias="addressRow">
-   <ul class="x-list-template list-group" xid="listTemplateUl1">
+   <ul class="x-list-template x-min-height" xid="listTemplateUl1">
     <li xid="li2" class="list-group-item"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row2">
    <div class="x-col x-col-33 x-col-30" xid="col2"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref="ref('true_name')" bind-text="ref('true_name')"></div></div>
    <div class="x-col" xid="col3"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output2" bind-ref="ref('mob_phone')" bind-text="ref('mob_phone')"></div></div>

@@ -4,62 +4,10 @@
   design="device:mobile;" xid="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:135px;top:10px;"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="goodsData" idColumn="id" limit="20" confirmRefresh="false" confirmDelete="false"
-      onCustomRefresh="goodsDataCustomRefresh"> 
-      <column label="id" name="id" type="String" xid="column1"/>  
-      <column label="店铺ID" name="fShopID" type="String" xid="xid1"/>  
-      <column label="标题" name="fTitle" type="String" xid="column2"/>  
-      <column label="图片" name="fImg" type="String" xid="column3"/>  
-      <column label="价格" name="fPrice" type="Float" xid="column4"/>  
-      <column label="原价格" name="fOldPrice" type="Float" xid="column5"/>  
-      <column label="邮费" name="fPostage" type="String" xid="column6"/>  
-      <column label="买出数量" name="fRecord" type="Integer" xid="column7"/>  
-      <column label="所在地区" name="fAddress" type="String" xid="column8"/>  
-      <column label="颜色" name="fColor" type="String" xid="xid2"/>  
-      <column label="尺寸" name="fSize" type="String" xid="xid3"/>  
-      <column label="选择" name="fChoose" type="Integer" xid="xid4"/>  
-      <column label="数量" name="fNumber" type="Integer" xid="xid5"/>  
-      <column label="总价" name="fSum" type="Float" xid="xid6"/>  
-      <rule xid="rule1"> 
-        <col name="fColor" xid="ruleCol1"> 
-          <constraint xid="constraint1"> 
-            <expr xid="default1"/> 
-          </constraint>  
-          <calculate xid="calculate1"> 
-            <expr xid="default2"/> 
-          </calculate>  
-          <readonly xid="readonly1"> 
-            <expr xid="default6"/> 
-          </readonly> 
-        </col>  
-        <col name="fSize" xid="ruleCol2"> 
-          <calculate xid="calculate2"> 
-            <expr xid="default3"/> 
-          </calculate> 
-        </col>  
-        <col name="fSum" xid="ruleCol3"> 
-          <calculate xid="calculate3"> 
-            <expr xid="default4">$row.val('fChoose')==1?$row.val('fPrice')*$row.val('fNumber'):'0'</expr> 
-          </calculate> 
-        </col>  
-        <col name="fNumber" xid="ruleCol4"> 
-          <calculate xid="calculate4"> 
-            <expr xid="default5"/> 
-          </calculate> 
-        </col> 
-      </rule> 
-    </div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="shopData" idColumn="id" confirmDelete="false" confirmRefresh="false" onCustomRefresh="shopDataCustomRefresh"> 
-      <column label="id" name="id" type="String" xid="xid9"/>  
-      <column label="店名" name="fShopName" type="String" xid="xid10"/>  
-      <column label="等级" name="fLevel" type="Integer" xid="xid11"/>  
-      <column label="店标" name="fShopImg" type="String" xid="xid16"/>  
-      <column label="描述相符" name="fConsistent" type="Float" xid="xid12"/>  
-      <column label="服务态度" name="fService" type="Float" xid="xid13"/>  
-      <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"/>  
-      <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"/> 
-    </div>  
+      xid="shopData" idColumn="store_id" confirmDelete="false" confirmRefresh="false" onCustomRefresh="shopDataCustomRefresh"> 
+      <column label="id" name="store_id" type="Integer" xid="xid9"></column>
+  <column label="店名" name="store_name" type="String" xid="xid10"></column>
+  <column label="店标" name="img" type="String" xid="xid11"></column></div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="calculateData" idColumn="allSum"> 
       <column label="合计" name="allSum" type="String" xid="xid7"></column>
@@ -73,7 +21,16 @@
      <expr xid="default9">$model.goodsData.sum('fChoose')</expr></calculate> </col> </rule>
   <column label="是否返回" name="isBack" type="Integer" xid="xid17"></column>
   <data xid="default8">[{&quot;allSum&quot;:&quot;0&quot;,&quot;isBack&quot;:0}]</data></div> 
-  </div>  
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="goodsData" idColumn="goods_id">
+   <column label="商品id" name="goods_id" type="Integer" xid="xid18"></column>
+   <column label="商品名称" name="goods_name" type="String" xid="xid19"></column>
+   <column label="商品描述" name="goods_jingle" type="String" xid="xid20"></column>
+   <column label="商铺id" name="store_id" type="Integer" xid="xid21"></column>
+   <column label="商铺名称" name="store_name" type="String" xid="xid22"></column>
+   <column label="分类id" name="gc_id" type="Integer" xid="xid23"></column>
+   <column label="商品价格" name="goods_price" type="Decimal" xid="xid24"></column>
+   <column label="商铺图片" name="goods_image" type="String" xid="xid25"></column>
+   <column name="goods_commonid" type="Integer" xid="xid26"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card x-has-iosstatusbar"> 
     <div class="x-panel-top" height="48"> 
       <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"> 
@@ -111,9 +68,9 @@
               <li xid="li1" class="panel panel-default x-card tb-box"> 
                 <div class="panel-heading">
                   <i xid="i5" class="icon-chevron-right"/> 
-                  <img src="" alt="" xid="image3" bind-attr-src="$model.getImageUrl(val(&quot;fShopImg&quot;))"
+                  <img src="" alt="" xid="image3" bind-attr-src='$model.getImageUrl(val("store_image"))'
                     class="img-circle tb-img-shop"/> 
-                  <span xid="span4" bind-text="ref('fShopName')"/>
+                  <span xid="span4" bind-text="ref('store_name')"/>
                 </div>  
                 <div component="$UI/system/components/justep/list/list" class="x-list bg-white"
                   data="goodsData" filter="$row.val('fShopID')==shopRow.val('id')"
@@ -124,8 +81,8 @@
                     <li xid="li4" class="x-min-height tb-goodList" componentname="li(html)"
                       id="undefined_li4"> 
                       <div component="$UI/system/components/justep/row/row" class="x-row">
-   <div class="x-col x-col-fixed" xid="col1" style="width:auto;"><span component="$UI/system/components/justep/button/checkbox" class="x-checkbox x-radio choose" xid="checkbox2" bind-ref="ref('fChoose')" checkedValue="1"></span></div>
-   <div class="x-col x-col-fixed tb-nopadding" xid="col2"><img src="" alt="" xid="image1" bind-attr-src='$model.getImageUrl(val("fImg"))' class="tb-img-good" bind-click="listClick"></img></div>
+   <div class="x-col x-col-fixed" xid="col1" style="width:auto;">
+   <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox x-radio choose" xid="checkbox2" bind-ref="ref('fChoose')" checkedValue="1"></span></div><div class="x-col x-col-fixed tb-nopadding" xid="col2"><img src="" alt="" xid="image1" bind-attr-src='$model.getImageUrl(val("fImg"))' class="tb-img-good" bind-click="listClick"></img></div>
    <div class="x-col  tb-nopadding" xid="col3"><span bind-text="ref('fTitle')" class="x-flex text-black h5 tb-nomargin" xid="span26"></span>
   <div class="text-muted h6" xid="div6">
    <span xid="span27"><![CDATA[颜色:]]></span>
@@ -146,7 +103,21 @@
     <i xid="i6" class="icon-android-add"></i>
     <span xid="span29"></span></a> 
    
-   </div></div></div></li> 
+   </div></div></div>
+  <div component="$UI/system/components/justep/row/row" class="x-row x-row-center tb-nopadding" xid="row3">
+   <div class="x-col x-col-20 x-col-center" xid="col12">
+    <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox1" label="全选" checked="false" onChange="allChooseChange"></span></div> 
+   <div class="x-col" xid="col10">
+    <div class="text-right" xid="div2">
+     <span xid="span31" class="text-muted">合计：</span>
+     <span xid="span5" class="text-danger">￥</span>
+     <span xid="span21" class="h4 text-danger" bind-text="calculateData.ref('allSum')"></span></div> 
+    <div class="text-right" xid="div1">
+     <span xid="span30">不含运费</span></div> </div> 
+   <div class="x-col x-col-33 text-center tb-settlement" xid="col11" bind-click="settlementClick">
+    <span xid="span32">结算(</span>
+    <span xid="span23" class="allNumber" bind-text="calculateData.ref('allNumber')"></span>
+    <span xid="span25">)</span></div> </div></li> 
                   </ul> 
                 </div> 
               </li> 

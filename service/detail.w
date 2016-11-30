@@ -4,22 +4,26 @@
   design="device:mobile;" xid="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:351px;top:42px;"
     onParamsReceive="modelParamsReceive"> 
-    <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="goodsData" idColumn="goods_id">
-   <column label="商品id" name="goods_id" type="Integer" xid="column9"></column>
-  <column label="商品名称" name="goods_name" type="String" xid="column10"></column>
-  <column label="商品描述" name="goods_jingle" type="String" xid="column15"></column>
-  <column label="商铺id" name="store_id" type="Integer" xid="column16"></column>
-  <column label="商铺名称" name="store_name" type="String" xid="column17"></column>
-  <column label="分类id" name="gc_id" type="Integer" xid="column11"></column>
-  <column label="商品价格" name="goods_price" type="Decimal" xid="column12"></column>
-  <column label="商铺图片" name="goods_image" type="String" xid="column13"></column>
-  <column name="goods_commonid" type="Integer" xid="column14"></column>
-  <column name="goods_marketprice" type="Decimal" xid="xid29"></column></div><div component="$UI/system/components/justep/data/data" autoLoad="false"
+    <div component="$UI/system/components/justep/data/data" autoLoad="false"
+      xid="goodsData" idColumn="goods_id"> 
+      <column label="商品id" name="goods_id" type="Integer" xid="column9"/>  
+      <column label="商品名称" name="goods_name" type="String" xid="column10"/>  
+      <column label="商品描述" name="goods_jingle" type="String" xid="column15"/>  
+      <column label="商铺id" name="store_id" type="Integer" xid="column16"/>  
+      <column label="商铺名称" name="store_name" type="String" xid="column17"/>  
+      <column label="分类id" name="gc_id" type="Integer" xid="column11"/>  
+      <column label="商品价格" name="goods_price" type="Decimal" xid="column12"/>  
+      <column label="商铺图片" name="goods_image" type="String" xid="column13"/>  
+      <column name="goods_commonid" type="Integer" xid="column14"/>  
+      <column name="goods_marketprice" type="Decimal" xid="xid29"/> 
+    </div>  
+    <div component="$UI/system/components/justep/data/data" autoLoad="false"
       xid="imgData" idColumn="goods_image_id"> 
-      <column label="id" name="goods_image_id" type="Integer" xid="xid2"></column>
-  <column label="图片" name="goods_commonid" type="Integer" xid="xid1"></column>
-  <column name="goods_image" type="String" xid="xid27"></column>
-  <column name="store_id" type="Integer" xid="xid28"></column></div>  
+      <column label="id" name="goods_image_id" type="Integer" xid="xid2"/>  
+      <column label="图片" name="goods_commonid" type="Integer" xid="xid1"/>  
+      <column name="goods_image" type="String" xid="xid27"/>  
+      <column name="store_id" type="Integer" xid="xid28"/> 
+    </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="commentsData" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid3"/>  
@@ -31,14 +35,15 @@
     </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="false"
       xid="shopData" idColumn="store_id"> 
-      <column name="store_id" type="Integer" xid="xid9"></column>
-  <column label="店名" name="store_name" type="String" xid="xid10"></column>
-  <column label="等级" name="grade" type="String" xid="xid11"></column>
-  <column label="店标" name="store_company_name" type="String" xid="xid16"></column>
-  <column label="地区" name="area_info" type="String" xid="xid12"></column>
-  <column label="服务态度" name="fService" type="Float" xid="xid13"></column>
-  <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"></column>
-  <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"></column></div>  
+      <column name="store_id" type="Integer" xid="xid9"/>  
+      <column label="店名" name="store_name" type="String" xid="xid10"/>  
+      <column label="等级" name="grade" type="String" xid="xid11"/>  
+      <column label="店标" name="store_company_name" type="String" xid="xid16"/>  
+      <column label="地区" name="area_info" type="String" xid="xid12"/>  
+      <column label="服务态度" name="fService" type="Float" xid="xid13"/>  
+      <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"/>  
+      <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"/> 
+    </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="parameterData" idColumn="id"> 
       <column name="id" type="String" xid="xid19"/>  
@@ -52,12 +57,13 @@
       <column label="商品ID" name="fGoodID" type="String" xid="xid22"/>  
       <column label="颜色" name="fColor" type="String" xid="xid23"/>  
       <column label="状态" name="fState" type="Integer" xid="xid25"/>  
-      <data xid="default2">[{"id":"1","fGoodID":"1","fColor":"草绿（12支/盒）","fState":0},{"id":"2","fGoodID":"1","fColor":"橙色（12支/盒）","fState":0},{"id":"3","fGoodID":"1","fColor":"蓝色（12支/盒）","fState":0},{"id":"4","fGoodID":"1","fColor":"粉红（12支/盒）","fState":0},{"id":"5","fGoodID":"1","fColor":"黑色（12支/盒）","fState":0},{"id":"6","fGoodID":"1","fColor":"红色（12支/盒）","fState":0},{"id":"7","fGoodID":"1","fColor":"黄色（12支/盒）","fState":0},{"id":"8","fGoodID":"1","fColor":"绿色（12支/盒）","fState":0},{"id":"9","fGoodID":"1","fColor":"墨蓝（12支/盒）","fState":0},{"id":"10","fGoodID":"1","fColor":"天蓝（12支/盒）","fState":0},{"id":"11","fGoodID":"1","fColor":"紫色（12支/盒）","fState":0},{"id":"12","fGoodID":"1","fColor":"棕色（12支/盒）","fState":0},{"id":"13","fGoodID":"1","fColor":"12色混装（12支/盒）","fState":0}]</data>
+      <data xid="default2">[{"id":"1","fGoodID":"1","fColor":"草绿（12支/盒）","fState":0},{"id":"2","fGoodID":"1","fColor":"橙色（12支/盒）","fState":0},{"id":"3","fGoodID":"1","fColor":"蓝色（12支/盒）","fState":0},{"id":"4","fGoodID":"1","fColor":"粉红（12支/盒）","fState":0},{"id":"5","fGoodID":"1","fColor":"黑色（12支/盒）","fState":0},{"id":"6","fGoodID":"1","fColor":"红色（12支/盒）","fState":0},{"id":"7","fGoodID":"1","fColor":"黄色（12支/盒）","fState":0},{"id":"8","fGoodID":"1","fColor":"绿色（12支/盒）","fState":0},{"id":"9","fGoodID":"1","fColor":"墨蓝（12支/盒）","fState":0},{"id":"10","fGoodID":"1","fColor":"天蓝（12支/盒）","fState":0},{"id":"11","fGoodID":"1","fColor":"紫色（12支/盒）","fState":0},{"id":"12","fGoodID":"1","fColor":"棕色（12支/盒）","fState":0},{"id":"13","fGoodID":"1","fColor":"12色混装（12支/盒）","fState":0}]</data> 
     </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="stateData" idColumn="state">
-      <column label="显示状态" name="state" type="Integer" xid="xid26"></column>
-  <data xid="default4">[{&quot;state&quot;:0}]</data></div>
+      xid="stateData" idColumn="state"> 
+      <column label="显示状态" name="state" type="Integer" xid="xid26"/>  
+      <data xid="default4">[{"state":0}]</data> 
+    </div> 
   </div>  
   <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
     xid="popOver" position="bottom"> 
@@ -93,39 +99,52 @@
         <div class="clearfix"/> 
       </div>  
       <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label btn-block tb-colorOk"
-        label="确定" onClick="{operation:'popOver.hide'}" bind-visible='$model.stateData.val("state")==0'> 
+        label="确定" onClick="{operation:'popOver.hide'}" bind-visible="$model.stateData.val(&quot;state&quot;)==0"> 
         <i xid="i18"/>  
         <span xid="span50">确定</span> 
       </a>  
       <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group btn-group-justified tb-shopping"
-        tabbed="true" xid="buttonGroup4" bind-visible='$model.stateData.val("state")==1'>
+        tabbed="true" xid="buttonGroup4" bind-visible="$model.stateData.val(&quot;state&quot;)==1"> 
         <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
           label="加入购物车"> 
           <i xid="i16"/>  
-          <span xid="span34">加入购物车</span>
+          <span xid="span34">加入购物车</span> 
         </a>  
         <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
           label="立即购买"> 
           <i xid="i19"/>  
-          <span xid="span37">立即购买</span>
-        </a>
-      </div>
+          <span xid="span37">立即购买</span> 
+        </a> 
+      </div> 
     </div> 
   </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card tb-trans x-has-iosstatu"> 
-    <div class="x-panel-top" xid="top1"><div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar tb-box" xid="titleBar">
-   <div class="x-titlebar-left" xid="left1"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-backBtn" xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick"> 
-          <i xid="i6" class="icon-chevron-left" />  
-          <span xid="span6">关闭</span> 
-        </a></div>
-   <div class="x-titlebar-title" xid="title1"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-cartBtn pull-right" xid="cartBtn" icon="icon-ios7-cart">
-   <i xid="i12" class="icon-ios7-cart"></i>
-   <span xid="span4"></span></a></div>
-   <div class="x-titlebar-right reverse" xid="right1"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-moreBtn pull-right" xid="moreBtn" icon="icon-android-more">
-   <i xid="i13" class="icon-android-more"></i>
-   <span xid="span23"></span></a>
-  </div></div></div><div class="x-panel-content x-cards tb-trans"> 
-        
+    <div class="x-panel-top" xid="top1"> 
+      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar tb-box"
+        xid="titleBar"> 
+        <div class="x-titlebar-left" xid="left1"> 
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-backBtn"
+            xid="backBtn" icon="icon-chevron-left" onClick="backBtnClick"> 
+            <i xid="i6" class="icon-chevron-left"/>  
+            <span xid="span6">关闭</span> 
+          </a> 
+        </div>  
+        <div class="x-titlebar-title" xid="title1"/>  
+        <div class="x-titlebar-right reverse" xid="right1"> 
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-moreBtn pull-right"
+            xid="moreBtn" icon="icon-android-more"> 
+            <i xid="i13" class="icon-android-more"/>  
+            <span xid="span23"/> 
+          </a>  
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-cartBtn pull-right"
+            xid="cartBtn" icon="icon-ios7-cart" style="margin:0 0.75em;" onClick="toCartBtnClick"> 
+            <i xid="i12" class="icon-ios7-cart"/>  
+            <div xid="cartBadge" class="badge" style="position:absolute; top:3px;background-color:red"></div> 
+          </a> 
+        </div> 
+      </div> 
+    </div>  
+    <div class="x-panel-content x-cards tb-trans"> 
       <div component="$UI/system/components/bootstrap/carousel/carousel" class="x-carousel carousel"
         xid="carousel1" auto="false" style="height:251px;"> 
         <ol class="carousel-indicators" xid="default1"/>  
@@ -139,15 +158,17 @@
       <div component="$UI/system/components/justep/panel/panel" class="panel panel-default x-card panel-body"> 
         <div component="$UI/system/components/bootstrap/row/row" class="row tb-nopadding"> 
           <div class="col col-xs-10  tb-nopadding" xid="col8"> 
-              
-            <h4 xid="h41" class=" text-black" bind-text='$model.goodsData.val("goods_name")' style="height:100%;"><![CDATA[]]></h4><div xid="div4"> 
+            <h4 xid="h41" class=" text-black" bind-text="$model.goodsData.val(&quot;goods_name&quot;)"
+              style="height:100%;"><![CDATA[]]></h4>  
+            <div xid="div4"> 
               <span xid="span17" class="text-danger h3"><![CDATA[￥]]></span>  
               <span xid="span29" class="text-danger h3" bind-text="$model.goodsData.ref('goods_price')"/> 
             </div>  
             <div xid="div5" class="text-muted"> 
               <span xid="span19"><![CDATA[价格：]]></span>  
               <span xid="span18" class="tb-text-del">￥</span>  
-              <span xid="span13" bind-text="$model.goodsData.ref('goods_marketprice')" class="tb-text-del"/> 
+              <span xid="span13" bind-text="$model.goodsData.ref('goods_marketprice')"
+                class="tb-text-del"/> 
             </div> 
           </div>  
           <div class="col col-xs-2  tb-nopadding" xid="col9"> 
@@ -283,7 +304,7 @@
                   class="list-group-item"> 
                   <span bind-text="ref('fName')" class="col col-xs-4 tb-nopadding text-muted"/>  
                   <span bind-text="ref('fParameter')" class="x-flex col col-xs-8 tb-nopadding"/>  
-                  <div class="clearfix"/>
+                  <div class="clearfix"/> 
                 </li> 
               </ul> 
             </div> 
@@ -317,7 +338,7 @@
           <div component="$UI/system/components/justep/button/buttonGroup"
             class="btn-group btn-group-justified tb-shopping" tabbed="true" xid="buttonGroup2"> 
             <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
-              label="加入购物车" xid="joinCartBtn" icon="icon-radio-waves"> 
+              label="加入购物车" xid="joinCartBtn" icon="icon-radio-waves" onClick="addToCartBtnClick"> 
               <i xid="i8" class="icon-radio-waves icon"/>  
               <span xid="span7">加入购物车</span> 
             </a>  

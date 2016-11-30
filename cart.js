@@ -1,11 +1,15 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");
-	var allData = require("./js/loadData");
+	var configData = require("./js/loadConfig");
+	var config={};
 
 	var Model = function() {
 		this.callParent();
-		this.isBack;	
+		this.isBack;
+		var configUrl = require.toUrl("./config/config.json");
+		configData.loadServerDataFromFile(configUrl,config);
+		this.user=JSON.parse(localStorage.getItem('user'));	
 	};
 	
 	//返回上一页
@@ -34,8 +38,40 @@ define(function(require) {
 		/*
 		1、加载店铺数据
 		 */
-		var url = require.toUrl("./cart/json/shopData.json");
-		allData.loadDataFromFile(url,event.source,true);
+		var dataObj=this.comp("goodsData");
+		var goodsObj=this.comp('goodsData');
+		var self=this;
+		
+		 $.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getCartInfo",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'member_id':self.user.member_id
+					},
+					success:function(result){
+						if(result.status==1){
+							dataObj.clear();
+							dataObj.loadData(result.data.stores);
+							dataObj.first();
+							goodsObj.loadData(result.data.goodses);
+							
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
 	};
 	//全选
 	Model.prototype.allChooseChange = function(event){
