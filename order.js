@@ -13,7 +13,7 @@ define(function(require){
 		
 	//图片路径转换
 	Model.prototype.getImageUrl = function(url){
-		return require.toUrl(url);
+		return "http://"+config.server+url;
 	};
 		
 	//获取商品列表
@@ -29,6 +29,7 @@ define(function(require){
 		var shopObj=this.comp("shopData");
 		var goodsObj=this.comp('goodsData');
 		var addressObj=this.comp('addressData');
+		var currentAddressObj=this.comp('currentAddressData');
 		var self=this;
 		
 		 $.ajax({
@@ -48,6 +49,10 @@ define(function(require){
 							goodsObj.loadData(result.data.goodses);
 							addressObj.clear();
 							addressObj.loadData(result.data.addresses);
+							var s_currentAddress=addressObj.find(['is_default'],[1]);
+							currentAddressObj.newData({"defaultValues":s_currentAddress});
+							currentAddressObj.first();
+							console.log(currentAddressObj);
 							
 						}
 						if(result.status==-1){
