@@ -49,10 +49,26 @@ define(function(require){
 							goodsObj.loadData(result.data.goodses);
 							addressObj.clear();
 							addressObj.loadData(result.data.addresses);
+							var sum=0;
+							for(var i=0;i<result.data.goodses.length;i++){
+								var price=result.data.goodses[i].goods_price;
+								var num=result.data.goodses[i].goods_num;
+								sum+=price*num;
+							}
+							$('#'+self.getIDByXID('sum')).html("￥"+sum);
 							var s_currentAddress=addressObj.find(['is_default'],[1]);
-							currentAddressObj.newData({"defaultValues":s_currentAddress});
+							var a_t=s_currentAddress[0];
+							currentAddressObj.newData({
+								index:0,
+								defaultValues:[{
+								'address_id':a_t.val('address_id'),
+								'true_name':a_t.val('true_name'),
+								'mob_phone':a_t.val('mob_phone'),
+								'address':a_t.val('address')
+								}]
+							});
 							currentAddressObj.first();
-							console.log(currentAddressObj);
+							
 							
 						}
 						if(result.status==-1){
@@ -101,11 +117,20 @@ define(function(require){
 		1、配送列表点击事件
 		2、选中配送方式，关闭配送列表
 		*/
-		this.comp("sendData").setValue("fState",0);
+		this.comp("addressData").setValue("is_default",0);
 		var row = event.bindingContext.$object; 
-		row.val("fState",1);
-		var title=row.val("fSendName")+" "+row.val("fCost");		
-		$("span[xid=sendTitle]", this.getRootNode()).text(title);
+		row.val("is_default",1);
+		var currentAddress=this.comp('currentAddressData');
+			currentAddress.clear();
+			currentAddress.newData({
+				'index':0,
+				'defaultValues':[{
+					'true_name':row.val('true_name'),
+					'mob_phone':row.val('mob_phone'),
+					'address':row.val('address')
+					
+				}]
+			});
 		this.comp("popOver").hide();
 	};
 	
@@ -114,6 +139,25 @@ define(function(require){
 			store_id = this.params.store_id;
 			this.initData();
 		}
+	};
+	
+	Model.prototype.changeAddress = function(event){
+		var row = event.bindingContext.$object;
+		if(event.value==1){
+			var currentAddress=this.comp('currentAddressData');
+			currentAddress.clear();
+			currentAddress.newData({
+				'index':0,
+				'defaultValues':[{
+					'true_name':row.val('true_name'),
+					'mob_phone':row.val('mob_phone'),
+					'address':row.val('address')
+					
+				}]
+			});
+			currentAddress.first();
+		}
+		
 	};
 	
 	return Model;
