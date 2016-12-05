@@ -51,7 +51,7 @@
    <input component="$UI/system/components/justep/input/input" class="form-control x-edit" xid="addressInput" bind-ref='$model.addressData.ref("address")'></input></div>
   <div component="$UI/system/components/justep/labelEdit/labelEdit" class="x-label-edit x-label30" xid="labelEdit4">
    <label class="x-label" xid="label4"><![CDATA[设为默认地址：]]></label>
-   <span component="$UI/system/components/justep/button/toggle" class="x-toggle x-edit" xid="defaultInput" ON="是" OFF="否" checkedValue="1" uncheckedValue="0" value="0" bind-ref='$model.addressData.ref("is_default")'></span></div></div></div>
+   <span component="$UI/system/components/justep/button/toggle" class="x-toggle x-edit" xid="defaultInput" ON="是" OFF="否" checkedValue="1" uncheckedValue="0" value="0" bind-ref='$model.addressData.ref("is_default")' checked="false"></span></div></div></div>
    <div class="x-panel-bottom" xid="bottom1"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="保存" xid="button1" icon="glyphicon glyphicon-floppy-disk" onClick="saveBtnClick">
    <i xid="i1" class="glyphicon glyphicon-floppy-disk"></i>
    <span xid="span1">保存</span></a></div></div></div>

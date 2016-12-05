@@ -25,27 +25,27 @@
     <span class="x-pull-down-label" xid="span5">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div7"><div component="$UI/system/components/justep/list/list" class="x-list" xid="list2" data="addressData" dataItemAlias="addressRow">
    <ul class="x-list-template x-min-height" xid="listTemplateUl1">
-    <li xid="li2" class="list-group-item"><div component="$UI/system/components/justep/row/row" class="x-row" xid="row2">
-   <div class="x-col x-col-33 x-col-30" xid="col2"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output1" bind-ref="ref('true_name')" bind-text="ref('true_name')"></div></div>
-   <div class="x-col" xid="col3"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output2" bind-ref="ref('mob_phone')" bind-text="ref('mob_phone')"></div></div>
+    <li xid="li2" class="list-group-item"><div component="$UI/system/components/justep/row/row" class="x-row " xid="row2">
+   <div class="x-col x-col-33 x-col-30" xid="col2"><span xid="span9" bind-text="ref('true_name')"></span></div>
+   <div class="x-col" xid="col3"><span xid="span11" bind-text="ref('mob_phone')"></span></div>
    </div>
   <div component="$UI/system/components/justep/row/row" class="x-row" xid="row3">
-   <div class="x-col" xid="col5"><div component="$UI/system/components/justep/output/output" class="x-output" xid="output3" bind-ref="ref('address')" bind-text="ref('address')"></div></div>
+   <div class="x-col" xid="col5"><span xid="span8" bind-text="ref('address')"></span></div>
    </div>
-  <div component="$UI/system/components/justep/row/row" class="x-row x-row-center" xid="row4">
+  <div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
    <div class="x-col x-col-50" xid="col8">
-  <div component="$UI/system/components/justep/row/row" class="x-row" xid="row5">
-   <div class="x-col x-col-20" xid="col11"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio1" checkedValue="1" uncheckedValue="0" bind-ref="ref('is_default')"></span></div>
-   <div class="x-col x-col-center" xid="col12"><label xid="label1"><![CDATA[设为默认]]></label></div>
-   </div></div>
+  <span component="$UI/system/components/justep/button/radio" class="x-radio" checkedValue="1" uncheckedValue="0" bind-click="setDefaultBtnClick" bind-value="ref('is_default')"></span><span xid="span6"><![CDATA[设为默认]]></span>
+  </div>
    <div class="x-col" xid="col9"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="编辑" xid="button1" icon="glyphicon glyphicon-edit">
    <i xid="i1" class="glyphicon glyphicon-edit"></i>
    <span xid="span2">编辑</span></a></div>
-   <div class="x-col" xid="col10"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="删除" xid="button2" icon="glyphicon glyphicon-trash">
+   <div class="x-col" xid="col10"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="删除" xid="button2" icon="glyphicon glyphicon-trash" onClick="removeBtnClick">
    <i xid="i2" class="glyphicon glyphicon-trash"></i>
-   <span xid="span3">删除</span></a></div></div></li></ul> </div></div>
+   <span xid="span3">删除</span></a></div></div>
+  </li></ul> </div></div>
    <div class="x-content-center x-pull-up" xid="div8">
     <span class="x-pull-up-label" xid="span10">加载更多...</span></div> </div></div>
    <div class="x-panel-bottom" xid="bottom1" height="54"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn-icon-left btn-block" label="添加地址" xid="newAddressBtn" icon="linear linear-arrowleftcircle" onClick="addBtnClick">
    <i xid="i5" class="linear linear-arrowleftcircle"></i>
-   <span xid="span7">添加地址</span></a></div></div></div>
+   <span xid="span7">添加地址</span></a></div></div>
+  <span component="$UI/system/components/justep/messageDialog/messageDialog" xid="removeMD" type="OKCancel" onOK="removeOkClick" message="确定删除该地址吗？" title="提示"></span></div>

@@ -77,7 +77,7 @@
                       id="undefined_li4"> 
                       <div component="$UI/system/components/justep/row/row" class="x-row">
    <div class="x-col x-col-fixed" xid="col1" style="width:auto;">
-   <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox x-radio choose" xid="checkbox2" bind-ref="ref('choosed')" checkedValue="1"></span></div><div class="x-col x-col-fixed tb-nopadding" xid="col2"><img src="" alt="" xid="image1" bind-attr-src='$model.getImageUrl(val("goods_image"))' class="tb-img-good" bind-click="listClick"></img></div>
+   <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox x-radio choose" xid="checkbox2" bind-ref="ref('choosed')" checkedValue="1" uncheckedValue="0"></span></div><div class="x-col x-col-fixed tb-nopadding" xid="col2"><img src="" alt="" xid="image1" bind-attr-src='$model.getImageUrl(val("goods_image"))' class="tb-img-good" bind-click="listClick"></img></div>
    <div class="x-col  tb-nopadding" xid="col3"><span bind-text="ref('goods_name')" class="x-flex text-black h5 tb-nomargin" xid="span26"></span>
   <div class="text-muted" xid="div5">
    <span xid="span22" class="text-danger">￥</span>

@@ -1,9 +1,6 @@
 define(function(require) {
 	var $ = require("jquery");
 	var justep = require("$UI/system/lib/justep");	
-	require("cordova!cordova-plugin-device");
-	//require("cordova!com.justep.cordova.plugin.weixin.v3");
-	//var allData = require("../js/loadData");
 	var configData = require("../js/loadConfig");
 	var config={};
 	var goods_id,store_id;
