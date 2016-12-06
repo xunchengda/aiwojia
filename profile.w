@@ -2,12 +2,18 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" xid="window" class="window" component="$UI/system/components/justep/window/window"
   design="device:m;">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="top:638px;left:12px;height:auto;"/>  
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:499px;left:75px;" onLoad="modelLoad"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="userData" idColumn="member_id" onCustomRefresh="userDataCustomRefresh"><column name="member_id" type="Integer" xid="xid1"></column>
+  <column label="真实姓名" name="member_truename" type="String" xid="xid2"></column>
+  <column label="所在单位" name="member_department" type="String" xid="xid3"></column>
+  <column label="学历" name="member_degree" type="String" xid="xid4"></column>
+  <column label="证件号码" name="member_idno" type="String" xid="xid5"></column>
+  <column label="手机号码" name="member_mobile" type="String" xid="xid6"></column>
+  <column name="member_name" type="String" xid="xid7"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"> 
     <div class="x-panel-top" xid="top2"> 
       <div class="x-panel-top" xid="top1"> 
         <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"
-          xid="titleBar1" style="color:#4C4C4C;background-color:#CCC;"> 
+          xid="titleBar1" style="color:#4C4C4C;background-color:#CCC;" title="用户信息"> 
           <div class="x-titlebar-left" xid=""> 
             <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
               xid="back" icon="fa fa-angle-left fa-fw" style="padding: 5px;"> 
@@ -15,26 +21,16 @@
               <span xid="span3"/> 
             </a> 
           </div>  
-          <div class="x-titlebar-title" xid="title1"/>  
+          <div class="x-titlebar-title" xid="title1">用户信息</div>  
           <div class="x-titlebar-right reverse" xid=""/> 
         </div> 
       </div> 
     </div>  
     <div class="x-panel-content" xid="content1"> 
-      <div component="$UI/system/components/justep/row/row" class="x-row avatar-row"
-        xid="avatarRow" style="height:40%;max-height:480px;background-color:#CCC;"> 
-        <div class="x-col" xid="col1"/>  
-        <div class="x-col" xid="col2"> 
-          <div xid="avatarDiv" style="width: 90%; max-width:200px; height:100%; margin: 0 auto;"> 
-            <img src="$UI/mine/aiwojia/main/img/avatar.jpg" alt="" xid="avatarImg"
-              style="width: 100%;" class="img-circle img-thumbnail"/>  
-            <h5 xid="usernameLabel" style="text-align:center;color:#4C4C4C;"><![CDATA[李四]]></h5>  
-            <h5 xid="growupPointsLabel" style="text-align:center;color:#4C4C4C;"><![CDATA[我的成长值：720]]> </h5>  
-            <h5 xid="userPointsLabel" style="text-align:center;color:#4C4C4C;"><![CDATA[我的积分：50]]></h5> 
-          </div> 
+      <div component="$UI/system/components/justep/row/row" class="x-row"
+        xid="avatarRow"> 
+        <div class="x-col" xid="col1"><span xid="span1" bind-text="'当前用户：' + $model.userData.val('member_name') + &quot;   &quot; + $model.userData.val('member_mobile')"><![CDATA[]]></span></div>  
         </div>  
-        <div class="x-col" xid="col3"/> 
-      </div>  
       <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1"
         style="background-color:white; margin-top:10px;"> 
         <div class="x-col" xid="col5" style="padding: 0 25px 10px 25px;"> 
@@ -63,27 +59,27 @@
         style="background-color:white; margin-top:10px; padding:0;"> 
         <div class="x-col" xid="col8" style="padding: 0;"> 
           <ul xid="ul1" class="list-group" style="margin:0;"> 
-            <li xid="" class="list-group-item"> 
+            <li xid="" class="center-block list-group-item" bind-click="showAddress"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="" icon="icon-ios7-arrow-right" onClick="showAddress"> 
+                label="button" xid="" icon="icon-ios7-arrow-right" onClick="showAddress" style="padding-top:0px"> 
                 <i xid="" class="icon-ios7-arrow-right"/>  
                 <span xid=""/> 
               </a>  
               <i class="fa fa-map-marker fa-fw"/>  
               <span xid="span13"><![CDATA[我的收货地址]]></span> 
             </li>  
-            <li xid="" class="list-group-item"> 
+            <li xid="" class="list-group-item" bind-click="userInfoClick"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="" icon="icon-ios7-arrow-right"> 
+                label="button" xid="" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="" class="icon-ios7-arrow-right"/>  
                 <span xid=""/> 
               </a>  
               <i class="fa fa-credit-card fa-fw"/>  
-              <span xid="span14"><![CDATA[我的卡券]]></span> 
+              <span xid="span14"><![CDATA[我的信息]]></span> 
             </li>  
             <li xid="li3" class="list-group-item"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button5" icon="icon-ios7-arrow-right"> 
+                label="button" xid="button5" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="i10" class="icon-ios7-arrow-right"/>  
                 <span xid="span16"/> 
               </a>  
@@ -99,7 +95,7 @@
           <ul xid="ul2" class="list-group" style="margin:0;"> 
             <li xid="li2" class="list-group-item"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button6" icon="icon-ios7-arrow-right"> 
+                label="button" xid="button6" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="i13" class="icon-ios7-arrow-right"/>  
                 <span xid="span24"/> 
               </a>  
@@ -117,7 +113,7 @@
             </li>  
             <li xid="li1" class="list-group-item"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button4" icon="icon-ios7-arrow-right"> 
+                label="button" xid="button4" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="i12" class="icon-ios7-arrow-right"/>  
                 <span xid="span22"/> 
               </a>  

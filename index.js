@@ -43,6 +43,9 @@ define(function(require) {
 				"user":{
 					url:require.toUrl('user.w')
 				},
+				'editUser':{
+					url:require.toUrl('./profile/editUser.w')
+				},
 				"address":{
 					url:require.toUrl('./profile/address.w')
 				},

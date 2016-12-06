@@ -18,5 +18,28 @@ define(function(require){
 		justep.Shell.showPage('address');
 	};
 	
+	Model.prototype.userInfoClick = function(event){
+		justep.Shell.showPage('editUser');
+	};
+	
+	Model.prototype.modelLoad = function(event){
+		
+	};
+	
+	Model.prototype.userDataCustomRefresh = function(event){
+		var user=JSON.parse(localStorage.getItem('user'));
+		console.log(user);
+		this.comp('userData').clear();
+		this.comp('userData').loadData([{
+				member_id:user.member_id,
+				member_name:user.name,
+				member_mobile:user.mobile
+			}]
+		);
+		this.comp('userData').first();
+		var row=this.comp('userData').getCurrentRow();
+		console.log(row.val('mobile'));
+	};
+	
 	return Model;
 });
