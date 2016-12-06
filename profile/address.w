@@ -33,10 +33,10 @@
    <div class="x-col" xid="col5"><span xid="span8" bind-text="ref('address')"></span></div>
    </div>
   <div component="$UI/system/components/justep/row/row" class="x-row" xid="row4">
-   <div class="x-col x-col-50" xid="col8">
-  <span component="$UI/system/components/justep/button/radio" class="x-radio" checkedValue="1" uncheckedValue="0" bind-click="setDefaultBtnClick" bind-value="ref('is_default')"></span><span xid="span6"><![CDATA[设为默认]]></span>
+   <div class="x-col x-col-50" xid="col8" bind-click="setDefaultBtnClick">
+  <span component="$UI/system/components/justep/button/radio" class="x-radio" checkedValue="1" uncheckedValue="0" bind-value="ref('is_default')"></span><span xid="span6"><![CDATA[设为默认]]></span>
   </div>
-   <div class="x-col" xid="col9"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="编辑" xid="button1" icon="glyphicon glyphicon-edit">
+   <div class="x-col" xid="col9"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="编辑" xid="button1" icon="glyphicon glyphicon-edit" onClick="editBtnClick">
    <i xid="i1" class="glyphicon glyphicon-edit"></i>
    <span xid="span2">编辑</span></a></div>
    <div class="x-col" xid="col10"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left" label="删除" xid="button2" icon="glyphicon glyphicon-trash" onClick="removeBtnClick">

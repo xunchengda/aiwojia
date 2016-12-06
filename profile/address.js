@@ -96,14 +96,62 @@ define(function(require){
 		//debugger;
 		
 		var row = event.bindingContext.$object;
-		console.log(row.val('true_name'));
-			this.comp('addressData').setValue('is_default',0);
-			
+		if(row.val('is_default')==0){
+			var trow;
+			console.log(row.val('true_name'));
+			var data=this.comp('addressData');
+			var lrow=data.getLastRow();
+			//this.comp('addressData').setValue('is_default',0); //system bug
+			data.first();
+			do{
+				trow=data.getCurrentRow();
+				trow.val('is_default',0);
+				data.next();
+			}while(lrow!=trow);
 			var d_row=this.comp('addressData').find(['address_id'],[row.val('address_id')]);
 			this.comp('addressData').setValue('is_default',1,d_row[0]);
-
-		
-		console.log(this.comp('addressData').find(['is_default'],[1]).length);
+			var member_id=this.user.member_id;
+			var address_id=row.val('address_id');
+			$.ajax({
+						'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=setDefaultAddress",
+						'type':'post',
+						'async':false,
+						'dataType':'json',
+						'data':{
+							'member_id':member_id,
+							'address_id':address_id
+						},
+						success:function(result){
+							if(result.status==1){
+								justep.Util.hint(result.message, {
+									type:'success',
+									delay:'2000'
+								});
+							}
+							if(result.status==-1){
+								justep.Util.hint(result.message, {
+									type:'warning',
+									delay:'2000'
+								});
+							}
+						},
+						error:function(result){
+							justep.Util.hint('网络错误', {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+				});
+		}
+	};
+	Model.prototype.editBtnClick = function(event){
+		var row = event.bindingContext.$object;
+		justep.Shell.showPage('editAddress', {
+			'address_id':row.val('address_id'),
+			'true_name':row.val('true_name'),
+			'mob_phone':row.val('mob_phone'),
+			'address':row.val('address')
+		});
 	};
 	return Model;
 });
