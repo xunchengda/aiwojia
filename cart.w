@@ -9,7 +9,8 @@
   <column label="店名" name="store_name" type="String" xid="xid10"></column>
   <column label="店标" name="img" type="String" xid="xid11"></column>
   <column name="sum" type="Decimal" xid="xid7"></column>
-  <column name="count" type="Integer" xid="xid8"></column></div>  
+  <column name="count" type="Integer" xid="xid8"></column>
+  <column name="chooseAll" type="Integer" xid="xid14"></column></div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="goodsData" idColumn="goods_id">
    <column label="商品id" name="goods_id" type="Integer" xid="xid18"></column>
   <column label="商品名称" name="goods_name" type="String" xid="xid19"></column>
@@ -22,10 +23,13 @@
   <column name="goods_commonid" type="Integer" xid="xid26"></column>
   <column name="choosed" type="Integer" xid="xid1"></column>
   <column name="market_price" type="Decimal" xid="xid2"></column>
-  <column name="goods_num" type="Integer" xid="xid3"></column></div>
+  <column name="goods_num" type="Integer" xid="xid3"></column>
+  <column name="choosed" type="Integer" xid="xid15"></column></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="sumData" idColumn="store_id"><column name="store_id" type="Integer" xid="xid4"></column>
   <column name="count" type="Integer" xid="xid5"></column>
-  <column name="sum" type="Decimal" xid="xid6"></column></div></div>  
+  <column name="sum" type="Decimal" xid="xid6"></column></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="chooseAllData" idColumn="store_id"><column name="store_id" type="Integer" xid="xid12"></column>
+  <column name="chooseAll" type="Integer" xid="xid13"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card x-has-iosstatusbar"> 
     <div class="x-panel-top" height="48"> 
       <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"> 
@@ -33,10 +37,8 @@
    <i xid="i1" class="icon-chevron-left"></i>
    <span xid="span3"></span></a></div>  
         <div class="x-titlebar-title"> 
-          <span xid="span1"><![CDATA[购物车（]]></span>  
-          <span xid="span11" bind-text="goodsData.count()"/>  
-          <span xid="span2"><![CDATA[）]]></span> 
-        </div>  
+          <span xid="span1"><![CDATA[购物车]]></span>  
+          </div>  
         <div class="x-titlebar-right reverse"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
             label="button" xid="delBtn" icon="icon-ios7-trash-outline" onClick="delBtnClick"> 
@@ -77,7 +79,7 @@
                       id="undefined_li4"> 
                       <div component="$UI/system/components/justep/row/row" class="x-row">
    <div class="x-col x-col-fixed" xid="col1" style="width:auto;">
-   <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox x-radio choose" xid="checkbox2" bind-ref="ref('choosed')" checkedValue="1" uncheckedValue="0"></span></div><div class="x-col x-col-fixed tb-nopadding" xid="col2"><img src="" alt="" xid="image1" bind-attr-src='$model.getImageUrl(val("goods_image"))' class="tb-img-good" bind-click="listClick"></img></div>
+   <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox x-radio choose" xid="checkbox2" bind-ref="ref('choosed')" checkedValue="1" uncheckedValue="0" onChange="goodsChooseChange"></span></div><div class="x-col x-col-fixed tb-nopadding" xid="col2"><img src="" alt="" xid="image1" bind-attr-src='$model.getImageUrl(val("goods_image"))' class="tb-img-good" bind-click="listClick"></img></div>
    <div class="x-col  tb-nopadding" xid="col3"><span bind-text="ref('goods_name')" class="x-flex text-black h5 tb-nomargin" xid="span26"></span>
   <div class="text-muted" xid="div5">
    <span xid="span22" class="text-danger">￥</span>
@@ -98,7 +100,7 @@
                 </div> 
               <div component="$UI/system/components/justep/row/row" class="x-row x-row-center tb-nopadding" xid="row3">
    <div class="x-col x-col-20 x-col-center" xid="col12">
-    <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox1" label="全选" checked="false" onChange="allChooseChange"></span></div> 
+    <span component="$UI/system/components/justep/button/checkbox" class="x-checkbox" xid="checkbox1" label="全选" onChange="allChooseChange" checkedValue="1" uncheckedValue="0" bind-ref='ref("chooseAll")'></span></div> 
    <div class="x-col" xid="col10">
     <div class="text-right" xid="div2">
      <span xid="span31" class="text-muted"><![CDATA[店铺合计：]]></span>

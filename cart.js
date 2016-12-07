@@ -82,15 +82,21 @@ define(function(require) {
 		2、点击全选多选框按钮，获取其值
 		3、修改商品表中的choosed字段为全选多选框按钮的值
 		*/
-		var goodsData = this.comp("goodsData");
-		var choose=this.comp("allChoose").val();
-		goodsData.each(function(obj){
-			if(choose){				
-				goodsData.setValue("choosed","1",obj.row);
-			} else {
-				goodsData.setValue("choosed","",obj.row);
-			}	
-		});
+		var row = event.bindingContext.$object;
+		var goodsData = this.comp("goodsData").find(['store_id'],[row.val('store_id')]);
+		var choosed=event.source.val();
+		if(choosed==1){
+			for(var i=0;i<goodsData.length;i++){
+				var trow=goodsData[i];
+				this.comp('goodsData').setValue('choosed',1, trow);
+			}
+		}else{
+			for(var j=0;j<goodsData.length;j++){
+				var prow=goodsData[j];
+				this.comp('goodsData').setValue('choosed',0, prow);
+			}
+		}
+		this.setSumInfo(row.val('store_id'));
 	};
 	
 	//减数量
@@ -124,7 +130,9 @@ define(function(require) {
 	Model.prototype.caculateStore=function(store_id,num,price,goods_id){
 		var rows=this.comp('shopData').find(['store_id'],[store_id],true);
 		var row=rows[0];
+		var goodsObj=this.comp('goodsData');
 		var member_id=this.user.member_id;
+		var self=this;
 		$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=changeCartGoodsNum",
 					'type':'post',
@@ -137,8 +145,7 @@ define(function(require) {
 					},
 					success:function(result){
 						if(result.status==1){
-							row.val('count',row.val('count')+num);
-							row.val('sum',row.val('sum')+num*price);
+							self.setSumInfo(store_id);
 							
 						}
 						if(result.status==-1){
@@ -157,6 +164,22 @@ define(function(require) {
 			});
 		
 	};
+	Model.prototype.setSumInfo=function(store_id){
+		var goodsData=this.comp('goodsData');
+		var goods=goodsData.find(['store_id'],[store_id]);
+		var sum=0,count=0;
+		for(var i=0;i<goods.length;i++){
+			var trow=goods[i];
+			if(trow.val('choosed')==1){
+				count+=trow.val('goods_num');
+				sum+=trow.val('goods_num')*trow.val('goods_price');
+			}
+		}
+		
+		var storeRow=this.comp('shopData').find(['store_id'],[store_id]);
+		this.comp('shopData').setValue('sum',sum, storeRow[0]);
+		this.comp('shopData').setValue('count',count, storeRow[0]);
+	}
 	//删除
 	Model.prototype.delBtnClick = function(event){
 		/*
@@ -198,10 +221,25 @@ define(function(require) {
 		*/		
 		var row=event.bindingContext.$object;
 		var store_id=row.val('store_id');
-	
-		justep.Shell.showPage("order",{
-			'store_id':store_id
-		});
+		var goods=this.comp('goodsData').find(['store_id','choosed'],[store_id,1]);
+		if(goods.length===0){
+			justep.Util.hint('请选择要结算的商品', {
+								type:'warning',
+								delay:'3000'
+							});
+			
+		}else{
+			var ids=new Array();
+			for(var i=0;i<goods.length;i++){
+				ids.push(goods[i].val('goods_id'));
+			}
+			justep.Shell.showPage("order",{
+				'store_id':store_id,
+				'goods_ids':ids.join(",")
+			});
+		}
+		
+		
 	};
 
 	Model.prototype.listClick = function(event){
@@ -231,6 +269,21 @@ define(function(require) {
 			return v==store_id;
 		});
 		return sum;
+	};
+	Model.prototype.goodsChooseChange = function(event){
+		var row = event.bindingContext.$object;
+		this.comp('goodsData').setValue('choosed',event.source.val(),row);
+		var store_id=row.val('store_id');
+		var count=this.comp('goodsData').find(['store_id'],[store_id]).length;
+		var count_1=this.comp('goodsData').find(['store_id','choosed'],[store_id,1]).length;
+		console.log(count+":"+count_1);
+		var storeRow=this.comp('shopData').find(['store_id'],[store_id]);
+		if(count==count_1){
+			this.comp('shopData').setValue('chooseAll',1,storeRow[0]);
+		}else{
+			this.comp('shopData').setValue('chooseAll',0,storeRow[0]);
+		}
+		this.setSumInfo(store_id);
 	};
 	return Model;
 });

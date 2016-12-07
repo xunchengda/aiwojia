@@ -3,7 +3,7 @@ define(function(require){
 	var justep = require("$UI/system/lib/justep");
 	var configData = require("./js/loadConfig");
 	var config={};
-	var store_id;
+	var store_id,goods_ids;
 	var Model = function(){
 		this.callParent();
 		var configUrl = require.toUrl("./config/config.json");
@@ -31,7 +31,6 @@ define(function(require){
 		var addressObj=this.comp('addressData');
 		var currentAddressObj=this.comp('currentAddressData');
 		var self=this;
-		
 		 $.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getOrderInfo",
 					'type':'post',
@@ -39,7 +38,8 @@ define(function(require){
 					'dataType':'json',
 					'data':{
 						'member_id':self.user.member_id,
-						'store_id':store_id
+						'store_id':store_id,
+						'goods_ids':goods_ids
 					},
 					success:function(result){
 						if(result.status==1){
@@ -47,6 +47,7 @@ define(function(require){
 							shopObj.loadData(result.data.stores);
 							goodsObj.clear();
 							goodsObj.loadData(result.data.goodses);
+							
 							addressObj.clear();
 							addressObj.loadData(result.data.addresses);
 							var sum=0;
@@ -97,10 +98,34 @@ define(function(require){
 	
 	//打开成功页面
 	Model.prototype.confirmBtnClick = function(event){
-		/*
-		1、确认按钮点击事件
-		2、打开成功页面
-		*/
+		$.ajax({
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=confirmOrder",
+					'type':'post',
+					'async':false,
+					'dataType':'json',
+					'data':{
+						'member_id':self.user.member_id,
+						'store_id':store_id,
+						'goods_ids':goods_ids
+					},
+					success:function(result){
+						if(result.status==1){
+														
+						}
+						if(result.status==-1){
+							justep.Util.hint(result.message, {
+								type:'warning',
+								delay:'3000'
+							});
+						}
+					},
+					error:function(result){
+						justep.Util.hint('网络错误', {
+							type:'warning',
+							delay:'3000'
+						});
+					}
+			});
 		justep.Shell.showPage("success");
 	};
 	
@@ -135,8 +160,12 @@ define(function(require){
 	};
 	
 	Model.prototype.modelParamsReceive = function(event){
+		console.log(this.params);
 		if (this.params && this.params.store_id) {
 			store_id = this.params.store_id;
+			goods_ids=this.params.goods_ids;
+			console.log(goods_ids);
+			console.log(store_id);
 			this.initData();
 		}
 	};

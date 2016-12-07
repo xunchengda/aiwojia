@@ -85,9 +85,9 @@
           </a> 
         </div>  
         <div class="media-body" bind-click="sendClick"> 
-          <h4 class="text-black" bind-text="$model.currentAddressData.ref('true_name')" xid="name"><![CDATA[]]>
+          <h4 class="text-black" xid="name" style="background-color:transparent;" bind-text="$model.currentAddressData.val('true_name') + &quot;    &quot; + $model.currentAddressData.val('mob_phone')"><![CDATA[]]>
   </h4>  
-          <span class="pull-right" bind-text='$model.currentAddressData.ref("mob_phone")'><![CDATA[]]></span><h5 class="text-black" bind-text="$model.currentAddressData.ref('address')"><![CDATA[]]></h5>  
+          <h5 class="text-black" bind-text="$model.currentAddressData.ref('address')"><![CDATA[]]></h5>  
           </div>  
         <div class="media-right media-middle"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-xs btn-only-icon pull-right" label="button" xid="button2" icon="icon-ios7-arrow-right">
@@ -96,14 +96,14 @@
       </div>  
        
     <div component="$UI/system/components/justep/panel/panel" class="panel panel-default tb-noborder x-card x-tuniu" xid="panel3"> 
-        <div component="$UI/system/components/justep/list/list" class="x-list" data="shopData" limit="1" xid="shopList" disablePullToRefresh="true" disableInfiniteLoad="true" autoLoad="true" dataItemAlias="shopRow"> 
+        <div component="$UI/system/components/justep/list/list" class="x-list" data="shopData" limit="-1" xid="shopList" disablePullToRefresh="true" disableInfiniteLoad="true" autoLoad="true" dataItemAlias="shopRow"> 
           <ul class="x-list-template x-min-height" xid="listTemplateUl1" componentname="$UI/system/components/justep/list/list#listTemplateUl" id="undefined_listTemplateUl1"> 
             <li xid="li1" class="tb-noborder"> 
               <div class="panel-body"> 
                 <img src="" alt="" xid="image3" bind-attr-src='$model.getImageUrl(val("store_image"))' class="img-circle tb-img-shop" />  
                 <span bind-text="ref('store_name')" class="text-black"></span> 
               </div>  
-              <div component="$UI/system/components/justep/list/list" class="x-list" data="goodsData" filter="$row.val('store_id')==shopRow.val('store_id')" xid="list4" disablePullToRefresh="true" disableInfiniteLoad="true" limit="1"> 
+              <div component="$UI/system/components/justep/list/list" class="x-list" data="goodsData" filter="$row.val('store_id')==shopRow.val('store_id')" xid="list4" disablePullToRefresh="true" disableInfiniteLoad="true"> 
                 <ul class="x-list-template x-min-height" xid="listTemplateUl4" componentname="$UI/system/components/justep/list/list#listTemplateUl" id="undefined_listTemplateUl4"> 
                   <li xid="li4" class="panel-body media" componentname="li(html)" id="undefined_li4"> 
                     <div class="media-left"> 
@@ -138,7 +138,7 @@
               <span class="x-flex" style="width:80px;"><![CDATA[买家留言：]]></span> 
             </div>  
             <div class="media-body"> 
-              <input component="$UI/system/components/justep/input/input" class="form-control input-sm tb-noborder text-muted" xid="input1" bind-value="'选填，可填写您和卖家达成的协议'" /> 
+              <input component="$UI/system/components/justep/input/input" class="form-control input-sm tb-noborder text-muted" xid="input1" placeholder="选填，可填写您和卖家达成的协议"/> 
             </div> 
           </div>  
           <div class="panel-heading text-right" bind-text="'共'+$model.goodsData.sum('goods_num')+'件商品'" /> 
