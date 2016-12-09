@@ -2,7 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" class="main13" component="$UI/system/components/justep/window/window"
   design="device:mobile;" xid="window">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:135px;top:10px;"> 
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:135px;top:10px;" onActive="modelActive"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="shopData" idColumn="store_id" confirmDelete="false" confirmRefresh="false" onCustomRefresh="shopDataCustomRefresh"> 
       <column label="id" name="store_id" type="Integer" xid="xid9"></column>

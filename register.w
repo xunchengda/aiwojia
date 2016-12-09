@@ -44,7 +44,7 @@
     xid="panel1"> 
     <div class="x-panel-top" xid="top1" visible="true"> 
       <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar"
-        xid="titleBar1" title="会员注册" style="color:#4C4C4C;background-color:#CCC;"> 
+        xid="titleBar1" title="人才注册" style="color:#4C4C4C;background-color:#CCC;"> 
         <div class="x-titlebar-left" xid="left1"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
             xid="back" icon="fa fa-angle-left fa-fw"> 
@@ -52,7 +52,7 @@
             <span xid="span6"/> 
           </a> 
         </div>  
-        <div class="x-titlebar-title" xid="title1">会员注册</div>  
+        <div class="x-titlebar-title" xid="title1">人才注册</div>  
         <div class="x-titlebar-right reverse" xid="right1"/> 
       </div> 
     </div>  

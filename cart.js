@@ -285,5 +285,8 @@ define(function(require) {
 		}
 		this.setSumInfo(store_id);
 	};
+	Model.prototype.modelActive = function(event){
+		this.comp('shopData').refreshData({confirm:false});
+	};
 	return Model;
 });

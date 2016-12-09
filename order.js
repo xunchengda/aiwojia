@@ -98,19 +98,28 @@ define(function(require){
 	
 	//打开成功页面
 	Model.prototype.confirmBtnClick = function(event){
+		var member_id=this.user.member_id;
+		var add_row=this.comp('addressData').getCurrentRow();
+		var currentAddressObj=this.comp('currentAddressData');
+		var address_id=currentAddressObj.val('address_id');
 		$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=confirmOrder",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'member_id':self.user.member_id,
+						'member_id':member_id,
 						'store_id':store_id,
-						'goods_ids':goods_ids
+						'goods_ids':goods_ids,
+						'address_id':address_id
 					},
 					success:function(result){
 						if(result.status==1){
-														
+							justep.Shell.showPage("success",{
+							'true_name':currentAddressObj.val('true_name'),
+							'mob_phone':currentAddressObj.val('mob_phone'),
+							'address':currentAddressObj.val('address'),
+						});
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
@@ -126,7 +135,7 @@ define(function(require){
 						});
 					}
 			});
-		justep.Shell.showPage("success");
+		
 	};
 	
 	Model.prototype.sendClick = function(event){
@@ -164,8 +173,6 @@ define(function(require){
 		if (this.params && this.params.store_id) {
 			store_id = this.params.store_id;
 			goods_ids=this.params.goods_ids;
-			console.log(goods_ids);
-			console.log(store_id);
 			this.initData();
 		}
 	};

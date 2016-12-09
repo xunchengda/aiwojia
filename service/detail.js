@@ -78,6 +78,8 @@ define(function(require) {
 							self.setCarouselImage();
 							if(result.data.cartCount>0){
 								$('#'+self.getIDByXID('cartBadge')).html(result.data.cartCount);
+							}else{
+								$('#'+self.getIDByXID('cartBadge')).html('');
 							}
 						}
 						if(result.status==-1){
@@ -291,6 +293,11 @@ define(function(require) {
 
 	Model.prototype.toCartBtnClick = function(event){
 		justep.Shell.showPage('cart');
+	};	
+
+	Model.prototype.modelActive = function(event){
+		console.log('reactive');
+		this.comp('goodsData').refreshData({confirm:false});
 	};	
 
 	return Model;

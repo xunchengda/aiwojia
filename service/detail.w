@@ -3,9 +3,9 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="main13" component="$UI/system/components/justep/window/window"
   design="device:mobile;" xid="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;left:351px;top:42px;"
-    onParamsReceive="modelParamsReceive"> 
+    onParamsReceive="modelParamsReceive" onActive="modelActive"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="false"
-      xid="goodsData" idColumn="goods_id"> 
+      xid="goodsData" idColumn="goods_id" onCustomRefresh="goodsDataCustomRefresh"> 
       <column label="商品id" name="goods_id" type="Integer" xid="column9"/>  
       <column label="商品名称" name="goods_name" type="String" xid="column10"/>  
       <column label="商品描述" name="goods_jingle" type="String" xid="column15"/>  
