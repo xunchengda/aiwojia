@@ -8,7 +8,9 @@
   <column label="学历" name="member_degree" type="String" xid="xid4"></column>
   <column label="证件号码" name="member_idno" type="String" xid="xid5"></column>
   <column label="手机号码" name="member_mobile" type="String" xid="xid6"></column>
-  <column name="member_name" type="String" xid="xid7"></column></div></div>  
+  <column name="member_name" type="String" xid="xid7"></column></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="orderData" idColumn="id" onCustomRefresh="orderDataCustomRefresh"><column name="id" type="Integer" xid="xid8"></column>
+  <column name="order_wait" type="Integer" xid="xid9"></column></div></div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full"> 
     <div class="x-panel-top" xid="top2"> 
       <div class="x-panel-top" xid="top1"> 
@@ -29,7 +31,13 @@
     <div class="x-panel-content" xid="content1"> 
       <div component="$UI/system/components/justep/row/row" class="x-row"
         xid="avatarRow"> 
-        <div class="x-col" xid="col1"><span xid="span1" bind-text="'当前用户：' + $model.userData.val('member_name') + &quot;   &quot; + $model.userData.val('member_mobile')"><![CDATA[]]></span></div>  
+        <div class="x-col" xid="col1">
+  <ul xid="ul4" class="list-group" style="margin:0;">
+   <li xid="li2" class="center-block list-group-item" bind-click="showAddress">
+    
+    
+  <i class="fa fa-user" xid="i9"></i><span xid="span1" bind-text="'当前用户：' + $model.userData.val('member_name') + &quot;   &quot; + $model.userData.val('member_mobile')"><![CDATA[]]></span></li> 
+   </ul></div>  
         </div>  
       <div component="$UI/system/components/justep/row/row" class="x-row" xid="row1"
         style="background-color:white; margin-top:10px;"> 
@@ -37,17 +45,12 @@
           <h4 xid="myOrderTitle" class="page-header" style="color: #666; margin:15px 0;"><![CDATA[我的订单]]></h4>  
           <div component="$UI/system/components/justep/button/buttonGroup"
             class="btn-group btn-group-justified" tabbed="true" xid="buttonGroup2"> 
-            <a component="$UI/system/components/justep/button/button" class="btn btn-icon-top"
-              label="待付款" xid="button1" icon="fa fa-credit-card fa-fw" style="color:#666666;"> 
-              <i xid="i2" class="fa fa-credit-card fa-fw"/>  
-              <span xid="span2">待付款</span> 
-            </a>  
-            <a component="$UI/system/components/justep/button/button" class="btn btn-icon-top"
-              label="待收货" xid="button2" icon="fa fa-truck fa-fw" style="color:#666666;"> 
+            <a component="$UI/system/components/justep/button/button" class="btn btn-icon-left"
+              label="待收货" xid="button2" icon="fa fa-truck fa-fw" style="color:#666666;" onClick="btnOrderWaitClick"> 
               <i xid="i4" class="fa fa-truck fa-fw"/>  
-              <span xid="span4">待收货</span> 
+              <span xid="span4">待收货</span><div xid="cartBadge" class="badge" style="position:absolute; top:3px;background-color:red"></div> 
             </a>  
-            <a component="$UI/system/components/justep/button/button" class="btn btn-icon-top"
+            <a component="$UI/system/components/justep/button/button" class="btn btn-icon-left"
               label="全部订单" xid="button3" icon="fa fa-list-alt" style="color:#666666;"> 
               <i xid="i6" class="fa fa-list-alt"/>  
               <span xid="span6">全部订单</span> 
@@ -77,34 +80,16 @@
               <i class="fa fa-credit-card fa-fw"/>  
               <span xid="span14"><![CDATA[我的信息]]></span> 
             </li>  
-            <li xid="li3" class="list-group-item"> 
-              <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button5" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
-                <i xid="i10" class="icon-ios7-arrow-right"/>  
-                <span xid="span16"/> 
-              </a>  
-              <i class="fa fa-user fa-fw" xid="i11"/>  
-              <span xid="span15"><![CDATA[我的会员]]></span> 
-            </li> 
-          </ul> 
+            </ul> 
         </div> 
       </div>  
       <div component="$UI/system/components/justep/row/row" class="x-row" xid="row3"
         style="background-color:white; margin-top:10px; padding:0;"> 
         <div class="x-col" xid="col4" style="padding: 0;"> 
           <ul xid="ul2" class="list-group" style="margin:0;"> 
-            <li xid="li2" class="list-group-item"> 
-              <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button6" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
-                <i xid="i13" class="icon-ios7-arrow-right"/>  
-                <span xid="span24"/> 
-              </a>  
-              <i class="fa fa-lock fa-fw" xid="i14"/>  
-              <span xid="span21"><![CDATA[账户与安全]]></span> 
-            </li>  
             <li xid="li4" class="list-group-item"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button7" icon="icon-ios7-arrow-right"> 
+                label="button" xid="button7" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="i15" class="icon-ios7-arrow-right"/>  
                 <span xid="span25"/> 
               </a>  
@@ -129,7 +114,7 @@
           <ul xid="ul3" class="list-group" style="margin:0;"> 
             <li xid="li5" class="list-group-item"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
-                label="button" xid="button10" icon="icon-ios7-arrow-right"> 
+                label="button" xid="button10" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="i17" class="icon-ios7-arrow-right"/>  
                 <span xid="span28"/> 
               </a>  

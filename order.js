@@ -99,9 +99,10 @@ define(function(require){
 	//打开成功页面
 	Model.prototype.confirmBtnClick = function(event){
 		var member_id=this.user.member_id;
-		var add_row=this.comp('addressData').getCurrentRow();
 		var currentAddressObj=this.comp('currentAddressData');
 		var address_id=currentAddressObj.val('address_id');
+		var message_id=this.getIDByXID('message');
+		var message=$('#'+message_id).val();
 		$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=confirmOrder",
 					'type':'post',
@@ -111,7 +112,8 @@ define(function(require){
 						'member_id':member_id,
 						'store_id':store_id,
 						'goods_ids':goods_ids,
-						'address_id':address_id
+						'address_id':address_id,
+						'order_message':message
 					},
 					success:function(result){
 						if(result.status==1){

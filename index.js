@@ -28,6 +28,9 @@ define(function(require) {
 				"detail" : {
 					url : require.toUrl('./service/detail.w')
 				},
+				"orderWait":{
+					url:require.toUrl("./service/orderWait.w")
+				},
 				"search" : {
 					url : require.toUrl('./search.w')
 				},

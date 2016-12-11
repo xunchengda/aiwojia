@@ -138,7 +138,7 @@
               <span class="x-flex" style="width:80px;"><![CDATA[买家留言：]]></span> 
             </div>  
             <div class="media-body"> 
-              <input component="$UI/system/components/justep/input/input" class="form-control input-sm tb-noborder text-muted" xid="input1" placeholder="选填，可填写您和卖家达成的协议"/> 
+              <input component="$UI/system/components/justep/input/input" class="form-control input-sm tb-noborder text-muted" xid="message" placeholder="选填，可填写您和卖家达成的协议"/> 
             </div> 
           </div>  
           <div class="panel-heading text-right" bind-text="'共'+$model.goodsData.sum('goods_num')+'件商品'" /> 
