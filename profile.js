@@ -100,5 +100,11 @@ define(function(require){
 	
 
 	
+	Model.prototype.modelActive = function(event){
+		this.comp("orderData").refreshData({confirm:false});
+	};
+	
+
+	
 	return Model;
 });

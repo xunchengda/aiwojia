@@ -93,4 +93,4 @@
       </div>
     </div>  
     </div> 
-<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="confirmMD" type="OKCancel" onOK="confirmOkClick" message="确定收到货物吗？" title="提示"></span></div>
+<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="confirmMD" type="OKCancel" onOK="confirmOkClick" message="确定收到货物吗？" title="提示" style="top:5px;left:948px;"></span></div>

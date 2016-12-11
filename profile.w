@@ -2,7 +2,7 @@
 
 <div xmlns="http://www.w3.org/1999/xhtml" xid="window" class="window" component="$UI/system/components/justep/window/window"
   design="device:m;">  
-  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:499px;left:75px;" onLoad="modelLoad"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="userData" idColumn="member_id" onCustomRefresh="userDataCustomRefresh"><column name="member_id" type="Integer" xid="xid1"></column>
+  <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:499px;left:75px;" onLoad="modelLoad" onActive="modelActive"><div component="$UI/system/components/justep/data/data" autoLoad="true" xid="userData" idColumn="member_id" onCustomRefresh="userDataCustomRefresh"><column name="member_id" type="Integer" xid="xid1"></column>
   <column label="真实姓名" name="member_truename" type="String" xid="xid2"></column>
   <column label="所在单位" name="member_department" type="String" xid="xid3"></column>
   <column label="学历" name="member_degree" type="String" xid="xid4"></column>
