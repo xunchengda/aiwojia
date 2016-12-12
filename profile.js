@@ -7,7 +7,13 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("./config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));
+		if(localStorage.getItem('user')===null || localStorage.getItem('user')===undefined){
+			justep.Shell.showPage('register');
+		}else{
+			this.user=JSON.parse(localStorage.getItem('user'));
+		}
+		
+		
 	};
 
 	//注销
@@ -30,21 +36,32 @@ define(function(require){
 	};
 	
 	Model.prototype.userDataCustomRefresh = function(event){
-		var user=JSON.parse(localStorage.getItem('user'));
-		console.log(user);
-		this.comp('userData').clear();
-		this.comp('userData').loadData([{
-				member_id:user.member_id,
-				member_name:user.name,
-				member_mobile:user.mobile
-			}]
-		);
-		this.comp('userData').first();
-		var row=this.comp('userData').getCurrentRow();
-		console.log(row.val('mobile'));
+		if(localStorage.getItem('user')===null || localStorage.getItem('user')===undefined){
+			justep.Shell.showPage('register');
+			return;
+		}else{
+			var user=JSON.parse(localStorage.getItem('user'));
+			
+			console.log(user);
+			this.comp('userData').clear();
+			this.comp('userData').loadData([{
+					member_id:user.member_id,
+					member_name:user.name,
+					member_mobile:user.mobile
+				}]
+			);
+			this.comp('userData').first();
+			var row=this.comp('userData').getCurrentRow();
+			console.log(row.val('mobile'));
+		}
+		
 	};
 	
 	Model.prototype.orderDataCustomRefresh = function(event){
+		if(localStorage.getItem('user')===null || localStorage.getItem('user')===undefined){
+			justep.Shell.showPage('register');
+			return;
+		}else{
 		var member_id=this.user.member_id;
 		var orderObj=this.comp('orderData');
 		var self=this;
@@ -90,6 +107,7 @@ define(function(require){
 						});
 					}
 			});
+		}
 	};
 	
 

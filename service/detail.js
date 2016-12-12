@@ -300,5 +300,12 @@ define(function(require) {
 		this.comp('goodsData').refreshData({confirm:false});
 	};	
 
+	Model.prototype.btnDirectBuyClick = function(event){
+		var row=this.comp('goodsData').getCurrentRow();
+		var goods_id=row.val('goods_id');
+		var member_id=this.user.member_id;
+		justep.Shell.showPage('directBuy', {goods_id:goods_id});
+	};	
+
 	return Model;
 });

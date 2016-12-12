@@ -31,6 +31,9 @@ define(function(require) {
 				"orderWait":{
 					url:require.toUrl("./service/orderWait.w")
 				},
+				"directBuy":{
+					url:require.toUrl("./service/directBuy.w")
+				},
 				"search" : {
 					url : require.toUrl('./search.w')
 				},

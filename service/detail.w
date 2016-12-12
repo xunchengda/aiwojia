@@ -343,7 +343,7 @@
               <span xid="span7">加入购物车</span> 
             </a>  
             <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
-              label="立即购买" xid="buyBtn" icon="icon-android-display"> 
+              label="立即购买" xid="buyBtn" icon="icon-android-display" onClick="btnDirectBuyClick"> 
               <i xid="i7" class="icon-android-display icon"/>  
               <span xid="span8">立即购买</span> 
             </a> 
