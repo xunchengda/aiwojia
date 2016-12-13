@@ -189,5 +189,12 @@ define(function(require) {
 
 
 
+	Model.prototype.userContentActive = function(event){
+		this.comp('profileContainer').refresh();
+	};
+
+
+
+
 	return Model;
 });

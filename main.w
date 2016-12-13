@@ -167,7 +167,7 @@
             </div> 
           </div> 
         </div>  
-        <div class="x-contents-content x-cards" xid="userContent"> 
+        <div class="x-contents-content x-cards" xid="userContent" onActive="userContentActive"> 
           <div component="$UI/system/components/justep/windowContainer/windowContainer"
             class="x-window-container" xid="profileContainer" src="./profile.w" routable="true"
             autoLoad="true"/> 

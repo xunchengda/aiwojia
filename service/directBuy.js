@@ -200,23 +200,17 @@ define(function(require) {
 		*/		
 		var row=event.bindingContext.$object;
 		var store_id=row.val('store_id');
-		var goods=this.comp('goodsData').find(['store_id','choosed'],[store_id,1]);
-		if(goods.length===0){
-			justep.Util.hint('请选择要结算的商品', {
-								type:'warning',
-								delay:'3000'
-							});
-			
-		}else{
-			var ids=new Array();
-			for(var i=0;i<goods.length;i++){
-				ids.push(goods[i].val('goods_id'));
-			}
-			justep.Shell.showPage("order",{
+		
+		var goods=this.comp('goodsData').find(['goods_id'],[goods_id]);
+		var num=goods[0].val('goods_num');
+		console.log(num);
+		
+		justep.Shell.showPage(require.toUrl("./directOrder.w"),{
 				'store_id':store_id,
-				'goods_ids':ids.join(",")
+				'goods_id':goods_id,
+				'goods_num':num
 			});
-		}
+		
 		
 		
 	};
