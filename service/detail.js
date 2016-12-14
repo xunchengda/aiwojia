@@ -59,6 +59,7 @@ define(function(require) {
 		*/
 		var dataObj=this.comp("goodsData");
 		var imageObj=this.comp('imgData');
+		var shopObj=this.comp('shopData');
 		var self=this;
 		 $.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getGoodInfo",
@@ -74,6 +75,9 @@ define(function(require) {
 							dataObj.clear();
 							dataObj.loadData(result.data.good);
 							dataObj.first();
+							shopObj.clear();
+							shopObj.loadData(result.data.stores);
+							shopObj.first();
 							imageObj.loadData(result.data.goods_images);
 							self.setCarouselImage();
 							if(result.data.cartCount>0){
@@ -131,11 +135,7 @@ define(function(require) {
 	
 	//更多评论按钮
 	Model.prototype.moreBtnClick = function(event){
-		/*
-		1、获取当前商品ID
-		2、传入新窗口，打开的窗口中显示评论列表
-		3、在打开的窗口中接收数据，并从服务端过滤数据		
-		*/
+		justep.Shell.closeAllOpendedPages();
 	};
 	
 	//购物车按钮

@@ -10,7 +10,15 @@ define(function(require){
 		configData.loadServerDataFromFile(configUrl,config);
 		this.user=JSON.parse(localStorage.getItem('user'));
 	};
-		
+	Model.prototype.modelParamsReceive = function(event){
+		console.log(this.params);
+		if (this.params && this.params.store_id) {
+			store_id = this.params.store_id;
+			goods_id=this.params.goods_id;
+			goods_num=this.params.goods_num;
+			this.initData();
+		}
+	};	
 	//图片路径转换
 	Model.prototype.getImageUrl = function(url){
 		return "http://"+config.server+url;
@@ -44,13 +52,25 @@ define(function(require){
 					success:function(result){
 						if(result.status==1){
 							shopObj.clear();
-							shopObj.loadData(result.data.stores);
+							shopObj.newData({
+								index:0,
+								defaultValues:[
+								 result.data.store
+								]
+							});
 							goodsObj.clear();
-							goodsObj.loadData(result.data.goodses);
+							result.data.goods.goods_num=goods_num;
+							goodsObj.newData({
+								index:0,
+								defaultValues:[
+								result.data.goods
+								]
 							
+							});
+							var goods=result.data.goods;
 							addressObj.clear();
 							addressObj.loadData(result.data.addresses);
-							$('#'+self.getIDByXID('sum')).html("￥"+goods_sum);
+							$('#'+self.getIDByXID('sum')).html("￥"+goods.goods_price*goods_num);
 							var s_currentAddress=addressObj.find(['is_default'],[1]);
 							var a_t=s_currentAddress[0];
 							currentAddressObj.newData({
@@ -98,24 +118,25 @@ define(function(require){
 		var message_id=this.getIDByXID('message');
 		var message=$('#'+message_id).val();
 		$.ajax({
-					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=confirmOrder",
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=confirmDirectOrder",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
 					'data':{
 						'member_id':member_id,
 						'store_id':store_id,
-						'goods_ids':goods_ids,
+						'goods_id':goods_id,
+						'goods_num':goods_num,
 						'address_id':address_id,
 						'order_message':message
 					},
 					success:function(result){
 						if(result.status==1){
-							justep.Shell.showPage("success",{
+							justep.Shell.showPage(require.toUrl("./directSuccess.w"),{
 							'true_name':currentAddressObj.val('true_name'),
 							'mob_phone':currentAddressObj.val('mob_phone'),
 							'address':currentAddressObj.val('address'),
-						});
+							});
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
@@ -155,6 +176,7 @@ define(function(require){
 			currentAddress.newData({
 				'index':0,
 				'defaultValues':[{
+					'address_id':row.val('address_id'),
 					'true_name':row.val('true_name'),
 					'mob_phone':row.val('mob_phone'),
 					'address':row.val('address')
@@ -164,15 +186,7 @@ define(function(require){
 		this.comp("popOver").hide();
 	};
 	
-	Model.prototype.modelParamsReceive = function(event){
-		console.log(this.params);
-		if (this.params && this.params.store_id) {
-			store_id = this.params.store_id;
-			goods_id=this.params.goods_id;
-			goods_num=this.params.goods_num;
-			this.initData();
-		}
-	};
+	
 	
 	Model.prototype.changeAddress = function(event){
 		var row = event.bindingContext.$object;
@@ -182,6 +196,7 @@ define(function(require){
 			currentAddress.newData({
 				'index':0,
 				'defaultValues':[{
+					'address_id':row.val('address_id'),
 					'true_name':row.val('true_name'),
 					'mob_phone':row.val('mob_phone'),
 					'address':row.val('address')

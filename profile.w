@@ -18,7 +18,7 @@
           xid="titleBar1" style="color:#4C4C4C;background-color:#CCC;" title="用户信息"> 
           <div class="x-titlebar-left" xid=""> 
             <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon"
-              xid="back" icon="fa fa-angle-left fa-fw" style="padding: 5px;"> 
+              xid="back" icon="fa fa-angle-left fa-fw" style="padding: 5px;" onClick="colseBtnClick"> 
               <i xid="i3" class="fa fa-angle-left fa-fw"/>  
               <span xid="span3"/> 
             </a> 
@@ -87,7 +87,7 @@
         style="background-color:white; margin-top:10px; padding:0;"> 
         <div class="x-col" xid="col4" style="padding: 0;"> 
           <ul xid="ul2" class="list-group" style="margin:0;"> 
-            <li xid="li4" class="list-group-item"> 
+            <li xid="li4" class="list-group-item" bind-click="showCusService"> 
               <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right"
                 label="button" xid="button7" icon="icon-ios7-arrow-right" style="padding-top:0px"> 
                 <i xid="i15" class="icon-ios7-arrow-right"/>  

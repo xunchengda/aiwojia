@@ -161,6 +161,7 @@ define(function(require){
 			currentAddress.newData({
 				'index':0,
 				'defaultValues':[{
+					'address_id':row.val('address_id'),
 					'true_name':row.val('true_name'),
 					'mob_phone':row.val('mob_phone'),
 					'address':row.val('address')
@@ -187,6 +188,7 @@ define(function(require){
 			currentAddress.newData({
 				'index':0,
 				'defaultValues':[{
+					'address_id':row.val('address_id'),
 					'true_name':row.val('true_name'),
 					'mob_phone':row.val('mob_phone'),
 					'address':row.val('address')

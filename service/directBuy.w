@@ -40,7 +40,9 @@
           <span xid="span1"><![CDATA[直接购买]]></span>  
           </div>  
         <div class="x-titlebar-right reverse"> 
-          </div> 
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-moreBtn pull-right" xid="moreBtn" icon="icon-home" onClick="moreBtnClick">
+   <i xid="i13" class="icon-home"></i>
+   <span xid="span2"></span></a></div> 
       </div> 
     </div>  
     <div xid="content" class="x-panel-content x-scroll-view x-cards" supportpulldown="true"> 

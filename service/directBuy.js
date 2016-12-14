@@ -264,5 +264,8 @@ define(function(require) {
 	Model.prototype.shopDataCustomRefresh = function(event){
 
 	};
+	Model.prototype.moreBtnClick = function(event){
+		justep.Shell.closeAllOpendedPages();
+	};
 	return Model;
 });

@@ -13,8 +13,7 @@ define(function(require){
 		*/
 		//justep.Shell.fireEvent("onHomeContent",{});
 		//justep.Shell.showMainPage();
-		//justep.Shell.closePage('order');
-		//justep.Shell.closePage();
+		
 		justep.Shell.closeAllOpendedPages();
 	};
 	Model.prototype.modelParamsReceive = function(event){
@@ -39,6 +38,7 @@ define(function(require){
 	};
 	
 	Model.prototype.modelLoad = function(event){
+		//justep.Shell.closePage({url:require.toUrl('./directOrder.w')});
 		
 	};
 	

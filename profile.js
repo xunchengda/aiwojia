@@ -124,5 +124,17 @@ define(function(require){
 	
 
 	
+	Model.prototype.showCusService = function(event){
+		justep.Shell.showPage(require.toUrl('./cusService.w'));
+	};
+	
+
+	
+	Model.prototype.colseBtnClick = function(event){
+		justep.Shell.closePage();
+	};
+	
+
+	
 	return Model;
 });

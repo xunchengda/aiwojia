@@ -67,12 +67,12 @@
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card"
     xid="panel1"> 
     <div class="x-panel-top" xid="top1"> 
-      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" xid="titleBar">
-   <div class="x-titlebar-left" xid="left1"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left text-white" label="确认订单" xid="button1" icon="icon-chevron-left" onClick="{operation:'window.close'}"> 
+      <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" xid="titleBar" title="确认订单">
+   <div class="x-titlebar-left" xid="left1"><a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left text-white" xid="button1" icon="icon-chevron-left" onClick="{operation:'window.close'}"> 
           <i xid="i1" class="icon-chevron-left" />  
-          <span xid="span1">确认订单</span> 
+          <span xid="span1"></span> 
         </a></div>
-   <div class="x-titlebar-title" xid="title1"></div>
+   <div class="x-titlebar-title" xid="title1">确认订单</div>
    <div class="x-titlebar-right reverse" xid="right1"></div></div></div>  
     <div class="x-panel-content x-cards" xid="content1"> 
       <div component="$UI/system/components/justep/panel/panel" class="panel panel-default x-card tb-noborder media"

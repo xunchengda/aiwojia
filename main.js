@@ -187,10 +187,29 @@ define(function(require) {
 	};
 
 
+	Model.prototype.userBtnClick = function(event){
+		justep.Shell.showPage(require.toUrl('./profile.w'));
+	};
 
 
-	Model.prototype.userContentActive = function(event){
-		this.comp('profileContainer').refresh();
+
+
+	Model.prototype.button2Click = function(event){
+		justep.Shell.showPage(require.toUrl("./service/orderWait.w"));
+	};
+
+
+
+
+	Model.prototype.button1Click = function(event){
+		justep.Shell.showPage(require.toUrl("./cart.w"));
+	};
+
+
+
+
+	Model.prototype.menuBtnClick = function(event){
+		this.comp('popShort').show();
 	};
 
 

@@ -35,15 +35,14 @@
     </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="false"
       xid="shopData" idColumn="store_id"> 
-      <column name="store_id" type="Integer" xid="xid9"/>  
-      <column label="店名" name="store_name" type="String" xid="xid10"/>  
-      <column label="等级" name="grade" type="String" xid="xid11"/>  
-      <column label="店标" name="store_company_name" type="String" xid="xid16"/>  
-      <column label="地区" name="area_info" type="String" xid="xid12"/>  
-      <column label="服务态度" name="fService" type="Float" xid="xid13"/>  
-      <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"/>  
-      <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"/> 
-    </div>  
+      <column name="store_id" type="Integer" xid="xid9"></column>
+  <column label="店名" name="store_name" type="String" xid="xid10"></column>
+  <column label="等级" name="grade" type="String" xid="xid11"></column>
+  <column label="店标" name="store_image" type="String" xid="xid16"></column>
+  <column label="电话" name="store_phone" type="String" xid="xid12"></column>
+  <column label="单位名" name="store_company_name" type="String" xid="xid13"></column>
+  <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"></column>
+  <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"></column></div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="parameterData" idColumn="id"> 
       <column name="id" type="String" xid="xid19"/>  
@@ -132,8 +131,8 @@
         <div class="x-titlebar-title" xid="title1"/>  
         <div class="x-titlebar-right reverse" xid="right1"> 
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-moreBtn pull-right"
-            xid="moreBtn" icon="icon-android-more"> 
-            <i xid="i13" class="icon-android-more"/>  
+            xid="moreBtn" icon="icon-home" onClick="moreBtnClick"> 
+            <i xid="i13" class="icon-home"/>  
             <span xid="span23"/> 
           </a>  
           <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-cartBtn pull-right"
@@ -228,12 +227,12 @@
         <div xid="div9" class="panel-body tb-nopadding"> 
           <div class="panel-body media"> 
             <div class="media-left"> 
-              <img src="" alt="" xid="image4" class="img-rounded" bind-attr-src="shopData.ref('fShopImg')"
+              <img src="" alt="" xid="image4" class="img-rounded" bind-attr-src="shopData.ref('store_image')"
                 height="50px" style="width:50px;"/> 
             </div>  
             <div class="media-body"> 
-              <span xid="span46" bind-text="shopData.ref('fShopName')" class="show"/>  
-              <span xid="span48" bind-text="shopData.ref('fLevel')"><![CDATA[]]></span> 
+              <span xid="span46" bind-text="'销售商：' + shopData.val(&quot;store_company_name&quot;)" class="show"/>  
+              <span xid="span48" bind-text="'电话：' + shopData.val('store_phone')"><![CDATA[]]></span> 
             </div> 
           </div>  
           <div component="$UI/system/components/bootstrap/row/row" class="row"> 
