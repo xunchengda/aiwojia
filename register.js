@@ -142,12 +142,16 @@ define(function(require) {
 							'mobile':data.val('mobile'),
 							'member_id':data.val('member_id')
 						});
+						justep.Util.hint("成功注册", {
+							type:'success',
+							delay:'2000'
+						});
 						justep.Shell.showPage('main');
 					}
 					if(result.status==-1){
 						justep.Util.hint(result.message, {
 							type:'warning',
-							delay:'5000'
+							delay:'2000'
 						});
 					}
 				},
@@ -155,7 +159,7 @@ define(function(require) {
 					console.log(result);
 					justep.Util.hint('注册失败', {
 						type:'warning',
-						delay:'5000'
+						delay:'2000'
 					});
 				}
 				

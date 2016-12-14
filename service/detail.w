@@ -227,7 +227,7 @@
         <div xid="div9" class="panel-body tb-nopadding"> 
           <div class="panel-body media"> 
             <div class="media-left"> 
-              <img src="" alt="" xid="image4" class="img-rounded" bind-attr-src="shopData.ref('store_image')"
+              <img src="" alt="" xid="image4" class="img-rounded" bind-attr-src="shopData.val('store_image') == '' ? &quot;&quot; : shopData.val('store_image')"
                 height="50px" style="width:50px;"/> 
             </div>  
             <div class="media-body"> 

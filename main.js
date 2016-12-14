@@ -195,14 +195,25 @@ define(function(require) {
 
 
 	Model.prototype.button2Click = function(event){
-		justep.Shell.showPage(require.toUrl("./service/orderWait.w"));
+		var user=localStorage.getItem('user');
+		if(user===null){
+			justep.Shell.showPage(require.toUrl("./login.w"));
+		}else{
+			justep.Shell.showPage(require.toUrl("./service/orderWait.w"));
+		}
 	};
 
 
 
 
 	Model.prototype.button1Click = function(event){
-		justep.Shell.showPage(require.toUrl("./cart.w"));
+		var user=localStorage.getItem('user');
+		if(user===null){
+			justep.Shell.showPage(require.toUrl("./login.w"));
+		}else{
+			justep.Shell.showPage(require.toUrl("./cart.w"));
+		}
+		
 	};
 
 

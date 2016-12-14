@@ -19,8 +19,8 @@ define(function(require){
 	//注销
 	Model.prototype.btnLogoutClick=function(event){
 		localStorage.removeItem('user');
-		//justep.Shell.closePage();
-		this.getParent().comp('contents').to('homeContent');
+		justep.Shell.closePage();
+		//this.getParent().comp('contents').to('homeContent');
 	};
 	
 	Model.prototype.showAddress = function(event){

@@ -50,7 +50,7 @@ define(function(require) {
 						console.log(result);
 						if(result.status==1){
 							localStorage.setItem('user',JSON.stringify(result.data));
-							justep.Shell.showPage('main');
+							justep.Shell.showPage(require.toUrl('./main.w'));
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {

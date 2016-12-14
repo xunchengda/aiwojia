@@ -10,17 +10,7 @@
       <column label="图片" name="fImgUrl" type="String" xid="xid2"/>  
       <column label="链接地址" name="fUrl" type="String" xid="xid9"/> 
     </div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="goodsData" idColumn="id" onCustomRefresh="goodsDataCustomRefresh"> 
-      <column label="id" name="id" type="String" xid="column1"/>  
-      <column label="店铺ID" name="fShopID" type="String" xid="xid3"/>  
-      <column label="标题" name="fTitle" type="String" xid="column2"/>  
-      <column label="图片" name="fImg" type="String" xid="column3"/>  
-      <column label="价格" name="fPrice" type="Float" xid="column4"/>  
-      <column label="邮费" name="fPostage" type="String" xid="column6"/>  
-      <column label="月销量" name="fRecord" type="Integer" xid="column7"/> 
-    </div> 
-  </div>  
+    </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full" xid="panel4">
    <div class="x-panel-top" xid="top2">
 	   <div component="$UI/system/components/justep/titleBar/titleBar" class="x-titlebar" xid="titleBarHome" title="爱我家" style="background-color:#cccccc;">
@@ -28,7 +18,7 @@
 	    <div class="x-titlebar-title" xid="div1">爱我家</div>
 	    <div class="x-titlebar-right reverse" xid="div5">
 	     <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-top" xid="menuBtn" icon="fa fa-bars" style="width:44px;height:44px;" onClick="menuBtnClick">
-	      <i xid="i8" class="icon-navicon"></i>
+	      <i xid="i8" class="icon-navicon fa fa-bars"></i>
 	      <span xid="span8"></span>
 	     </a> 
 	    </div> 
