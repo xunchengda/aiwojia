@@ -41,7 +41,7 @@
   <column label="店标" name="store_image" type="String" xid="xid16"></column>
   <column label="电话" name="store_phone" type="String" xid="xid12"></column>
   <column label="单位名" name="store_company_name" type="String" xid="xid13"></column>
-  <column label="商品数量" name="fGoodsNumber" type="Integer" xid="xid14"></column>
+  <column label="地址" name="store_address" type="String" xid="xid14"></column>
   <column label="关注人数" name="fFocusNumber" type="Integer" xid="xid15"></column></div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="parameterData" idColumn="id"> 
@@ -51,70 +51,9 @@
       <column label="参数" name="fParameter" type="String" xid="xid21"/> 
     </div>  
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="colorData" idColumn="id"> 
-      <column label="id" name="id" type="String" xid="xid18"/>  
-      <column label="商品ID" name="fGoodID" type="String" xid="xid22"/>  
-      <column label="颜色" name="fColor" type="String" xid="xid23"/>  
-      <column label="状态" name="fState" type="Integer" xid="xid25"/>  
-      <data xid="default2">[{"id":"1","fGoodID":"1","fColor":"草绿（12支/盒）","fState":0},{"id":"2","fGoodID":"1","fColor":"橙色（12支/盒）","fState":0},{"id":"3","fGoodID":"1","fColor":"蓝色（12支/盒）","fState":0},{"id":"4","fGoodID":"1","fColor":"粉红（12支/盒）","fState":0},{"id":"5","fGoodID":"1","fColor":"黑色（12支/盒）","fState":0},{"id":"6","fGoodID":"1","fColor":"红色（12支/盒）","fState":0},{"id":"7","fGoodID":"1","fColor":"黄色（12支/盒）","fState":0},{"id":"8","fGoodID":"1","fColor":"绿色（12支/盒）","fState":0},{"id":"9","fGoodID":"1","fColor":"墨蓝（12支/盒）","fState":0},{"id":"10","fGoodID":"1","fColor":"天蓝（12支/盒）","fState":0},{"id":"11","fGoodID":"1","fColor":"紫色（12支/盒）","fState":0},{"id":"12","fGoodID":"1","fColor":"棕色（12支/盒）","fState":0},{"id":"13","fGoodID":"1","fColor":"12色混装（12支/盒）","fState":0}]</data> 
-    </div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="stateData" idColumn="state"> 
       <column label="显示状态" name="state" type="Integer" xid="xid26"/>  
       <data xid="default4">[{"state":0}]</data> 
-    </div> 
-  </div>  
-  <div component="$UI/system/components/justep/popOver/popOver" class="x-popOver"
-    xid="popOver" position="bottom"> 
-    <div class="x-popOver-overlay" xid="div2"/>  
-    <div class="x-popOver-content" xid="div3"> 
-      <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon pull-right tb-close text-black"
-        icon="icon-ios7-close-outline" onClick="{operation:'popOver.hide'}"> 
-        <i xid="i17" class="icon-ios7-close-outline"/>  
-        <span xid="span35"/> 
-      </a>  
-      <img src="$UI/demo/taobao/detail/img/pic1.png" alt="" class="img-thumbnail tb-colorImg"/>  
-      <div class="tb-title"> 
-        <span class="text-danger h4"><![CDATA[￥]]></span>  
-        <span bind-text="goodsData.ref('fPrice')" class="text-danger h4"><![CDATA[]]></span>  
-        <div xid="div7"/>  
-        <span><![CDATA[库存]]></span>  
-        <span bind-text="goodsData.ref('fRecord')"/>  
-        <span xid="span47"><![CDATA[件]]></span>  
-        <h5 xid="h52" class="text-black"><![CDATA[请选择颜色分类]]></h5> 
-      </div>  
-      <div class="panel-body"> 
-        <h4 class="text-black"><![CDATA[颜色分类]]> </h4>  
-        <div component="$UI/system/components/justep/list/list" class="x-list tb-colorList"
-          xid="colorList" data="colorData" bind-click="colorLiClick" dataItemAlias="colorRow"> 
-          <ul class="x-list-template" xid="ul2" componentname="ul(html)" id="undefined_ul2"> 
-            <li xid="li2" class="col col-xs-6" componentname="li(html)" id="undefined_li2"> 
-              <div class="text-center" bind-css="{'current':colorRow.val('fState')==1}"> 
-                <span bind-text="ref('fColor')"/> 
-              </div> 
-            </li> 
-          </ul> 
-        </div>  
-        <div class="clearfix"/> 
-      </div>  
-      <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label btn-block tb-colorOk"
-        label="确定" onClick="{operation:'popOver.hide'}" bind-visible="$model.stateData.val(&quot;state&quot;)==0"> 
-        <i xid="i18"/>  
-        <span xid="span50">确定</span> 
-      </a>  
-      <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group btn-group-justified tb-shopping"
-        tabbed="true" xid="buttonGroup4" bind-visible="$model.stateData.val(&quot;state&quot;)==1"> 
-        <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
-          label="加入购物车"> 
-          <i xid="i16"/>  
-          <span xid="span34">加入购物车</span> 
-        </a>  
-        <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-label"
-          label="立即购买"> 
-          <i xid="i19"/>  
-          <span xid="span37">立即购买</span> 
-        </a> 
-      </div> 
     </div> 
   </div>  
   <div component="$UI/system/components/justep/panel/panel" class="x-panel x-full x-card tb-trans x-has-iosstatu"> 
@@ -135,8 +74,8 @@
             <i xid="i13" class="icon-home"/>  
             <span xid="span23"/> 
           </a>  
-          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-cartBtn pull-right"
-            xid="cartBtn" icon="icon-ios7-cart" style="margin:0 0.75em;" onClick="toCartBtnClick"> 
+          <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-only-icon tb-moreBtn  pull-right"
+            xid="cartBtn" icon="icon-ios7-cart" onClick="toCartBtnClick"> 
             <i xid="i12" class="icon-ios7-cart"/>  
             <div xid="cartBadge" class="badge" style="position:absolute; top:3px;background-color:red"></div> 
           </a> 
@@ -194,6 +133,18 @@
         </div> 
       </div>  
       <div component="$UI/system/components/justep/panel/panel" class="panel panel-default x-card"> 
+        <div xid="div9" class="panel-body tb-nopadding"> 
+          <div class="panel-body media"> 
+            <div class="media-left"> 
+              <img src="" alt="" xid="image4" class="img-rounded" bind-attr-src="shopData.val('store_image') == '' ? &quot;&quot; : shopData.val('store_image')" height="50px" style="width:50px;" /> 
+            </div>  
+            <div class="media-body"> 
+              <span xid="span46" bind-text="'销售商：' + shopData.val(&quot;store_company_name&quot;)" class="show" />  
+              <span xid="span48" bind-text="'电话：' + shopData.val('store_phone')"><![CDATA[]]></span> 
+            <h5 xid="h51" bind-text="'地址：' + shopData.val('store_address')">h5</h5></div> 
+          </div>  
+          </div>  
+        </div><div component="$UI/system/components/justep/panel/panel" class="panel panel-default x-card"> 
         <div class="panel-body"> 
           <div class="h5 text-black"> 
             <span xid="span22">宝贝评价（</span>  
@@ -223,58 +174,7 @@
           </div> 
         </div> 
       </div>  
-      <div component="$UI/system/components/justep/panel/panel" class="panel panel-default x-card"> 
-        <div xid="div9" class="panel-body tb-nopadding"> 
-          <div class="panel-body media"> 
-            <div class="media-left"> 
-              <img src="" alt="" xid="image4" class="img-rounded" bind-attr-src="shopData.val('store_image') == '' ? &quot;&quot; : shopData.val('store_image')"
-                height="50px" style="width:50px;"/> 
-            </div>  
-            <div class="media-body"> 
-              <span xid="span46" bind-text="'销售商：' + shopData.val(&quot;store_company_name&quot;)" class="show"/>  
-              <span xid="span48" bind-text="'电话：' + shopData.val('store_phone')"><![CDATA[]]></span> 
-            </div> 
-          </div>  
-          <div component="$UI/system/components/bootstrap/row/row" class="row"> 
-            <div class="col col-xs-5" xid="col17"> 
-              <span class="text-muted" xid="span9">描述相符</span>  
-              <span bind-text="shopData.ref('fConsistent')" class="text-danger"
-                xid="span11"/> 
-            </div>  
-            <div class="col col-xs-7" xid="col18"> 
-              <span class="text-muted" xid="span12">服务态度</span>  
-              <span bind-text="shopData.ref('fService')" class="text-success"
-                xid="span21"/> 
-            </div> 
-          </div> 
-        </div>  
-        <div component="$UI/system/components/bootstrap/row/row" class="row"> 
-          <div class="col col-xs-6 tb-line" xid="col1"> 
-            <span xid="span41" bind-text="shopData.ref('fGoodsNumber')" class="show text-center"/>  
-            <span xid="goodsBtn" class="show text-center text-muted" bind-click="goodsBtnClick">全部宝贝</span> 
-          </div>  
-          <div class="col col-xs-6" xid="col2"> 
-            <span xid="span44" bind-text="shopData.ref('fFocusNumber')" class="show text-center"/>  
-            <span xid="span43" class="show text-center text-muted">关注人数</span> 
-          </div> 
-        </div>  
-        <div component="$UI/system/components/bootstrap/row/row" class="row panel-body"> 
-          <div class="col col-xs-6" xid="col4"> 
-            <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left btn-block thumbnail text-black"
-              label="查看宝贝分类" xid="classBtn" icon="icon-navicon" onClick="classBtnClick"> 
-              <i xid="i9" class="icon-navicon"/>  
-              <span xid="span40">查看宝贝分类</span> 
-            </a> 
-          </div>  
-          <div class="col col-xs-6" xid="col5"> 
-            <a component="$UI/system/components/justep/button/button" class="btn btn-link btn-icon-left btn-block thumbnail text-black"
-              label="进店逛逛" xid="storeBtn" icon="icon-bag" onClick="storeBtnClick"> 
-              <i xid="i5" class="icon-bag"/>  
-              <span xid="span39">进店逛逛</span> 
-            </a> 
-          </div> 
-        </div> 
-      </div>  
+        
       <div component="$UI/system/components/justep/panel/panel" class="panel x-card"> 
         <div component="$UI/system/components/justep/button/buttonGroup" class="btn-group btn-group-justified tb-tabs"
           tabbed="true"> 

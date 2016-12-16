@@ -8,38 +8,20 @@
       <column label="id" name="id" type="String" xid="xid1"></column>
   <column label="名称" name="fName" type="String" xid="xid2"></column>
   <column label="状态" name="fState" type="Integer" xid="xid4"></column>
-  <data xid="default1">[{&quot;id&quot;:&quot;1&quot;,&quot;fName&quot;:&quot;综合排序&quot;,&quot;fState&quot;:1},{&quot;id&quot;:&quot;2&quot;,&quot;fName&quot;:&quot;价格升序&quot;,&quot;fState&quot;:0},{&quot;id&quot;:&quot;3&quot;,&quot;fName&quot;:&quot;价格降序&quot;,&quot;fState&quot;:0}]</data></div><div component="$UI/system/components/justep/data/data" autoLoad="false"
-      xid="goodsData" idColumn="id" onCustomRefresh="goodsDataCustomRefresh"> 
-      <column label="id" name="id" type="String" xid="default6"/>  
-      <column label="店铺ID" name="fShopID" type="String" xid="xid3"/>  
-      <column label="标题" name="fTitle" type="String" xid="xid6"/>  
-      <column label="图片" name="fImg" type="String" xid="xid7"/>  
-      <column label="价格" name="fPrice" type="Float" xid="xid8"/>  
-      <column label="邮费" name="fPostage" type="String" xid="xid9"/>  
-      <column label="月销量" name="fRecord" type="Integer" xid="xid10"/> 
-    </div>  
-      
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
+  <data xid="default1">[{&quot;id&quot;:&quot;1&quot;,&quot;fName&quot;:&quot;综合排序&quot;,&quot;fState&quot;:1},{&quot;id&quot;:&quot;2&quot;,&quot;fName&quot;:&quot;价格升序&quot;,&quot;fState&quot;:0},{&quot;id&quot;:&quot;3&quot;,&quot;fName&quot;:&quot;价格降序&quot;,&quot;fState&quot;:0}]</data></div><div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="discountData" idColumn="id"> 
       <column label="id" name="id" type="String" xid="xid5"/>  
       <column label="名称" name="fName" type="String" xid="xid11"/>  
       <column label="状态" name="fState" type="Integer" xid="xid14"/>  
       <data xid="default2">[{"id":"1","fName":"免运费","fState":0},{"id":"2","fName":"天猫","fState":0},{"id":"3","fName":"全球购","fState":0},{"id":"4","fName":"消费者保障","fState":0}]</data>
     </div>  
-    <div component="$UI/system/components/justep/data/data" autoLoad="true"
-      xid="classData" idColumn="id"> 
-      <column label="id" name="id" type="String" xid="xid12"/>  
-      <column label="名称" name="fName" type="String" xid="xid13"/>  
-      <column label="状态" name="fState" type="Integer" xid="xid15"/>  
-      <data xid="default3">[{"id":"1","fName":"3C数码配件市场","fState":0},{"id":"2","fName":"品牌手表/流行手表","fState":0},{"id":"3","fName":"女装","fState":0}]</data>
-    </div> 
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="backData" idColumn="isBack"><column label="是否显示" name="isBack" type="String" xid="xid16"></column>
+    <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="backData" idColumn="isBack"><column label="是否显示" name="isBack" type="String" xid="xid16"></column>
   <data xid="default4">[{&quot;isBack&quot;:&quot;1&quot;}]</data></div>
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="l2data" idColumn="gc_id" onCustomRefresh="l2ClassDataCustomRefresh">
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="l2data" idColumn="gc_id" onBeforeRefresh="l2ClassDataCustomRefresh">
    <column label="分类id" name="gc_id" type="Integer" xid="column1"></column>
   <column label="分类名称" name="gc_name" type="String" xid="column2"></column>
   <column label="筛选选中状态" name="state" type="Integer" xid="xid17"></column></div>
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="goodData" idColumn="goods_id" onCustomRefresh="goodDataCustomRefresh"><column label="商品id" name="goods_id" type="Integer" xid="xid18"></column>
+  <div component="$UI/system/components/justep/data/data" autoLoad="false" xid="goodData" idColumn="goods_id" onCustomRefresh="goodDataCustomRefresh" limit="-1"><column label="商品id" name="goods_id" type="Integer" xid="xid18"></column>
   <column label="商品名称" name="goods_name" type="String" xid="xid19"></column>
   <column label="商品描述" name="goods_jingle" type="String" xid="xid20"></column>
   <column label="商铺id" name="store_id" type="Integer" xid="xid21"></column>

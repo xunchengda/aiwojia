@@ -3,7 +3,7 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="main13" component="$UI/system/components/justep/window/window"
   design="device:mobile;" xid="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="left:18px;top:83px;height:244px;"
-    onModelConstruct="modelModelConstruct" onunLoad="modelUnLoad" onLoad="modelLoad"> 
+    onunLoad="modelUnLoad" onLoad="modelLoad"> 
     <div component="$UI/system/components/justep/data/data" autoLoad="true"
       xid="imgData" idColumn="id" onCustomRefresh="imgDataCustomRefresh"> 
       <column label="id" name="id" type="String" xid="xid1"/>  
@@ -59,7 +59,7 @@
             </div> 
            </div> 
            <div class="col col-xs-4" xid="col11">
-            <div class="text-center menu-icon" bind-click="openPageClick" pagename="./service/homeService.w" xid="div4">
+            <div class="text-center menu-icon" bind-click="openPageClick" pagename="./service/homeServiceStore.w" xid="div4">
              <img src="./main/img/icon-menu-3.png" alt="" xid="image2" class="img-responsive center-block"></img>
              <span xid="span10">居家服务</span>
             </div> 

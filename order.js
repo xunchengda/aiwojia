@@ -10,7 +10,14 @@ define(function(require){
 		configData.loadServerDataFromFile(configUrl,config);
 		this.user=JSON.parse(localStorage.getItem('user'));
 	};
-		
+	Model.prototype.modelParamsReceive = function(event){
+		console.log(this.params);
+		if (this.params && this.params.store_id) {
+			store_id = this.params.store_id;
+			goods_ids=this.params.goods_ids;
+			this.initData();
+		}
+	};	
 	//图片路径转换
 	Model.prototype.getImageUrl = function(url){
 		return "http://"+config.server+url;
@@ -171,14 +178,7 @@ define(function(require){
 		this.comp("popOver").hide();
 	};
 	
-	Model.prototype.modelParamsReceive = function(event){
-		console.log(this.params);
-		if (this.params && this.params.store_id) {
-			store_id = this.params.store_id;
-			goods_ids=this.params.goods_ids;
-			this.initData();
-		}
-	};
+	
 	
 	Model.prototype.changeAddress = function(event){
 		var row = event.bindingContext.$object;

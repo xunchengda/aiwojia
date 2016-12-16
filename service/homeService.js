@@ -4,6 +4,7 @@ define(function(require) {
 	var allData = require("../js/loadData");
 	var configData = require("../js/loadConfig");
 	var config={};
+	var store_id;
 	var Model = function() {
 		this.callParent();
 		this.keyValue = "";
@@ -20,17 +21,16 @@ define(function(require) {
 	};
 
 	Model.prototype.modelParamsReceive = function(event) {
+		if (this.params && this.params.store_id) {
+			store_id = this.params.store_id;
+			this.comp('goodData').refreshData({confirm:false});
+		}
 	};
-
-	// 获取商品列表
-	Model.prototype.goodsDataCustomRefresh = function(event) {
-		/*
-		 * 1、加载商品数据 2、接收传入的参数，过滤数据
-		 */
-		var url = require.toUrl("../list/json/goodsData.json");
-		allData.loadDataFromFile(url, event.source, true);
+	Model.prototype.initData=function(event){
+	
+	
 	};
-
+	
 	// 商品点击事件
 	Model.prototype.listClick = function(event) {
 		/*
@@ -116,8 +116,6 @@ define(function(require) {
 		
 	};
 
-
-
 	/* 分类 */
 	Model.prototype.classClick = function(event) {
 		/*
@@ -138,6 +136,7 @@ define(function(require) {
 		this.comp("price2").val("");
 		this.reset(this.comp("l2data"));
 	};
+
 	Model.prototype.reset = function(data) {
 		var rows = data.find([ "state" ], [ 1 ], false, true, true);
 		for (var i = 0; i < rows.length; i++) {
@@ -170,14 +169,14 @@ define(function(require) {
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
@@ -212,6 +211,9 @@ define(function(require) {
 	};
 
 	Model.prototype.goodDataCustomRefresh = function(event){
+		if(store_id===null || store_id===undefined){
+			return;
+		}
 		 var dataObj=event.source;
 		 var condition=this.comp('sortingBtn').get('label');
 		 var l2Class=this.comp('l2data').find(['state'],['1'],false,true,true);
@@ -223,7 +225,7 @@ define(function(require) {
 		 var price2=this.comp('price2').val();
 		 
 		 $.ajax({
-					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getGoods",
+					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getGoodsByStore",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
@@ -232,7 +234,8 @@ define(function(require) {
 						'class':l2,
 						'price1':price1,
 						'price2':price2,
-						'type':'居家服务'
+						'type':'居家服务',
+						'store_id':store_id
 					},
 					success:function(result){
 						if(result.status==1){
@@ -242,7 +245,7 @@ define(function(require) {
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
@@ -250,10 +253,16 @@ define(function(require) {
 						console.log(result);
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
+	};
+
+	Model.prototype.goodDataBeforeRefresh = function(event){
+		if(store_id===null || store_id===undefined){
+			return false;
+		}
 	};
 
 	return Model;

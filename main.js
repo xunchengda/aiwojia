@@ -73,14 +73,6 @@ define(function(require) {
 		});
 	};
 
-	Model.prototype.goodsDataCustomRefresh = function(event) {
-		/*
-		 * 1、加载商品数据
-		 */
-		var url = require.toUrl("./main/json/goodsData.json");
-		allData.loadDataFromFile(url, event.source, true);
-	};
-
 	// 打开页面
 	Model.prototype.openPageClick = function(event) {
 		/*
@@ -96,18 +88,6 @@ define(function(require) {
 		}
 			
 		
-	};
-
-	// 进入详细页
-	Model.prototype.listClick = function(event) {
-		/*
-		 * 1、获取当前行 2、进入详细页面，并传值rowid
-		 */
-		var data = this.comp("goodsData");
-		justep.Shell.showPage("detail", {
-			goodsID : data.getValue("id"),
-			shopID : data.getValue("fShopID")
-		});
 	};
 
 	// 搜索
@@ -126,15 +106,6 @@ define(function(require) {
 		this.comp("imgData").refreshData();
 	};
 
-	Model.prototype.shoppingContentInactive = function(event) {
-		/*
-		 * 1、购物车页面离开事件 2、获取子页面Model 3、调用子页面的函数showBackBtn，设置返回按钮显否显示
-		 */
-		var model = this.comp("navContainer4").getInnerModel();
-		if (model) {
-			model.showBackBtn(false);
-		}
-	};
 	// 添加事件
 	Model.prototype.modelLoad = function(event) {
 		/*
@@ -142,6 +113,11 @@ define(function(require) {
 		justep.Shell.on("onShoppingContent", this.onShoppingContent, this);
 		justep.Shell.on("onHomeContent", this.onHomeContent, this);
 		*/
+		var user=localStorage.getItem('user');
+		if(user===null){
+			justep.Shell.showPage(require.toUrl('./login.w'));
+			
+		}
 	};
 	// 卸载事件
 	Model.prototype.modelUnLoad = function(event) {
@@ -222,6 +198,23 @@ define(function(require) {
 	Model.prototype.menuBtnClick = function(event){
 		this.comp('popShort').show();
 	};
+
+
+
+
+
+
+
+
+
+	Model.prototype.modelParamsReceive = function(event){
+
+	};
+
+
+
+
+
 
 
 
