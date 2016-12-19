@@ -8,7 +8,7 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));
+		this.member_id=localStorage.getItem('member_id');
 	};
 	Model.prototype.modelParamsReceive = function(event){
 		console.log(this.params);
@@ -45,7 +45,7 @@ define(function(require){
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'member_id':self.user.member_id,
+						'member_id':self.member_id,
 						'store_id':store_id,
 						'goods_id':goods_id
 					},
@@ -112,7 +112,7 @@ define(function(require){
 	
 	//打开成功页面
 	Model.prototype.confirmBtnClick = function(event){
-		var member_id=this.user.member_id;
+		var member_id=this.member_id;
 		var currentAddressObj=this.comp('currentAddressData');
 		var address_id=currentAddressObj.val('address_id');
 		var message_id=this.getIDByXID('message');

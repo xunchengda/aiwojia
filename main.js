@@ -79,8 +79,8 @@ define(function(require) {
 		 * 1、点击组件增加算定义属性：pagename 2、获取自定义属性，打开 对应页面
 		 */
 		var pageName = event.currentTarget.getAttribute('pagename');
-		var user=localStorage.getItem("user");
-		if(user===null && pageName!=='./agent/agentmain.w')
+		var member_id=localStorage.getItem("member_id");
+		if(member_id===null && pageName!=='./agent/agentmain.w')
 			justep.Shell.showPage('login');
 		else{
 			if (pageName)
@@ -113,8 +113,8 @@ define(function(require) {
 		justep.Shell.on("onShoppingContent", this.onShoppingContent, this);
 		justep.Shell.on("onHomeContent", this.onHomeContent, this);
 		*/
-		var user=localStorage.getItem('user');
-		if(user===null){
+		var member_id=localStorage.getItem('member_id');
+		if(member_id===null){
 			justep.Shell.showPage(require.toUrl('./login.w'));
 			
 		}
@@ -139,8 +139,8 @@ define(function(require) {
 	Model.prototype.contents2ActiveChange = function(event){
 		var to = event.to;
 		if(to===1){
-			var user=localStorage.getItem("user");
-			if(user===null){
+			var member_id=localStorage.getItem("member_id");
+			if(member_id===null){
 				this.comp('contents').to('homeContent');
 				/*
 				this.comp('homeBtn').addClass('active');
@@ -171,8 +171,8 @@ define(function(require) {
 
 
 	Model.prototype.button2Click = function(event){
-		var user=localStorage.getItem('user');
-		if(user===null){
+		var member_id=localStorage.getItem('member_id');
+		if(member_id===null){
 			justep.Shell.showPage(require.toUrl("./login.w"));
 		}else{
 			justep.Shell.showPage(require.toUrl("./service/orderWait.w"));
@@ -183,8 +183,8 @@ define(function(require) {
 
 
 	Model.prototype.button1Click = function(event){
-		var user=localStorage.getItem('user');
-		if(user===null){
+		var member_id=localStorage.getItem('member_id');
+		if(member_id===null){
 			justep.Shell.showPage(require.toUrl("./login.w"));
 		}else{
 			justep.Shell.showPage(require.toUrl("./cart.w"));

@@ -8,7 +8,8 @@ define(function(require) {
 		this.callParent();
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));
+		this.member_id=localStorage.getItem('member_id');
+		
 	};
 	
 	//返回上一页
@@ -68,7 +69,7 @@ define(function(require) {
 					'dataType':'json',
 					'data':{
 						'goods_id':goods_id,
-						'member_id':self.user.member_id
+						'member_id':self.member_id
 					},
 					success:function(result){
 						if(result.status==1){
@@ -89,53 +90,18 @@ define(function(require) {
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
 		
-	};
-	
-	//获取店铺信息
-	Model.prototype.shopDataCustomRefresh = function(event){
-		/*
-		1、加载店铺数据
-		2、根据store_id过滤数据
-		 */
-        var url = require.toUrl("./detail/json/shopData.json");
-        allData.loadDataFromFile(url,event.source,true);       
-	};
-	
-	//获取参数信息
-	Model.prototype.parameterDataCustomRefresh = function(event){
-		/*
-		1、加载参数数据
-		2、根据goods_id过滤数据
-		 */
-        var url = require.toUrl("./detail/json/parameterData.json");
-        allData.loadDataFromFile(url,event.source,true);       
-	};
-	
-	//获取评论信息
-	Model.prototype.commentsDataCustomRefresh = function(event){
-		/*
-		1、加载评论数据
-		2、根据goods_id过滤数据
-		 */
-		var url = require.toUrl("./detail/json/commentsData.json");
-        allData.loadDataFromFile(url,event.source,true);
-	};
-	
-	//更多评论按钮
-	Model.prototype.moreBtnClick = function(event){
-		justep.Shell.closeAllOpendedPages();
 	};
 	
 	//购物车按钮
@@ -259,7 +225,7 @@ define(function(require) {
 					'dataType':'json',
 					'data':{
 						'goods_id':goods_id,
-						'member_id':self.user.member_id
+						'member_id':self.member_id
 					},
 					success:function(result){
 						if(result.status==1){
@@ -278,14 +244,14 @@ define(function(require) {
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
@@ -303,8 +269,12 @@ define(function(require) {
 	Model.prototype.btnDirectBuyClick = function(event){
 		var row=this.comp('goodsData').getCurrentRow();
 		var goods_id=row.val('goods_id');
-		var member_id=this.user.member_id;
+		var member_id=this.member_id;
 		justep.Shell.showPage('directBuy', {goods_id:goods_id});
+	};	
+
+	Model.prototype.moreBtnClick = function(event){
+		justep.Shell.closeAllOpendedPages();
 	};	
 
 	return Model;

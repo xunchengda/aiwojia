@@ -122,7 +122,6 @@ define(function(require){
 	Model.prototype.saveBtnClick = function(event){
 		if(!this.checkAllInput()){
 			var data=this.comp('addressData').getCurrentRow();
-			console.log(data);
 			$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=updateAddress",
 					'type':'post',
@@ -140,19 +139,19 @@ define(function(require){
 								type:'success',
 								delay:'2000'
 							});
-							justep.Shell.closePage();
+							setTimeout("justep.Shell.closePage()",2000);
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});

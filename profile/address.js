@@ -7,7 +7,7 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));
+		this.member_id=localStorage.getItem('member_id');
 		this.del_add_id=0;
 	};
 	
@@ -17,14 +17,14 @@ define(function(require){
 	};
 	Model.prototype.addressDataCustomRefresh = function(event){
 		var dataObj=event.source;
-		var user=JSON.parse(localStorage.getItem('user'));
+		var member_id=localStorage.getItem('member_id');
 		 $.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=getMemberAllAddress",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'member_id':user.member_id
+						'member_id':member_id
 					},
 					success:function(result){
 						if(result.status==1){
@@ -48,7 +48,7 @@ define(function(require){
 		       
 	};
 	Model.prototype.addBtnClick = function(event){
-		justep.Shell.showPage('addAddress');
+		justep.Shell.showPage(require.toUrl('./addAddress.w'));
 	};
 	Model.prototype.onPageActive = function(event){
 		this.comp('addressData').refreshData({'confirm':false});
@@ -60,9 +60,9 @@ define(function(require){
 		this.comp('removeMD').show();
 	};
 	Model.prototype.removeOkClick = function(event){
-		var member_id=this.user.member_id;
+		var member_id=this.member_id;
 		var address_id=this.del_add_id;
-		console.log(this.del_add_id);
+		
 		var self=this;
 		$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=removeAddress",
@@ -80,14 +80,14 @@ define(function(require){
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
@@ -98,7 +98,6 @@ define(function(require){
 		var row = event.bindingContext.$object;
 		if(row.val('is_default')==0){
 			var trow;
-			console.log(row.val('true_name'));
 			var data=this.comp('addressData');
 			var lrow=data.getLastRow();
 			//this.comp('addressData').setValue('is_default',0); //system bug
@@ -110,7 +109,7 @@ define(function(require){
 			}while(lrow!=trow);
 			var d_row=this.comp('addressData').find(['address_id'],[row.val('address_id')]);
 			this.comp('addressData').setValue('is_default',1,d_row[0]);
-			var member_id=this.user.member_id;
+			var member_id=this.member_id;
 			var address_id=row.val('address_id');
 			$.ajax({
 						'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=setDefaultAddress",

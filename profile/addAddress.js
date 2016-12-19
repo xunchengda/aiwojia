@@ -105,15 +105,14 @@ define(function(require){
 	Model.prototype.saveBtnClick = function(event){
 		if(!this.checkAllInput()){
 			var data=this.comp('addressData').getCurrentRow();
-			console.log(data);
-			var user=JSON.parse(localStorage.getItem('user'));
+			var member_id=localStorage.getItem('member_id');
 			$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=addNewAddress",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'member_id':user.member_id,
+						'member_id':member_id,
 						'true_name':data.val('true_name'),
 						'mob_phone':data.val('mob_phone'),
 						'address':data.val('address'),
@@ -121,19 +120,23 @@ define(function(require){
 					},
 					success:function(result){
 						if(result.status==1){
-							justep.Shell.closePage({'result':1});
+							justep.Util.hint(result.message, {
+								type:'success',
+								delay:'2000'
+							});
+							setTimeout("justep.Shell.closePage()",2000);
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});

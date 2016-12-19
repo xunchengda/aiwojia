@@ -49,7 +49,10 @@ define(function(require) {
 					success:function(result){
 						console.log(result);
 						if(result.status==1){
-							localStorage.setItem('user',JSON.stringify(result.data));
+							//localStorage.setItem('user',JSON.stringify(result.data));
+							localStorage.setItem('member_name',result.data.name);
+							localStorage.setItem('member_id',result.data.member_id);
+							localStorage.setItem('member_mobile',result.data.mobile);
 							justep.Shell.showPage(require.toUrl('./main.w'));
 						}
 						if(result.status==-1){

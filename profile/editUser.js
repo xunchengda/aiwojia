@@ -8,7 +8,8 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));
+		this.member_id=localStorage.getItem('member_id');
+		
 	};
 	//接受参数
 	Model.prototype.modelParamsReceive = function(event){
@@ -123,7 +124,7 @@ define(function(require){
 	Model.prototype.saveBtnClick = function(event){
 		//if(!this.checkAllInput()){
 			var data=this.comp('userData').getCurrentRow();
-			var member_id=this.user.member_id;
+			var member_id=this.member_id;
 			$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=updateUser",
 					'type':'post',
@@ -142,26 +143,27 @@ define(function(require){
 								type:'success',
 								delay:'2000'
 							});
-							justep.Shell.closePage();
+							setTimeout("justep.Shell.closePage()",2000);
+							
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
 		//}
 	};
 	Model.prototype.userDataCustomRefresh = function(event){
-		var member_id=this.user.member_id;
+		var member_id=this.member_id;
 		var userObj=this.comp('userData');
 		var degreeObj=this.comp('degreeData');
 		$.ajax({
@@ -185,14 +187,14 @@ define(function(require){
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
 					error:function(result){
 						justep.Util.hint('网络错误', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});

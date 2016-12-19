@@ -1,14 +1,14 @@
 define(function(require){
 	var versionInfo = {
 	  androidApp:{
-	  	version:"5.3.18",
-	  	changeLog:"请填写版本更新内容",
-	  	downloadUrl:"http://wex5.com/apps/taobao.apk"
+	  	version:"1.2.0",
+	  	changeLog:"内容升级",
+	  	downloadUrl:"http://www.qdgxrcgy.com/aiwojia/app.apk"
 	  },
 	  iosApp:{
-	  	version:"5.3.18",
-	  	changeLog:"请填写版本更新内容",
-	  	downloadUrl:"itms-services:///?action=download-manifest&url=https://x.justep.com/apps/taobao.plist"
+	  	version:"1.2.0",
+	  	changeLog:"更新内容",
+	  	downloadUrl:"itms-services:///?action=download-manifest&url=https://www.qdgxrcgy.com/aiwojia/app.plist"
 	  }
 	};
 	return versionInfo;

@@ -9,7 +9,7 @@ define(function(require) {
 		this.isBack;
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));	
+		this.member_id=localStorage.getItem('member_id');
 	};
 	//接收
 	Model.prototype.modelParamsReceive = function(event){
@@ -137,7 +137,7 @@ define(function(require) {
 		var rows=this.comp('shopData').find(['store_id'],[store_id],true);
 		var row=rows[0];
 		var goodsObj=this.comp('goodsData');
-		var member_id=this.user.member_id;
+		var member_id=this.member_id;
 		var self=this;
 		this.setSumInfo(store_id);
 		

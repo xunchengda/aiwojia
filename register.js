@@ -46,7 +46,7 @@ define(function(require) {
 						if(result.status==-1){
 							justep.Util.hint(result.message, {
 								type:'warning',
-								delay:'3000'
+								delay:'2000'
 							});
 						}
 					},
@@ -54,7 +54,7 @@ define(function(require) {
 						console.log(result);
 						justep.Util.hint('网络错误，稍后再试', {
 							type:'warning',
-							delay:'3000'
+							delay:'2000'
 						});
 					}
 			});
@@ -132,21 +132,19 @@ define(function(require) {
 //					'idno':data.val('idno'),
 					'code':smsCode
 				},
-				beforeSend:self.showLoading,
-				complete:self.hideLoading,
+				//beforeSend:self.showLoading,
+				//complete:self.hideLoading,
 				success:function(result){
 					console.log(result);
 					if(result.status==1){
-						localStorage.setItem('user',{
-							'name':data.val('name'),
-							'mobile':data.val('mobile'),
-							'member_id':data.val('member_id')
-						});
+						localStorage.setItem('member_name',result.data.name);
+							localStorage.setItem('member_id',result.data.member_id);
+							localStorage.setItem('member_mobile',result.data.mobile);
 						justep.Util.hint("成功注册", {
 							type:'success',
 							delay:'2000'
 						});
-						justep.Shell.showPage('main');
+						setTimeout("justep.Shell.showPage(require.toUrl('./main.w'))",2000);
 					}
 					if(result.status==-1){
 						justep.Util.hint(result.message, {

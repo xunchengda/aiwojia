@@ -8,10 +8,12 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("./config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		this.user=JSON.parse(localStorage.getItem('user'));
+		this.member_id=localStorage.getItem('member_id');
+		this.member_name=localStorage.getItem('member_name');
+		
 	};
 	Model.prototype.modelParamsReceive = function(event){
-		console.log(this.params);
+		
 		if (this.params && this.params.store_id) {
 			store_id = this.params.store_id;
 			goods_ids=this.params.goods_ids;
@@ -23,14 +25,7 @@ define(function(require){
 		return "http://"+config.server+url;
 	};
 		
-	//获取商品列表
-	Model.prototype.goodsDataCustomRefresh = function(event){
-		/*
-		1、加载商品数据
-		 */
-		var url = require.toUrl("./cart/json/goodsData.json");
-		allData.loadDataFromFile(url,event.source,true);
-	};
+	
 	//初始化订单数据
 	Model.prototype.initData = function(event){
 		var shopObj=this.comp("shopData");
@@ -44,7 +39,7 @@ define(function(require){
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'member_id':self.user.member_id,
+						'member_id':self.member_id,
 						'store_id':store_id,
 						'goods_ids':goods_ids
 					},
@@ -94,18 +89,11 @@ define(function(require){
 					}
 			});
 	};
-	//获取邮寄信息
-	Model.prototype.sendDataCustomRefresh = function(event){
-		/*
-		1、加载邮寄数据
-		 */
-		var url = require.toUrl("./cart/json/sendData.json");
-		allData.loadDataFromFile(url,event.source,true);
-	};
+	
 	
 	//打开成功页面
 	Model.prototype.confirmBtnClick = function(event){
-		var member_id=this.user.member_id;
+		var member_id=this.member_id;
 		var currentAddressObj=this.comp('currentAddressData');
 		var address_id=currentAddressObj.val('address_id');
 		var message_id=this.getIDByXID('message');

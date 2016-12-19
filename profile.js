@@ -7,10 +7,10 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("./config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		if(localStorage.getItem('user')===null || localStorage.getItem('user')===undefined){
-			justep.Shell.showPage('register');
+		if(localStorage.getItem('member_id')===null || localStorage.getItem('member_id')===undefined){
+			justep.Shell.showPage(require.toUrl('./login.w'));
 		}else{
-			this.user=JSON.parse(localStorage.getItem('user'));
+			this.member_id=localStorage.getItem('member_id');
 		}
 		
 		
@@ -18,17 +18,19 @@ define(function(require){
 
 	//注销
 	Model.prototype.btnLogoutClick=function(event){
-		localStorage.removeItem('user');
+		localStorage.removeItem('member_id');
+		localStorage.removeItem('member_name');
+		localStorage.removeItem('member_mobile');
 		justep.Shell.closePage();
 		//this.getParent().comp('contents').to('homeContent');
 	};
 	
 	Model.prototype.showAddress = function(event){
-		justep.Shell.showPage('address');
+		justep.Shell.showPage(require.toUrl('./profile/address.w'));
 	};
 	
 	Model.prototype.userInfoClick = function(event){
-		justep.Shell.showPage('editUser');
+		justep.Shell.showPage(require.toUrl('./profile/editUser.w'));
 	};
 	
 	Model.prototype.modelLoad = function(event){
@@ -36,18 +38,18 @@ define(function(require){
 	};
 	
 	Model.prototype.userDataCustomRefresh = function(event){
-		if(localStorage.getItem('user')===null || localStorage.getItem('user')===undefined){
-			justep.Shell.showPage('register');
+		if(localStorage.getItem('member_id')===null || localStorage.getItem('member_id')===undefined){
+			justep.Shell.showPage(require.toUrl('./login.w'));
 			return;
 		}else{
-			var user=JSON.parse(localStorage.getItem('user'));
-			
-			console.log(user);
+			var member_id=localStorage.getItem('member_id');
+			var member_name=localStorage.getItem('member_name');
+			var member_mobile=localStorage.getItem("member_mobile");
 			this.comp('userData').clear();
 			this.comp('userData').loadData([{
-					member_id:user.member_id,
-					member_name:user.name,
-					member_mobile:user.mobile
+					member_id:member_id,
+					member_name:member_name,
+					member_mobile:member_mobile
 				}]
 			);
 			this.comp('userData').first();
@@ -58,11 +60,11 @@ define(function(require){
 	};
 	
 	Model.prototype.orderDataCustomRefresh = function(event){
-		if(localStorage.getItem('user')===null || localStorage.getItem('user')===undefined){
-			justep.Shell.showPage('register');
+		if(localStorage.getItem('member_id')===null){
+			justep.Shell.showPage(require.toUrl('./login.w'));
 			return;
 		}else{
-		var member_id=this.user.member_id;
+		var member_id=localStorage.getItem('member_id');
 		var orderObj=this.comp('orderData');
 		var self=this;
 		$.ajax({
@@ -113,7 +115,7 @@ define(function(require){
 
 	
 	Model.prototype.btnOrderWaitClick = function(event){
-		justep.Shell.showPage('orderWait');
+		justep.Shell.showPage(require.toUrl('./service/orderWait.w'));
 	};
 	
 

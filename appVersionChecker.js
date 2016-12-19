@@ -64,7 +64,7 @@ define(function(require){
 				});
 			});
 		}else{
-			console.log('请登录wex5.com下载最新版本体验系统！');
+			console.log('请下载最新版本体验系统！');
 		}
 	};
 	
