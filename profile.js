@@ -7,11 +7,7 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("./config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
-		if(localStorage.getItem('member_id')===null || localStorage.getItem('member_id')===undefined){
-			justep.Shell.showPage(require.toUrl('./login.w'));
-		}else{
-			this.member_id=localStorage.getItem('member_id');
-		}
+		
 		
 		
 	};
@@ -38,11 +34,12 @@ define(function(require){
 	};
 	
 	Model.prototype.userDataCustomRefresh = function(event){
-		if(localStorage.getItem('member_id')===null || localStorage.getItem('member_id')===undefined){
+		var member_id=localStorage.getItem('member_id');
+		if(member_id===null || member_id===undefined){
 			justep.Shell.showPage(require.toUrl('./login.w'));
 			return;
 		}else{
-			var member_id=localStorage.getItem('member_id');
+			
 			var member_name=localStorage.getItem('member_name');
 			var member_mobile=localStorage.getItem("member_mobile");
 			this.comp('userData').clear();
@@ -60,11 +57,13 @@ define(function(require){
 	};
 	
 	Model.prototype.orderDataCustomRefresh = function(event){
-		if(localStorage.getItem('member_id')===null){
+		var member_id=localStorage.getItem('member_id');
+		
+		if(member_id===null || member_id===undefined){
 			justep.Shell.showPage(require.toUrl('./login.w'));
 			return;
 		}else{
-		var member_id=localStorage.getItem('member_id');
+		
 		var orderObj=this.comp('orderData');
 		var self=this;
 		$.ajax({

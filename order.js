@@ -44,41 +44,50 @@ define(function(require){
 						'goods_ids':goods_ids
 					},
 					success:function(result){
-						if(result.status==1){
-							shopObj.clear();
-							shopObj.loadData(result.data.stores);
-							goodsObj.clear();
-							goodsObj.loadData(result.data.goodses);
-							
-							addressObj.clear();
-							addressObj.loadData(result.data.addresses);
-							var sum=0;
-							for(var i=0;i<result.data.goodses.length;i++){
-								var price=result.data.goodses[i].goods_price;
-								var num=result.data.goodses[i].goods_num;
-								sum+=price*num;
+					if(result.data.addresses.length==0){
+							justep.Util.hint('未发现用户收货地址信息', {
+									type:'warning',
+									delay:'3000'
+								});
+								
+							setTimeout("justep.Shell.closeAllOpendedPages();justep.Shell.showPage('address')",2000);
+						}else{
+							if(result.status==1){
+								shopObj.clear();
+								shopObj.loadData(result.data.stores);
+								goodsObj.clear();
+								goodsObj.loadData(result.data.goodses);
+								
+								addressObj.clear();
+								addressObj.loadData(result.data.addresses);
+								var sum=0;
+								for(var i=0;i<result.data.goodses.length;i++){
+									var price=result.data.goodses[i].goods_price;
+									var num=result.data.goodses[i].goods_num;
+									sum+=price*num;
+								}
+								$('#'+self.getIDByXID('sum')).html("￥"+sum);
+								var s_currentAddress=addressObj.find(['is_default'],[1]);
+								var a_t=s_currentAddress[0];
+								currentAddressObj.newData({
+									index:0,
+									defaultValues:[{
+									'address_id':a_t.val('address_id'),
+									'true_name':a_t.val('true_name'),
+									'mob_phone':a_t.val('mob_phone'),
+									'address':a_t.val('address')
+									}]
+								});
+								currentAddressObj.first();
+								
+								
 							}
-							$('#'+self.getIDByXID('sum')).html("￥"+sum);
-							var s_currentAddress=addressObj.find(['is_default'],[1]);
-							var a_t=s_currentAddress[0];
-							currentAddressObj.newData({
-								index:0,
-								defaultValues:[{
-								'address_id':a_t.val('address_id'),
-								'true_name':a_t.val('true_name'),
-								'mob_phone':a_t.val('mob_phone'),
-								'address':a_t.val('address')
-								}]
-							});
-							currentAddressObj.first();
-							
-							
-						}
-						if(result.status==-1){
-							justep.Util.hint(result.message, {
-								type:'warning',
-								delay:'3000'
-							});
+							if(result.status==-1){
+								justep.Util.hint(result.message, {
+									type:'warning',
+									delay:'3000'
+								});
+							}
 						}
 					},
 					error:function(result){

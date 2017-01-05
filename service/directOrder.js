@@ -50,47 +50,63 @@ define(function(require){
 						'goods_id':goods_id
 					},
 					success:function(result){
-						if(result.status==1){
-							shopObj.clear();
-							shopObj.newData({
-								index:0,
-								defaultValues:[
-								 result.data.store
-								]
-							});
-							goodsObj.clear();
-							result.data.goods.goods_num=goods_num;
-							goodsObj.newData({
-								index:0,
-								defaultValues:[
-								result.data.goods
-								]
-							
-							});
-							var goods=result.data.goods;
-							addressObj.clear();
-							addressObj.loadData(result.data.addresses);
-							$('#'+self.getIDByXID('sum')).html("￥"+goods.goods_price*goods_num);
-							var s_currentAddress=addressObj.find(['is_default'],[1]);
-							var a_t=s_currentAddress[0];
-							currentAddressObj.newData({
-								index:0,
-								defaultValues:[{
-								'address_id':a_t.val('address_id'),
-								'true_name':a_t.val('true_name'),
-								'mob_phone':a_t.val('mob_phone'),
-								'address':a_t.val('address')
-								}]
-							});
-							currentAddressObj.first();
-							
-							
-						}
-						if(result.status==-1){
-							justep.Util.hint(result.message, {
-								type:'warning',
-								delay:'3000'
-							});
+						if(result.data.addresses.length==0){
+							justep.Util.hint('未发现用户收货地址信息', {
+									type:'warning',
+									delay:'3000'
+								});
+								
+							setTimeout("justep.Shell.closeAllOpendedPages();justep.Shell.showPage('address')",2000);
+						}else{
+						
+							if(result.status==1){
+								shopObj.clear();
+								shopObj.newData({
+									index:0,
+									defaultValues:[
+									 result.data.store
+									]
+								});
+								goodsObj.clear();
+								result.data.goods.goods_num=goods_num;
+								goodsObj.newData({
+									index:0,
+									defaultValues:[
+									result.data.goods
+									]
+								
+								});
+								var goods=result.data.goods;
+								addressObj.clear();
+								addressObj.loadData(result.data.addresses);
+								addressObj.first();
+								var current=addressObj.getCurrentRow();
+								$('#'+self.getIDByXID('sum')).html("￥"+goods.goods_price*goods_num);
+								var s_currentAddress=addressObj.find(['is_default'],[1]);
+								console.log(s_currentAddress);
+								var a_t=s_currentAddress[0];
+								
+								currentAddressObj.newData({
+									index:0,
+									defaultValues:[{
+									'address_id':a_t.address_id,
+									'true_name':a_t.true_name,
+									'mob_phone':a_t.mob_phone,
+									'address':a_t.address
+									}]
+								});
+								
+									
+								currentAddressObj.first();
+								
+								
+							}
+							if(result.status==-1){
+								justep.Util.hint(result.message, {
+									type:'warning',
+									delay:'3000'
+								});
+							}
 						}
 					},
 					error:function(result){

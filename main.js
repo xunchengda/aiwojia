@@ -81,7 +81,7 @@ define(function(require) {
 		var pageName = event.currentTarget.getAttribute('pagename');
 		var member_id=localStorage.getItem("member_id");
 		if(member_id===null && pageName!=='./agent/agentmain.w')
-			justep.Shell.showPage('login');
+			justep.Shell.showPage(require.toUrl('./login.w'));
 		else{
 			if (pageName)
 				justep.Shell.showPage(require.toUrl(pageName));
