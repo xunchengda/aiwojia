@@ -73,7 +73,7 @@
             </div> 
            </div> 
            <div class="col col-xs-4" xid="col16">
-            <div class="text-center menu-icon" bind-click="openPageClick" pagename="" xid="div8">
+            <div class="text-center menu-icon" bind-click="openPageClick" pagename="./service/car.w" xid="div8">
              <img alt="" xid="image9" src="./main/img/icon-menu-5.png" class="img-responsive center-block"></img>
              <span xid="span12">出行服务</span>
             </div> 

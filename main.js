@@ -83,7 +83,20 @@ define(function(require) {
 		if(member_id===null && pageName!=='./agent/agentmain.w')
 			justep.Shell.showPage(require.toUrl('./login.w'));
 		else{
-			if (pageName)
+			if(pageName='./service/car.w'){
+				var date=new Date();
+				console.log(date);
+				var hour=date.getHours();
+				console.log(hour);
+				if(hour>9 || hour>21){
+					justep.Util.hint('非服务中心工作时间，无法约车', {
+									type:'warning',
+									delay:'3000'
+								});
+				}else{
+					justep.Shell.showPage(require.toUrl(pageName));
+				}
+			}else if (pageName)
 				justep.Shell.showPage(require.toUrl(pageName));
 		}
 			
@@ -198,26 +211,8 @@ define(function(require) {
 	Model.prototype.menuBtnClick = function(event){
 		this.comp('popShort').show();
 	};
-
-
-
-
-
-
-
-
-
 	Model.prototype.modelParamsReceive = function(event){
 
 	};
-
-
-
-
-
-
-
-
-
 	return Model;
 });
