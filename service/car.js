@@ -7,6 +7,7 @@ define(function(require){
 		this.callParent();
 		var configUrl = require.toUrl("../config/config.json");
 		configData.loadServerDataFromFile(configUrl,config);
+		this.member_id=localStorage.getItem('member_id');
 	};
 	Model.prototype.backBtnClick = function(event){
 		justep.Shell.closeAllOpendedPages();
@@ -36,36 +37,45 @@ define(function(require){
 	};
 
 	Model.prototype.confirmClick = function(event){
-		var end=justep.String.trim(this.comp('end').val());
-		if(end==''){
+		var check=justep.String.trim(this.comp('end').val());
+		var self=this;
+		if(check===''){
 			this.comp('end').addClass('has-error');
 		}else{
 			this.comp('end').removeClass('has-error');
-			var type=$("[name='type']:checked").val();
-			alert(type);
-			var start=this.comp('start').val();
-			var date=this.comp('date').val();
+			var type=this.comp('r_pt').get('checked')?'普通型':'豪华型';
+			var start=this.comp('r_gx').get('checked')?'高新嘉园':'高实馨城';
+			var date=this.comp('s_date').val();
+			
 			var hour=this.comp('s_hour').val();
+			
 			var minute=this.comp('s_minute').val();
 			var end=this.comp('end').val();
-			return;
+			var member_id=this.member_id;
 			$.ajax({
 					'url':"http://"+config.server+"/aiwojia_admin/index.php?m=Home&c=Interface&a=registerCar",
 					'type':'post',
 					'async':false,
 					'dataType':'json',
 					'data':{
-						'name':data.val('name'),
-						'password':data.val('password')
+						'type':type,
+						'start':start,
+						'date':date,
+						'hour':hour,
+						'minute':minute,
+						'end':end,
+						'member_id':member_id
 					},
 					success:function(result){
 						console.log(result);
 						if(result.status==1){
-							//localStorage.setItem('user',JSON.stringify(result.data));
-							localStorage.setItem('member_name',result.data.name);
-							localStorage.setItem('member_id',result.data.member_id);
-							localStorage.setItem('member_mobile',result.data.mobile);
-							justep.Shell.showPage(require.toUrl('./main.w'));
+							self.comp('msg').show({message:result.message});
+							self.comp('r_pt').set({checked:true});
+							self.comp('r_gx').set({checked:true});
+							self.comp('s_date').val('明天');
+							self.comp('end').val('');
+							
+							
 						}
 						if(result.status==-1){
 							justep.Util.hint(result.message, {

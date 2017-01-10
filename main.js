@@ -87,7 +87,7 @@ define(function(require) {
 				var date=new Date();
 				console.log(date);
 				var hour=date.getHours();
-				if(hour<9 || hour>21){
+				if(hour<9 || hour>24){
 					justep.Util.hint('非服务中心工作时间，无法约车', {
 									type:'warning',
 									delay:'3000'

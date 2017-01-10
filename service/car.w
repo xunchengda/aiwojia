@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" component="$UI/system/components/justep/window/window" design="device:m;" xid="window" class="window">  
   <div component="$UI/system/components/justep/model/model" xid="model" style="height:auto;top:404px;left:57px;"> 
-  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="type" idColumn="type"><column name="type" type="String" xid="xid2"></column>
-  <data xid="default1">[{&quot;type&quot;:&quot;普通型&quot;},{&quot;type&quot;:&quot;豪华型&quot;}]</data></div>
+  <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="type" idColumn="type">
+  <column name="type" type="String" xid="xid2"></column><data xid="default1">[{&quot;type&quot;:&quot;普通型&quot;},{&quot;type&quot;:&quot;豪华型&quot;}]</data></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="start" idColumn="address"><column name="address" type="String" xid="xid3"></column>
   <data xid="default2">[{&quot;address&quot;:&quot;高新嘉园&quot;},{&quot;address&quot;:&quot;高实馨城&quot;}]</data></div>
   <div component="$UI/system/components/justep/data/data" autoLoad="true" xid="hour" idColumn="id"><column name="id" type="Integer" xid="xid1"></column>
@@ -40,12 +40,12 @@
     <span class="x-pull-down-label" xid="span1">下拉刷新...</span></div> 
    <div class="x-scroll-content" xid="div2"><div component="$UI/system/components/justep/row/row" class="x-row x-row-center" xid="row6">
    <div class="x-col x-col-20" xid="col12"><span xid="span8"><![CDATA[选择车型]]></span></div>
-   <div class="x-col" xid="col14"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio2" label="普通型" name="type" value="0" checked="true"></span>
-  <span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio3" name="type" label="豪华型" value="1" checked="false"></span></div></div>
+   <div class="x-col" xid="col14">
+  <span component="$UI/system/components/justep/button/radio" class="x-radio" xid="r_pt" label="普通型" name="type" checked="true" checkedValue="1"></span><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="r_hh" name="type" label="豪华型" checked="false"></span></div></div>
   <div component="$UI/system/components/justep/row/row" class="x-row x-row-center" xid="row7">
    <div class="x-col x-col-20" xid="col15"><span xid="span9"><![CDATA[出发地点]]></span></div>
-   <div class="x-col" xid="col17"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio5" label="高新嘉园" name="start" value="0" checked="true"></span>
-  <span component="$UI/system/components/justep/button/radio" class="x-radio" xid="radio4" name="start" label="高实馨城" value="0" checked="false"></span></div></div>
+   <div class="x-col" xid="col17"><span component="$UI/system/components/justep/button/radio" class="x-radio" xid="r_gx" label="高新嘉园" name="start" checked="true"></span>
+  <span component="$UI/system/components/justep/button/radio" class="x-radio" xid="r_gs" name="start" label="高实馨城" checked="false"></span></div></div>
   <div component="$UI/system/components/justep/row/row" class="x-row x-row-center" xid="row8">
    <div class="x-col x-col-20" xid="col19">
     <span xid="span10"><![CDATA[用车时间]]></span></div> 
@@ -55,12 +55,12 @@
   </div>
   <div class="x-col" xid="col21"><select component="$UI/system/components/justep/select/select" class="form-control" xid="s_minute" bind-options="minute" bind-optionsValue="value" bind-optionsLabel="minute" bind-value=' $model.minute.val("value")'></select></div></div>
   <div component="$UI/system/components/justep/row/row" class="x-row x-row-center" xid="row9">
-   <div class="x-col x-col-20" xid="col22"><span xid="span11"><![CDATA[目的地]]></span></div>
-   <div class="x-col" xid="col23"><input component="$UI/system/components/justep/input/input" class="form-control" xid="end" placeHolder="请输入您的目的地" onBlur="endBlur"></input></div>
+   
+   <div class="x-col x-col-20" xid="col22"><span xid="span11"><![CDATA[目的地]]></span></div><div class="x-col" xid="col23"><input component="$UI/system/components/justep/input/input" class="form-control" xid="end" placeHolder="请输入您的目的地" onBlur="endBlur"></input></div>
    </div></div>
    </div></div>
-   <div class="x-panel-bottom" xid="bottom2"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="确定" xid="button1" style="position:absolute;bottom:0px" onClick="confirmClick">
+   <div class="x-panel-bottom" xid="bottom2"><a component="$UI/system/components/justep/button/button" class="btn btn-default btn-block" label="确定" xid="button1" style="position:absolute;bottom:0px;" onClick="confirmClick">
    <i xid="i2"></i>
    <span xid="span3">确定</span></a></div></div></div>
   </div> 
-</div>
+<span component="$UI/system/components/justep/messageDialog/messageDialog" xid="msg"></span></div>
