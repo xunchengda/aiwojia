@@ -89,10 +89,10 @@ define(function(require){
 								currentAddressObj.newData({
 									index:0,
 									defaultValues:[{
-									'address_id':a_t.address_id,
-									'true_name':a_t.true_name,
-									'mob_phone':a_t.mob_phone,
-									'address':a_t.address
+									'address_id':a_t.val('address_id'),
+									'true_name':a_t.val('true_name'),
+									'mob_phone':a_t.val('mob_phone'),
+									'address':a_t.val('address')
 									}]
 								});
 								
